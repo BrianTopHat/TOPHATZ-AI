@@ -42,6 +42,7 @@
 
   /* App header */
   .topbar {
+    position: relative; z-index: 1;
     flex: 0 0 auto;
     min-height: 76px; padding: 14px clamp(16px, 3vw, 34px);
     display: flex; align-items: center; justify-content: space-between; gap: 18px;
@@ -72,7 +73,7 @@
   .icon-button:disabled { opacity: .35; cursor: not-allowed; }
 
   /* Split workspace: chat stays scrollable and the composer stays anchored. */
-  .workspace { flex: 1 1 0; min-height: 0; min-width: 0; width: 100%; display: flex; position: relative; overflow: hidden; }
+  .workspace { flex: 1 1 0; min-height: 0; min-width: 0; width: 100%; display: flex; position: relative; z-index: 1; overflow: hidden; }
   .chat-column { flex: 1 1 0; min-height: 0; min-width: 0; display: flex; flex-direction: column; }
   #chat-stage { flex: 1 1 0; min-height: 0; min-width: 0; width: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; }
   #messages {
@@ -123,6 +124,13 @@
   .bubble ul, .bubble ol { margin: 2px 0 14px; padding-left: 23px; }
   .bubble li { margin: 4px 0; padding-left: 3px; }
   .bubble blockquote { margin: 4px 0 14px; padding: 6px 13px; color: #b8bed0; border-left: 3px solid #8b7aea; background: rgba(167,139,250,.055); border-radius: 0 8px 8px 0; }
+  .web-sources { margin-top: 16px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.025); font-size: 11px; line-height: 1.65; }
+  .web-sources-heading { margin-bottom: 7px; color: var(--muted); font-size: 10px; font-weight: 750; text-transform: uppercase; letter-spacing: .04em; }
+  .web-sources ul { margin: 0; padding-left: 17px; }
+  .web-sources li { margin: 5px 0; }
+  .web-sources a { color: var(--accent); text-decoration: none; font-weight: 650; }
+  .web-sources a:hover { text-decoration: underline; }
+  .web-source-snippet { color: var(--muted); }
 
   /* Code cards */
   .code-card { min-width: 0; overflow: hidden; margin: 13px 0 15px; border: 1px solid rgba(255,255,255,.12); border-radius: 14px; background: #090b11; box-shadow: 0 8px 28px rgba(0,0,0,.16); }
@@ -146,8 +154,20 @@
   /* Composer */
   #input-area { flex: 0 0 auto; position: relative; z-index: 2; padding: 12px 18px max(14px, env(safe-area-inset-bottom)); background: linear-gradient(180deg, rgba(8,10,16,.15), rgba(8,10,16,.96) 23%); }
   .composer-shell { width: min(100%, 850px); margin: 0 auto; }
-  #file-name { display: none; margin: 0 0 8px 6px; color: #bdb4ed; font-size: 11px; }
-  #file-name:not(:empty) { display: block; }
+  #file-name { display: none; margin: 0 0 8px 4px; color: var(--text); font-size: 11px; }
+  #file-name:not(:empty) { display: flex; }
+  .attachment-chip { display: inline-flex; align-items: center; gap: 10px; max-width: min(100%, 420px); padding: 9px 11px; border: 1px solid rgba(167,139,250,.22); border-radius: 13px; background: rgba(167,139,250,.075); color: var(--text); min-width: 0; }
+  .attachment-chip.message-attachment { margin: 0 0 9px; max-width: 100%; }
+  .attachment-icon { flex: 0 0 29px; width: 29px; height: 29px; border-radius: 9px; display: grid; place-items: center; background: rgba(167,139,250,.15); color: #d8ccff; font-size: 14px; }
+  .attachment-info { min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 3px; }
+  .attachment-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; font-weight: 700; }
+  .attachment-meta { color: var(--muted); font-size: 10px; }
+  .attachment-remove { flex: 0 0 26px; width: 26px; height: 26px; border-radius: 8px; border: 1px solid var(--line); background: rgba(255,255,255,.035); color: var(--muted); cursor: pointer; }
+  .attachment-remove:hover { color: #fb7185; background: rgba(251,113,133,.08); }
+  .mode-tools { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 6px; }
+  .mode-toggle { display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.035); color: var(--muted); padding: 6px 9px; font-size: 10px; line-height: 1.2; cursor: pointer; transition: .18s; }
+  .mode-toggle[aria-pressed="true"] { border-color: color-mix(in srgb, var(--accent) 56%, transparent); color: var(--text); background: color-mix(in srgb, var(--accent) 14%, transparent); }
+  .mode-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   #input-wrap {
     display: flex; align-items: flex-end; gap: 9px; padding: 8px;
     border: 1px solid rgba(255,255,255,.13); border-radius: 21px;
@@ -232,6 +252,97 @@
   :root[data-theme="forest"] .brand-title span, :root[data-theme="forest"] .welcome-title .gradient { background-image: linear-gradient(95deg, #86efac, #bef264 75%); -webkit-background-clip: text; background-clip: text; color: transparent; }
   :root[data-theme="forest"] .welcome-orb { border-color: rgba(74,222,128,.26); background: linear-gradient(145deg, rgba(74,222,128,.18), rgba(163,230,53,.10)); }
   :root[data-theme="forest"] .code-language::before { background: #4ade80; box-shadow: 0 0 10px rgba(74,222,128,.28); }
+  :root[data-theme="halloween"] {
+    color-scheme: dark;
+    --bg: #100711; --panel: #1b0d20; --panel-2: #29132f;
+    --line: rgba(255,156,75,.18); --muted: #c4a4b4; --text: #fff4e8;
+    --accent: #ff8a2a; --accent-2: #c084fc; --green: #86efac; --red: #fb7185; --amber: #fbbf24;
+  }
+  :root[data-theme="halloween"] body {
+    background:
+      radial-gradient(ellipse at 8% 18%, rgba(255,112,20,.16), transparent 32%),
+      radial-gradient(ellipse at 92% 8%, rgba(168,85,247,.19), transparent 34%),
+      radial-gradient(ellipse at 50% 110%, rgba(249,115,22,.10), transparent 42%),
+      linear-gradient(135deg, #100711, #170a20 58%, #0c0711);
+  }
+  :root[data-theme="halloween"] .brand-title span,
+  :root[data-theme="halloween"] .welcome-title .gradient {
+    background-image: linear-gradient(95deg, #ff9a38 0%, #ffd08a 44%, #d8b4fe 84%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 0 13px rgba(255,138,42,.19));
+  }
+  :root[data-theme="halloween"] .brand-title::after { content: " 🎃"; font-size: .8em; filter: drop-shadow(0 0 8px rgba(255,138,42,.45)); }
+  :root[data-theme="halloween"] .brand-subtitle { color: #e5ad78; text-shadow: 0 0 11px rgba(255,138,42,.22); }
+  :root[data-theme="halloween"] .brand-subtitle::after { content: "  ✦ SPOOKY SEASON"; color: #ff9b48; font-weight: 800; letter-spacing: .09em; text-shadow: 0 0 10px rgba(255,138,42,.34); }
+  :root[data-theme="halloween"] .welcome-title::before {
+    content: "✦  SPOOKY SEASON  ✦"; display: block; margin: 0 0 12px;
+    color: #ff9a38; font-size: 10px; line-height: 1.4; letter-spacing: .22em; font-weight: 850;
+    text-shadow: 0 0 12px rgba(255,138,42,.55), 0 0 28px rgba(255,138,42,.20);
+  }
+  :root[data-theme="halloween"] .welcome-orb { border-color: rgba(255,138,42,.44); background: linear-gradient(145deg, rgba(255,138,42,.24), rgba(168,85,247,.20)); box-shadow: 0 12px 50px rgba(255,111,0,.15), 0 0 30px rgba(255,138,42,.12), inset 0 1px rgba(255,255,255,.12); font-size: 0; }
+  :root[data-theme="halloween"] .welcome-orb::before { content: "🎃"; font-size: 30px; filter: drop-shadow(0 0 10px rgba(255,138,42,.55)); animation: pumpkin-glow 3s ease-in-out infinite; }
+  :root[data-theme="halloween"] .code-language { color: #ffd0a1; }
+  :root[data-theme="halloween"] .code-language::before { background: #ff8a2a; box-shadow: 0 0 10px rgba(255,138,42,.55), 0 0 22px rgba(255,138,42,.18); }
+  :root[data-theme="halloween"] .code-card { border-color: rgba(255,138,42,.25); box-shadow: 0 8px 34px rgba(0,0,0,.2), 0 0 22px rgba(255,138,42,.055); }
+  :root[data-theme="halloween"] .code-head { background: linear-gradient(100deg, rgba(255,138,42,.10), rgba(192,132,252,.055)); border-bottom-color: rgba(255,138,42,.17); }
+  :root[data-theme="halloween"] .code-action:hover:not(:disabled) { background: rgba(255,138,42,.15); border-color: rgba(255,169,91,.34); box-shadow: 0 0 14px rgba(255,138,42,.10); }
+  :root[data-theme="halloween"] .code-action.preview { color: #ffd0a1; border-color: rgba(255,138,42,.3); background: rgba(255,138,42,.12); }
+  :root[data-theme="halloween"] .bubble strong { color: #ffd0a1; text-shadow: 0 0 12px rgba(255,138,42,.13); }
+  :root[data-theme="halloween"] .bubble code:not(pre code) { color: #ffbd7c; border-color: rgba(255,138,42,.2); background: rgba(255,138,42,.10); }
+  :root[data-theme="halloween"] .bubble blockquote { border-left-color: #ff8a2a; background: rgba(255,138,42,.065); color: #e9c4d8; }
+  :root[data-theme="halloween"] .msg.ai .avatar { border-color: rgba(255,138,42,.32); background: linear-gradient(145deg, rgba(255,138,42,.20), rgba(168,85,247,.19)); box-shadow: 0 0 16px rgba(255,138,42,.07); }
+  :root[data-theme="halloween"] .suggestion { border-color: rgba(255,156,75,.17); background: rgba(255,138,42,.035); }
+  :root[data-theme="halloween"] .suggestion:hover { border-color: rgba(255,156,75,.52); background: rgba(255,138,42,.105); box-shadow: 0 0 18px rgba(255,138,42,.09); }
+  :root[data-theme="halloween"] .icon-button:hover:not(:disabled) { border-color: rgba(255,156,75,.36); background: rgba(255,138,42,.10); box-shadow: 0 0 13px rgba(255,138,42,.08); }
+  :root[data-theme="halloween"] .mode-toggle[aria-pressed="true"] { border-color: rgba(255,156,75,.55); color: #ffd0a1; background: rgba(255,138,42,.12); box-shadow: 0 0 13px rgba(255,138,42,.08); }
+  :root[data-theme="halloween"] #input-area { background: linear-gradient(180deg, rgba(16,7,17,.04), rgba(16,7,17,.97) 24%); }
+  :root[data-theme="halloween"] #input-wrap { border-color: rgba(255,156,75,.22); background: rgba(27,13,32,.94); box-shadow: 0 15px 45px rgba(0,0,0,.29), 0 0 22px rgba(255,138,42,.04), inset 0 1px rgba(255,255,255,.035); }
+  :root[data-theme="halloween"] #input-wrap:focus-within { border-color: rgba(255,138,42,.66); box-shadow: 0 0 0 3px rgba(255,138,42,.10), 0 0 26px rgba(255,138,42,.12), 0 15px 45px rgba(0,0,0,.25); }
+  :root[data-theme="halloween"] #user-input { color: #fff4e8; }
+  :root[data-theme="halloween"] #user-input::placeholder { color: #b893a2; }
+  :root[data-theme="halloween"] #send-btn, :root[data-theme="halloween"] .primary-button { color: #2c1309; background: linear-gradient(135deg, #ffbd73, #ff8a2a 58%, #d8b4fe); box-shadow: 0 4px 18px rgba(255,138,42,.18); }
+  :root[data-theme="halloween"] .thinking { color: #ffbd7c; text-shadow: 0 0 12px rgba(255,138,42,.22); }
+  :root[data-theme="halloween"] .thinking-dots span { background: #ff9a38; box-shadow: 0 0 8px rgba(255,138,42,.6); }
+  :root[data-theme="halloween"] .attachment-chip { border-color: rgba(255,138,42,.28); background: rgba(255,138,42,.075); }
+  :root[data-theme="halloween"] .attachment-icon { background: rgba(255,138,42,.16); color: #ffd0a1; }
+  :root[data-theme="halloween"] .preview-dock:not([hidden]) { border-left-color: rgba(255,138,42,.22); }
+  :root[data-theme="halloween"] .preview-resizer:hover::after, :root[data-theme="halloween"] .preview-resizer:focus-visible::after, :root[data-theme="halloween"] .preview-resizer.is-dragging::after { background: #ff8a2a; box-shadow: 0 0 12px rgba(255,138,42,.55); }
+  :root[data-theme="halloween"] .modal-box { border-color: rgba(255,138,42,.25); box-shadow: 0 25px 100px rgba(0,0,0,.48), 0 0 28px rgba(255,138,42,.07); }
+  :root[data-theme="halloween"] .modal-icon { border-color: rgba(255,138,42,.26); background: linear-gradient(135deg, rgba(255,138,42,.17), rgba(168,85,247,.16)); filter: drop-shadow(0 0 10px rgba(255,138,42,.12)); }
+  :root[data-theme="halloween"] .conversation-item:hover, :root[data-theme="halloween"] .conversation-item.active { background: rgba(255,138,42,.07); border-color: rgba(255,138,42,.23); }
+  :root[data-theme="halloween"] #toast { border-color: rgba(255,156,75,.3); box-shadow: 0 8px 28px rgba(0,0,0,.3), 0 0 18px rgba(255,138,42,.12); }
+  :root[data-theme="halloween"] ::selection { color: #210d05; background: #ffbd73; }
+
+  /* Decorations are non-interactive and only visible while Halloween is selected. */
+  .halloween-scene { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; opacity: 0; visibility: hidden; transition: opacity .35s ease; }
+  :root[data-theme="halloween"] .halloween-scene { opacity: 1; visibility: visible; }
+  .spiderweb { position: absolute; top: -4px; width: 176px; height: 176px; opacity: .74; background-image: repeating-radial-gradient(circle at 0 0, transparent 0 12px, rgba(255,177,111,.34) 13px 14px, transparent 15px 27px), repeating-conic-gradient(from 0deg at 0 0, rgba(255,177,111,.30) 0deg 1deg, transparent 1.5deg 15deg); filter: drop-shadow(0 0 5px rgba(255,138,42,.12)); }
+  .spiderweb-left { left: -2px; }
+  .spiderweb-right { right: -2px; transform: scaleX(-1); }
+  .haunt-icon { position: absolute; display: block; line-height: 1; user-select: none; filter: drop-shadow(0 0 10px rgba(255,138,42,.26)); }
+  .haunt-spider { top: 0; left: 12%; font-size: 24px; transform-origin: top center; animation: spider-sway 4s ease-in-out infinite; }
+  .haunt-spider::before { content: ""; position: absolute; top: -40px; left: 50%; height: 39px; width: 1px; background: rgba(255,177,111,.55); }
+  .haunt-bat { top: 21%; right: 17%; font-size: 24px; animation: bat-drift 12s ease-in-out infinite; }
+  .haunt-ghost { top: 42%; left: 4.5%; font-size: 23px; opacity: .54; animation: ghost-float 6s ease-in-out infinite; }
+  .haunt-pumpkin { right: 22px; bottom: 90px; font-size: 29px; opacity: .7; animation: pumpkin-glow 3s ease-in-out infinite; }
+  .haunt-moon { position: absolute; top: 100px; right: 7%; width: 48px; height: 48px; border-radius: 50%; opacity: .18; background: #ffd9a5; box-shadow: 0 0 36px 12px rgba(255,138,42,.10); }
+  @keyframes spider-sway { 0%,100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+  @keyframes bat-drift { 0%,100% { transform: translate(0,0) rotate(-4deg); } 50% { transform: translate(-24px,14px) rotate(5deg); } }
+  @keyframes ghost-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+  @keyframes pumpkin-glow { 0%,100% { filter: drop-shadow(0 0 5px rgba(255,138,42,.28)); transform: translateY(0); } 50% { filter: drop-shadow(0 0 15px rgba(255,138,42,.75)); transform: translateY(-3px); } }
+  :root[data-theme="halloween"] ::-webkit-scrollbar-thumb { background: rgba(255,138,42,.42); border-radius: 9px; }
+  @media (max-width: 620px) {
+    .spiderweb { width: 90px; height: 90px; opacity: .45; }
+    .haunt-spider { left: 10%; font-size: 18px; }
+    .haunt-bat { top: 13%; right: 5%; font-size: 18px; }
+    .haunt-ghost { display: none; }
+    .haunt-pumpkin { right: 9px; bottom: 120px; font-size: 21px; opacity: .5; }
+    .haunt-moon { top: 80px; right: 5%; width: 28px; height: 28px; }
+    :root[data-theme="halloween"] .brand-subtitle::after { content: "  ✦ HALLOWEEN"; letter-spacing: .04em; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .halloween-scene, .haunt-icon, :root[data-theme="halloween"] .welcome-orb::before { animation: none !important; transition: none !important; }
+  }
   :root[data-theme="light"] { color-scheme: light; --bg: #f4f6fb; --panel: #ffffff; --panel-2: #edf0f7; --line: rgba(24,32,53,.14); --muted: #687188; --text: #171c2d; --accent: #6d5ce8; --accent-2: #3b82f6; }
   :root[data-theme="light"] body { color: var(--text); background: radial-gradient(ellipse at 14% -15%, rgba(109,92,232,.10), transparent 42%), radial-gradient(ellipse at 100% 0%, rgba(59,130,246,.07), transparent 35%), var(--bg); }
   :root[data-theme="light"] .topbar { background: rgba(244,246,251,.88); }
@@ -274,7 +385,9 @@
     #input-wrap { gap: 6px; padding: 6px; border-radius: 17px; }
     #file-btn, #send-btn { width: 37px; height: 37px; flex-basis: 37px; border-radius: 11px; }
     #user-input { min-height: 37px; padding: 9px 4px; font-size: 13px; }
-    .composer-footer { font-size: 9px; padding: 8px 4px 0; }
+    .composer-footer { align-items: flex-start; flex-direction: column; font-size: 9px; padding: 8px 4px 0; }
+    .mode-tools { justify-content: flex-start; width: 100%; }
+    .mode-toggle { font-size: 10px; }
     .welcome-title { font-size: 29px; }
     .welcome-copy { font-size: 13px; }
     .suggestions { margin-top: 21px; }
@@ -306,6 +419,15 @@
 </style>
 </head>
 <body>
+<div class="halloween-scene" aria-hidden="true">
+  <div class="spiderweb spiderweb-left"></div>
+  <div class="spiderweb spiderweb-right"></div>
+  <span class="haunt-icon haunt-spider">🕷️</span>
+  <span class="haunt-icon haunt-bat">🦇</span>
+  <span class="haunt-icon haunt-ghost">👻</span>
+  <span class="haunt-icon haunt-pumpkin">🎃</span>
+  <div class="haunt-moon"></div>
+</div>
 <header class="topbar">
   <div class="brand">
     <div>
@@ -350,7 +472,13 @@
       <textarea id="user-input" placeholder="Message TOPHATZ AI…" rows="1" autofocus aria-label="Message AI"></textarea>
       <button id="send-btn" type="button" aria-label="Send message" title="Send message">↑</button>
     </div>
-    <div class="composer-footer"><span>Enter to send · Shift + Enter for a new line</span><span>Files supported · Code preview &amp; download</span></div>
+    <div class="composer-footer">
+      <span>Enter to send · Shift + Enter for a new line</span>
+      <div class="mode-tools" aria-label="AI modes">
+        <button id="deep-toggle" class="mode-toggle" type="button" aria-pressed="false" title="Ask the model to spend more effort on complex answers and code">🧠 Deep thinking: Off</button>
+        <button id="web-toggle" class="mode-toggle" type="button" aria-pressed="false" title="Add live Wikipedia search results as context">🌐 Web lookup: Off</button>
+      </div>
+    </div>
   </div>
 </footer>
   </div>
@@ -367,13 +495,25 @@
   </aside>
 </div>
 
-<div id="welcome-overlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="welcome-heading">
+<div id="welcome-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="welcome-heading">
   <div class="modal-box">
     <div class="modal-content">
       <div class="modal-icon" aria-hidden="true">✦</div>
       <h2 id="welcome-heading">Welcome to TOPHATZ AI</h2>
-      <p>Welcome back to TOPHATZ AI. Your chats can be saved in this browser. The AI service may not be online all the time.</p>
+      <p>Welcome back to TOPHATZ AI. Your chats can be saved in this browser, and the status indicator checks the live flag in your GitHub repository. The AI service may not be online all the time.</p>
       <button id="modal-close" class="primary-button" type="button">Let's get started</button>
+    </div>
+  </div>
+</div>
+
+<div id="halloween-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="halloween-heading">
+  <div class="modal-box">
+    <div class="modal-content">
+      <div class="modal-icon" aria-hidden="true">🎃</div>
+      <h2 id="halloween-heading">Hey check out this new theme!</h2>
+      <p>Halloween mode is here, with spooky purple and pumpkin-orange colors. Try it now or keep your current look.</p>
+      <button id="halloween-try" class="primary-button" type="button">Try Halloween theme</button>
+      <button id="halloween-later" class="secondary-button" type="button" style="margin:12px 0 0 8px">Maybe later</button>
     </div>
   </div>
 </div>
@@ -397,9 +537,10 @@
       <button id="settings-close" class="icon-button" type="button" aria-label="Close settings" title="Close">✕</button>
     </div>
     <div class="settings-content">
-      <label class="settings-field" for="theme-select"><span>Appearance</span><select id="theme-select"><option value="midnight">Midnight (default)</option><option value="light">Light</option><option value="ocean">Ocean blue</option><option value="forest">Forest green</option></select><small>Changes the interface colors.</small></label>
-      <label class="settings-field" for="typing-speed"><span>Response typing speed</span><select id="typing-speed"><option value="slow">Relaxed</option><option value="normal">Normal</option><option value="fast">Fast</option></select><small>Controls how quickly AI responses appear.</small></label>
+      <label class="settings-field" for="theme-select"><span>Appearance</span><select id="theme-select"><option value="midnight">Midnight (default)</option><option value="light">Light</option><option value="ocean">Ocean blue</option><option value="forest">Forest green</option><option value="halloween">🎃 Halloween</option></select><small>Changes the interface colors.</small></label>
       <label class="settings-field" for="conversation-limit"><span>Keep recent conversations</span><select id="conversation-limit"><option value="5">5 conversations</option><option value="10">10 conversations</option><option value="12">12 conversations</option><option value="15">15 conversations</option></select><small>Older conversations are automatically removed when the limit is reached.</small></label>
+      <label class="settings-toggle" for="deep-thinking-setting"><input id="deep-thinking-setting" type="checkbox"><span><strong>Deep thinking &amp; coding mode</strong><small>Prompts the current model to be more methodical, check edge cases, and produce longer coding answers. Native thinking depends on the model you run.</small></span></label>
+      <label class="settings-toggle" for="web-search-setting"><input id="web-search-setting" type="checkbox"><span><strong>Web lookup</strong><small>Searches Wikipedia for live article snippets and passes them to the AI with source links. This standalone page cannot do full Google/Bing-style search without a configured search API or backend.</small></span></label>
       <label class="settings-toggle" for="save-chats"><input id="save-chats" type="checkbox"><span><strong>Save conversations on this browser</strong><small>Remember chats when you return. Turning this off pauses future saves; existing saved chats remain.</small></span></label>
     </div>
     <div class="dialog-footer"><button id="settings-reset" class="secondary-button" type="button">Reset defaults</button><button id="settings-done" class="primary-button" type="button">Done</button></div>
@@ -416,10 +557,14 @@ const OLLAMA_URL = 'https://canola-anteater-fool.ngrok-free.dev/api/chat';
 const MODEL = 'qwen2.5:7b';
 const STATUS_URL = 'https://raw.githubusercontent.com/BrianTopHat/TOPHATZ-AI/main/stat';
 const STATUS_REFRESH_MS = 45000;
+const CURRENT_YEAR = 2026;
+const WIKIPEDIA_API = 'https://en.wikipedia.org/w/api.php';
+const HALLOWEEN_NOTICE_KEY = 'tophatz-ai-halloween-notice-v1';
+const WELCOME_NOTICE_KEY = 'tophatz-ai-welcome-notice-v1';
 
 const CONVERSATIONS_STORAGE_KEY = 'tophatz-ai-conversations-v1';
 const SETTINGS_STORAGE_KEY = 'tophatz-ai-settings-v1';
-const DEFAULT_SETTINGS = { theme: 'midnight', typingSpeed: 'normal', saveChats: true, maxConversations: 12 };
+const DEFAULT_SETTINGS = { theme: 'midnight', deepThinking: false, webSearch: false, saveChats: true, maxConversations: 12 };
 const MAX_MESSAGES_PER_CONVERSATION = 60;
 const MAX_STORED_JSON_CHARS = 1400000;
 let settings = readSettings();
@@ -428,6 +573,7 @@ let activeConversationId = null;
 let history = [];
 let fileContent = '';
 let fileName = '';
+let fileSize = 0;
 let isBusy = false;
 let toastTimer = null;
 
@@ -450,9 +596,13 @@ const conversationsOverlay = document.getElementById('conversations-overlay');
 const conversationListEl = document.getElementById('conversation-list');
 const settingsOverlay = document.getElementById('settings-overlay');
 const themeSelect = document.getElementById('theme-select');
-const typingSpeedSelect = document.getElementById('typing-speed');
 const conversationLimitSelect = document.getElementById('conversation-limit');
 const saveChatsCheckbox = document.getElementById('save-chats');
+const deepThinkingCheckbox = document.getElementById('deep-thinking-setting');
+const webSearchCheckbox = document.getElementById('web-search-setting');
+const deepToggle = document.getElementById('deep-toggle');
+const webToggle = document.getElementById('web-toggle');
+const halloweenOverlay = document.getElementById('halloween-overlay');
 
 // Welcome and preview overlays.
 function closeWelcome() { welcomeOverlay.classList.add('hidden'); }
@@ -468,6 +618,7 @@ document.addEventListener('keydown', event => {
     closeWelcome();
     conversationsOverlay.classList.add('hidden');
     settingsOverlay.classList.add('hidden');
+    halloweenOverlay.classList.add('hidden');
     if (!previewDock.hidden) closePreview();
   }
 });
@@ -542,16 +693,67 @@ fileBtn.addEventListener('click', () => fileInput.click());
 fileInput.addEventListener('change', event => {
   const file = event.target.files && event.target.files[0];
   if (!file) return;
+  if (file.size > 2 * 1024 * 1024) {
+    fileInput.value = '';
+    showToast('Please attach a text or code file smaller than 2 MB.');
+    return;
+  }
   fileName = file.name;
+  fileSize = file.size;
   const reader = new FileReader();
   reader.onload = loadEvent => {
     fileContent = String(loadEvent.target.result ?? '');
-    fileNameEl.textContent = '📄 ' + fileName + ' · ' + (file.size / 1024).toFixed(1) + ' KB attached';
+    renderComposerAttachment();
     inputEl.placeholder = 'Ask about “' + fileName + '”…';
+    showToast('File attached');
   };
   reader.onerror = () => showToast('Could not read that file.');
   reader.readAsText(file);
 });
+
+function clearPendingFile() {
+  fileContent = '';
+  fileName = '';
+  fileSize = 0;
+  fileInput.value = '';
+  fileNameEl.replaceChildren();
+  inputEl.placeholder = 'Message TOPHATZ AI…';
+}
+function createAttachmentChip(attachment, removable = false, onRemove = null, messageChip = false) {
+  const chip = document.createElement('div');
+  chip.className = 'attachment-chip' + (messageChip ? ' message-attachment' : '');
+  const icon = document.createElement('span');
+  icon.className = 'attachment-icon';
+  icon.setAttribute('aria-hidden', 'true');
+  icon.textContent = /\.(html?|svg)$/i.test(attachment.name || '') ? '⌘' : /\.(js|ts|py|lua|json|css|sql|sh)$/i.test(attachment.name || '') ? '{ }' : '▤';
+  const info = document.createElement('span');
+  info.className = 'attachment-info';
+  const name = document.createElement('span');
+  name.className = 'attachment-name';
+  name.textContent = attachment.name || 'Attached file';
+  const meta = document.createElement('span');
+  meta.className = 'attachment-meta';
+  const size = Number(attachment.size);
+  meta.textContent = Number.isFinite(size) ? (size < 1024 ? size + ' B' : (size / 1024).toFixed(1) + ' KB') + ' · File attached' : 'File attached';
+  info.append(name, meta);
+  chip.append(icon, info);
+  if (removable) {
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.className = 'attachment-remove';
+    remove.textContent = '×';
+    remove.title = 'Remove attachment';
+    remove.setAttribute('aria-label', 'Remove attached file');
+    remove.addEventListener('click', onRemove || clearPendingFile);
+    chip.appendChild(remove);
+  }
+  return chip;
+}
+function renderComposerAttachment() {
+  fileNameEl.replaceChildren();
+  if (!fileName) return;
+  fileNameEl.appendChild(createAttachmentChip({ name: fileName, size: fileSize }, true, clearPendingFile));
+}
 
 // Composer controls.
 sendBtn.addEventListener('click', sendMessage);
@@ -592,43 +794,68 @@ clearChatBtn.addEventListener('click', () => {
 
 async function sendMessage() {
   if (isBusy) return;
-  let prompt = inputEl.value.trim();
-  if (!prompt && !fileContent) return;
+  const visiblePrompt = inputEl.value.trim();
+  if (!visiblePrompt && !fileName) return;
 
-  if (fileContent) {
-    prompt = '[Attached file: ' + fileName + ']\n```text\n' + fileContent + '\n```\n\n' + (prompt || 'Please analyze this file.');
-    fileContent = '';
-    fileName = '';
-    fileNameEl.textContent = '';
-    inputEl.placeholder = 'Message TOPHATZ AI…';
-    fileInput.value = '';
+  const attachment = fileName ? { name: fileName, size: fileSize } : null;
+  const userText = visiblePrompt || 'Please analyze this file.';
+  let apiPrompt = userText;
+  if (attachment) {
+    apiPrompt = 'The user attached the text/code file "' + attachment.name + '". Use its contents as context.\n\n--- BEGIN FILE: ' + attachment.name + ' ---\n' + fileContent + '\n--- END FILE ---\n\nUser request: ' + userText;
   }
 
+  // Query the opt-in search provider before submitting the prompt to the model.
   inputEl.value = '';
   resizeInput();
   isBusy = true;
   sendBtn.disabled = true;
   clearChatBtn.disabled = true;
-  appendMsg(prompt, 'user');
-  history.push({ role: 'user', content: prompt });
-  recordConversationMessage('user', prompt);
+  appendMsg(userText, 'user', attachment);
+  history.push({ role: 'user', content: apiPrompt });
+  recordConversationMessage('user', apiPrompt, userText, attachment);
   const aiBubble = appendMsg('', 'ai');
-  showThinking(aiBubble);
+  showThinking(aiBubble, settings.webSearch ? 'Searching the web' : (settings.deepThinking ? 'Thinking deeply' : 'Thinking'));
 
+  let webResults = [];
   try {
+    if (settings.webSearch) {
+      const query = makeWebQuery(visiblePrompt, attachment && attachment.name);
+      webResults = await searchWikipedia(query);
+      showThinking(aiBubble, settings.deepThinking ? 'Thinking deeply' : 'Thinking');
+      if (!webResults.length) showToast('No Wikipedia results found; answering with the model only.');
+    }
+
+    const requestMessages = [
+      { role: 'system', content: buildSystemPrompt(webResults) },
+      ...history.slice(-40)
+    ];
+    const requestBody = {
+      model: MODEL,
+      messages: requestMessages,
+      stream: false
+    };
+    if (settings.deepThinking) {
+      // Ollama-compatible generation options allow a larger answer budget. Qwen2.5:7b
+      // does not expose native thinking tokens, so the system prompt is also important.
+      requestBody.options = { num_predict: 4096, temperature: 0.3 };
+      if (/qwen3|deepseek-r1|gpt-oss|gemma4/i.test(MODEL)) requestBody.think = true;
+    }
+
     const response = await fetch(OLLAMA_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: MODEL, messages: history.slice(-40), stream: false })
+      body: JSON.stringify(requestBody)
     });
     if (!response.ok) throw new Error('AI server returned HTTP ' + response.status);
     const data = await response.json();
-    const reply = data && data.message && typeof data.message.content === 'string'
+    let reply = data && data.message && typeof data.message.content === 'string'
       ? data.message.content
       : (data && typeof data.response === 'string' ? data.response : 'The AI returned an empty response.');
+    reply = normalizeCopyrightYears(reply);
     history.push({ role: 'assistant', content: reply });
-    recordConversationMessage('assistant', reply);
+    recordConversationMessage('assistant', reply, reply, null, webResults);
     renderAI(aiBubble, reply);
+    if (webResults.length) appendWebSources(aiBubble, webResults);
   } catch (error) {
     aiBubble.replaceChildren();
     const errorText = document.createElement('span');
@@ -637,12 +864,13 @@ async function sendMessage() {
     errorText.textContent = '⚠ ' + (error && error.message ? error.message : 'Could not connect to the AI server.');
     aiBubble.appendChild(errorText);
     const tip = document.createElement('p');
-    tip.style.color = '#8a91a4';
+    tip.style.color = 'var(--muted)';
     tip.style.fontSize = '12px';
     tip.style.marginTop = '7px';
     tip.textContent = 'The GitHub status flag is separate from the chat connection, so a green status does not always guarantee the model endpoint is reachable.';
     aiBubble.appendChild(tip);
   } finally {
+    clearPendingFile();
     isBusy = false;
     sendBtn.disabled = false;
     clearChatBtn.disabled = false;
@@ -650,8 +878,7 @@ async function sendMessage() {
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 }
-
-function appendMsg(text, cls) {
+function appendMsg(text, cls, attachment = null) {
   emptyState.classList.add('is-hidden');
   const row = document.createElement('div');
   row.className = 'msg ' + cls;
@@ -661,26 +888,112 @@ function appendMsg(text, cls) {
   avatar.setAttribute('aria-hidden', 'true');
   const bubble = document.createElement('div');
   bubble.className = 'bubble';
-  if (text) bubble.textContent = text;
+  if (attachment) bubble.appendChild(createAttachmentChip(attachment, false, null, true));
+  if (text) {
+    const paragraph = document.createElement(cls === 'user' ? 'div' : 'div');
+    paragraph.className = cls === 'user' ? 'user-message-text' : '';
+    paragraph.textContent = text;
+    bubble.appendChild(paragraph);
+  }
   row.append(avatar, bubble);
   messagesEl.appendChild(row);
   messagesEl.scrollTop = messagesEl.scrollHeight;
   return bubble;
 }
-
-function showThinking(bubble) {
+function showThinking(bubble, labelText = 'Thinking') {
   bubble.replaceChildren();
   const wrapper = document.createElement('span');
   wrapper.className = 'thinking';
-  wrapper.setAttribute('aria-label', 'Thinking');
+  wrapper.setAttribute('aria-label', labelText);
   const label = document.createElement('span');
-  label.textContent = 'Thinking';
+  label.textContent = labelText;
   const dots = document.createElement('span');
   dots.className = 'thinking-dots';
   dots.setAttribute('aria-hidden', 'true');
   for (let i = 0; i < 3; i++) dots.appendChild(document.createElement('span'));
   wrapper.append(label, dots);
   bubble.appendChild(wrapper);
+}
+
+function makeWebQuery(prompt, fallbackName = '') {
+  const query = String(prompt || '').replace(/```[\s\S]*?```/g, ' ').replace(/\s+/g, ' ').trim();
+  return (query || fallbackName || 'web development').slice(0, 180);
+}
+function buildSystemPrompt(webResults = []) {
+  const parts = [
+    'You are TOPHATZ AI, a helpful assistant with a strong focus on accurate coding and clear explanations.',
+    'The current year is 2026. When generating new websites, scripts, footers, or copyright notices, use 2026 rather than outdated placeholder years. Preserve older dates only when they are historically relevant or explicitly requested.',
+    'For code requests, provide complete, runnable code where appropriate. Check requirements, obvious edge cases, mobile support when relevant, and mention any setup steps. Never claim that you executed or tested code unless a test was actually performed.'
+  ];
+  if (settings.deepThinking) {
+    parts.push('Deep thinking mode is ON: take extra care to reason through the problem internally, consider alternatives and edge cases, check the solution for bugs, and prioritize correctness for coding tasks. Give a useful explanation and brief verification checklist, but do not reveal private chain-of-thought. Prefer a robust complete solution over a quick incomplete answer.');
+  }
+  if (webResults.length) {
+    const formatted = webResults.map((result, index) => (index + 1) + '. ' + result.title + '\nSnippet: ' + result.snippet + '\nURL: ' + result.url).join('\n\n');
+    parts.push('Web lookup results retrieved for this request (Wikipedia search snippets). Use these as limited external context, do not pretend they represent all of the web, and do not invent facts. When useful, include a Sources section linking to the exact URLs below.\n\n' + formatted);
+  }
+  return parts.join('\n\n');
+}
+function normalizeCopyrightYears(text) {
+  return String(text).split('\n').map(line => {
+    if (!/(copyright|©|&copy;|&#169;)/i.test(line)) return line;
+    return line.replace(/\b(?:19|20)\d{2}(?:\s*[-–]\s*(?:19|20)\d{2})?\b/g, String(CURRENT_YEAR));
+  }).join('\n');
+}
+async function searchWikipedia(query) {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), 9000);
+  try {
+    const params = new URLSearchParams({
+      action: 'query', list: 'search', srsearch: query, srlimit: '5', srnamespace: '0',
+      format: 'json', origin: '*', utf8: '1'
+    });
+    const response = await fetch(WIKIPEDIA_API + '?' + params.toString(), { signal: controller.signal, cache: 'no-store' });
+    if (!response.ok) throw new Error('Web lookup returned HTTP ' + response.status);
+    const data = await response.json();
+    const results = data && data.query && Array.isArray(data.query.search) ? data.query.search : [];
+    return results.slice(0, 5).map(item => {
+      const doc = new DOMParser().parseFromString(String(item.snippet || ''), 'text/html');
+      return {
+        title: String(item.title || 'Wikipedia article'),
+        snippet: (doc.body.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 500),
+        url: 'https://en.wikipedia.org/wiki/' + encodeURIComponent(String(item.title || '').replace(/ /g, '_'))
+      };
+    });
+  } catch (error) {
+    showToast('Web lookup unavailable; continuing without search results.');
+    return [];
+  } finally {
+    window.clearTimeout(timeout);
+  }
+}
+function appendWebSources(container, sources) {
+  if (!sources || !sources.length) return;
+  const section = document.createElement('section');
+  section.className = 'web-sources';
+  const heading = document.createElement('div');
+  heading.className = 'web-sources-heading';
+  heading.textContent = '🌐 Web lookup sources · Wikipedia';
+  section.appendChild(heading);
+  const list = document.createElement('ul');
+  for (const source of sources) {
+    const item = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = source.url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = source.title;
+    item.appendChild(link);
+    if (source.snippet) {
+      const snippet = document.createElement('span');
+      snippet.className = 'web-source-snippet';
+      snippet.textContent = ' — ' + source.snippet;
+      item.appendChild(snippet);
+    }
+    list.appendChild(item);
+  }
+  section.appendChild(list);
+  container.appendChild(section);
 }
 
 // Render a safe, compact Markdown subset. All model output is inserted as text nodes,
@@ -881,7 +1194,7 @@ function startTypewriter(targets, controls, instant = false) {
     if (offset >= target.text.length) { targetIndex++; offset = 0; }
     messagesEl.scrollTop = messagesEl.scrollHeight;
     if (targetIndex >= targets.length) finish();
-    else window.setTimeout(tick, ({ slow: 24, normal: 12, fast: 4 })[settings.typingSpeed] || 12);
+    else window.setTimeout(tick, 10);
   }
   tick();
 }
@@ -936,11 +1249,13 @@ function readSettings() {
   try {
     const saved = JSON.parse(localStorage.getItem(SETTINGS_STORAGE_KEY) || '{}');
     const merged = { ...DEFAULT_SETTINGS, ...(saved && typeof saved === 'object' ? saved : {}) };
-    if (!['midnight', 'light', 'ocean', 'forest'].includes(merged.theme)) merged.theme = DEFAULT_SETTINGS.theme;
-    if (!['slow', 'normal', 'fast'].includes(merged.typingSpeed)) merged.typingSpeed = DEFAULT_SETTINGS.typingSpeed;
+    if (!['midnight', 'light', 'ocean', 'forest', 'halloween'].includes(merged.theme)) merged.theme = DEFAULT_SETTINGS.theme;
     if (![5, 10, 12, 15].includes(Number(merged.maxConversations))) merged.maxConversations = DEFAULT_SETTINGS.maxConversations;
     merged.maxConversations = Number(merged.maxConversations);
     merged.saveChats = merged.saveChats !== false;
+    merged.deepThinking = merged.deepThinking === true;
+    merged.webSearch = merged.webSearch === true;
+    delete merged.typingSpeed;
     return merged;
   } catch (_) { return { ...DEFAULT_SETTINGS }; }
 }
@@ -958,7 +1273,13 @@ function readConversations() {
         title: String(item.title || 'New conversation').slice(0, 100),
         updatedAt: Number(item.updatedAt) || Date.now(),
         messages: item.messages.filter(message => message && ['user', 'assistant'].includes(message.role) && typeof message.content === 'string')
-          .slice(-MAX_MESSAGES_PER_CONVERSATION).map(message => ({ role: message.role, content: message.content }))
+          .slice(-MAX_MESSAGES_PER_CONVERSATION).map(message => ({
+            role: message.role,
+            content: message.content,
+            ...(typeof message.displayContent === 'string' ? { displayContent: message.displayContent } : {}),
+            ...(message.attachment && typeof message.attachment.name === 'string' ? { attachment: { name: message.attachment.name, size: Number(message.attachment.size) || 0 } } : {}),
+            ...(Array.isArray(message.sources) ? { sources: message.sources.filter(source => source && typeof source.title === 'string' && typeof source.url === 'string').slice(0, 5).map(source => ({ title: source.title, url: source.url, snippet: String(source.snippet || '').slice(0, 500) })) } : {})
+          }))
       }))
       .sort((a, b) => b.updatedAt - a.updatedAt)
       .slice(0, Number(settings.maxConversations) || 12);
@@ -968,7 +1289,7 @@ function makeConversationId() {
   return 'chat-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 9);
 }
 function titleForPrompt(prompt) {
-  let title = String(prompt || '').replace(/^\[Attached file:\s*([^\]]+)\][\s\S]*?/, 'File: $1 ')
+  let title = String(prompt || '').replace(/^The user attached the text\/code file [\"']([^\"']+)[\"'].*?User request:\s*/s, 'File: $1 ')
     .replace(/```[\s\S]*?```/g, '[code attached]').replace(/\s+/g, ' ').trim();
   if (!title) return 'New conversation';
   return title.length > 54 ? title.slice(0, 51).trimEnd() + '…' : title;
@@ -982,10 +1303,15 @@ function getActiveConversation(firstPrompt = '') {
   }
   return conversation;
 }
-function recordConversationMessage(role, content) {
-  const conversation = getActiveConversation(role === 'user' ? content : 'New conversation');
-  if (role === 'user' && conversation.messages.length === 0) conversation.title = titleForPrompt(content);
-  conversation.messages.push({ role, content: String(content) });
+function recordConversationMessage(role, content, displayContent = content, attachment = null, sources = []) {
+  const titleText = role === 'user' ? (displayContent || (attachment && attachment.name) || content) : 'New conversation';
+  const conversation = getActiveConversation(titleText);
+  if (role === 'user' && conversation.messages.length === 0) conversation.title = titleForPrompt(titleText || (attachment && attachment.name));
+  const message = { role, content: String(content) };
+  if (typeof displayContent === 'string' && displayContent !== content) message.displayContent = displayContent;
+  if (attachment && typeof attachment.name === 'string') message.attachment = { name: attachment.name, size: Number(attachment.size) || 0 };
+  if (Array.isArray(sources) && sources.length) message.sources = sources.slice(0, 5).map(source => ({ title: source.title, url: source.url, snippet: source.snippet || '' }));
+  conversation.messages.push(message);
   conversation.messages = conversation.messages.slice(-MAX_MESSAGES_PER_CONVERSATION);
   conversation.updatedAt = Date.now();
   saveConversationState();
@@ -1018,17 +1344,25 @@ function removeStoredConversation(id) {
   } catch (_) { /* local storage is optional */ }
 }
 function applyTheme(theme) {
-  const allowed = ['midnight', 'light', 'ocean', 'forest'];
+  const allowed = ['midnight', 'light', 'ocean', 'forest', 'halloween'];
   const selected = allowed.includes(theme) ? theme : 'midnight';
   document.documentElement.setAttribute('data-theme', selected);
-  const colors = { midnight: '#080a10', light: '#f4f6fb', ocean: '#06131d', forest: '#0a140f' };
+  const colors = { midnight: '#080a10', light: '#f4f6fb', ocean: '#06131d', forest: '#0a140f', halloween: '#160a1b' };
   document.querySelector('meta[name="theme-color"]').setAttribute('content', colors[selected]);
 }
 function updateSettingsControls() {
   themeSelect.value = settings.theme;
-  typingSpeedSelect.value = settings.typingSpeed;
   conversationLimitSelect.value = String(settings.maxConversations);
   saveChatsCheckbox.checked = settings.saveChats;
+  deepThinkingCheckbox.checked = settings.deepThinking;
+  webSearchCheckbox.checked = settings.webSearch;
+  syncModeToggles();
+}
+function syncModeToggles() {
+  deepToggle.setAttribute('aria-pressed', String(settings.deepThinking));
+  deepToggle.textContent = '🧠 Deep thinking: ' + (settings.deepThinking ? 'On' : 'Off');
+  webToggle.setAttribute('aria-pressed', String(settings.webSearch));
+  webToggle.textContent = '🌐 Web lookup: ' + (settings.webSearch ? 'On' : 'Off');
 }
 function formatConversationDate(timestamp) {
   const date = new Date(timestamp);
@@ -1083,10 +1417,11 @@ function loadConversation(id, options = {}) {
   messagesEl.replaceChildren();
   emptyState.classList.toggle('is-hidden', conversation.messages.length > 0);
   for (const message of conversation.messages) {
-    if (message.role === 'user') appendMsg(message.content, 'user');
+    if (message.role === 'user') appendMsg(typeof message.displayContent === 'string' ? message.displayContent : message.content, 'user', message.attachment || null);
     else {
       const bubble = appendMsg('', 'ai');
       renderAI(bubble, message.content, true);
+      if (Array.isArray(message.sources) && message.sources.length) appendWebSources(bubble, message.sources);
     }
   }
   messagesEl.scrollTop = messagesEl.scrollHeight;
@@ -1101,11 +1436,7 @@ function startNewConversation() {
   messagesEl.replaceChildren();
   emptyState.classList.remove('is-hidden');
   conversationsOverlay.classList.add('hidden');
-  fileContent = '';
-  fileName = '';
-  fileNameEl.textContent = '';
-  fileInput.value = '';
-  inputEl.placeholder = 'Message TOPHATZ AI…';
+  clearPendingFile();
   renderConversationList();
   showToast('New conversation started');
   inputEl.focus();
@@ -1146,11 +1477,6 @@ themeSelect.addEventListener('change', () => {
   saveSettings();
   showToast('Theme updated');
 });
-typingSpeedSelect.addEventListener('change', () => {
-  settings.typingSpeed = typingSpeedSelect.value;
-  saveSettings();
-  showToast('Typing speed updated');
-});
 conversationLimitSelect.addEventListener('change', () => {
   settings.maxConversations = Number(conversationLimitSelect.value) || 12;
   saveSettings();
@@ -1163,6 +1489,32 @@ saveChatsCheckbox.addEventListener('change', () => {
   saveSettings();
   if (settings.saveChats) saveConversationState();
   showToast(settings.saveChats ? 'Conversation saving enabled' : 'Conversation saving paused');
+});
+deepThinkingCheckbox.addEventListener('change', () => {
+  settings.deepThinking = deepThinkingCheckbox.checked;
+  saveSettings();
+  syncModeToggles();
+  showToast(settings.deepThinking ? 'Deep thinking enabled' : 'Deep thinking disabled');
+});
+webSearchCheckbox.addEventListener('change', () => {
+  settings.webSearch = webSearchCheckbox.checked;
+  saveSettings();
+  syncModeToggles();
+  showToast(settings.webSearch ? 'Wikipedia web lookup enabled' : 'Web lookup disabled');
+});
+deepToggle.addEventListener('click', () => {
+  settings.deepThinking = !settings.deepThinking;
+  deepThinkingCheckbox.checked = settings.deepThinking;
+  saveSettings();
+  syncModeToggles();
+  showToast(settings.deepThinking ? 'Deep thinking enabled' : 'Deep thinking disabled');
+});
+webToggle.addEventListener('click', () => {
+  settings.webSearch = !settings.webSearch;
+  webSearchCheckbox.checked = settings.webSearch;
+  saveSettings();
+  syncModeToggles();
+  showToast(settings.webSearch ? 'Wikipedia web lookup enabled' : 'Web lookup disabled');
 });
 document.getElementById('settings-reset').addEventListener('click', () => {
   settings = { ...DEFAULT_SETTINGS };
@@ -1180,7 +1532,25 @@ function initializeSavedConversations() {
   if (settings.saveChats && conversations.length) loadConversation(conversations[0].id, { quiet: true });
   renderConversationList();
 }
+function showHalloweenNoticeOnce() {
+  try {
+    if (localStorage.getItem(HALLOWEEN_NOTICE_KEY) === 'shown') return;
+    localStorage.setItem(HALLOWEEN_NOTICE_KEY, 'shown');
+  } catch (_) { /* best effort: browsers with storage disabled may not remember this */ }
+  window.setTimeout(() => halloweenOverlay.classList.remove('hidden'), 550);
+}
+document.getElementById('halloween-try').addEventListener('click', () => {
+  settings.theme = 'halloween';
+  themeSelect.value = 'halloween';
+  applyTheme('halloween');
+  saveSettings();
+  halloweenOverlay.classList.add('hidden');
+  showToast('Halloween theme applied 🎃');
+});
+document.getElementById('halloween-later').addEventListener('click', () => halloweenOverlay.classList.add('hidden'));
 initializeSavedConversations();
+syncModeToggles();
+showHalloweenNoticeOnce();
 </script>
 </body>
 </html>
