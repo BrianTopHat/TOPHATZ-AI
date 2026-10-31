@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 
+
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080a10">
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="./TOPHATZ AI_files/css2" rel="stylesheet">
+<link href="./TOPHATZ AI updated_files/css2" rel="stylesheet">
 <title>TOPHATZ AI</title>
 <style>
   :root {
@@ -319,32 +320,13 @@
   /* Decorations are non-interactive and only visible while Halloween is selected. */
   .halloween-scene { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; opacity: 0; visibility: hidden; transition: opacity .35s ease; }
   :root[data-theme="halloween"] .halloween-scene { opacity: 1; visibility: visible; }
-  .spiderweb { position: absolute; top: -4px; width: 176px; height: 176px; opacity: .74; background-image: repeating-radial-gradient(circle at 0 0, transparent 0 12px, rgba(255,177,111,.34) 13px 14px, transparent 15px 27px), repeating-conic-gradient(from 0deg at 0 0, rgba(255,177,111,.30) 0deg 1deg, transparent 1.5deg 15deg); filter: drop-shadow(0 0 5px rgba(255,138,42,.12)); }
-  .spiderweb-left { left: -2px; }
-  .spiderweb-right { right: -2px; transform: scaleX(-1); }
-  .haunt-icon { position: absolute; display: block; line-height: 1; user-select: none; filter: drop-shadow(0 0 10px rgba(255,138,42,.26)); }
-  .haunt-spider { top: 0; left: 12%; font-size: 24px; transform-origin: top center; animation: spider-sway 4s ease-in-out infinite; }
-  .haunt-spider::before { content: ""; position: absolute; top: -40px; left: 50%; height: 39px; width: 1px; background: rgba(255,177,111,.55); }
-  .haunt-bat { top: 21%; right: 17%; font-size: 24px; animation: bat-drift 12s ease-in-out infinite; }
-  .haunt-ghost { top: 42%; left: 4.5%; font-size: 23px; opacity: .54; animation: ghost-float 6s ease-in-out infinite; }
-  .haunt-pumpkin { right: 22px; bottom: 90px; font-size: 29px; opacity: .7; animation: pumpkin-glow 3s ease-in-out infinite; }
-  .haunt-moon { position: absolute; top: 100px; right: 7%; width: 48px; height: 48px; border-radius: 50%; opacity: .18; background: #ffd9a5; box-shadow: 0 0 36px 12px rgba(255,138,42,.10); }
-  @keyframes spider-sway { 0%,100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
-  @keyframes bat-drift { 0%,100% { transform: translate(0,0) rotate(-4deg); } 50% { transform: translate(-24px,14px) rotate(5deg); } }
-  @keyframes ghost-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
   @keyframes pumpkin-glow { 0%,100% { filter: drop-shadow(0 0 5px rgba(255,138,42,.28)); transform: translateY(0); } 50% { filter: drop-shadow(0 0 15px rgba(255,138,42,.75)); transform: translateY(-3px); } }
   :root[data-theme="halloween"] ::-webkit-scrollbar-thumb { background: rgba(255,138,42,.42); border-radius: 9px; }
   @media (max-width: 620px) {
-    .spiderweb { width: 90px; height: 90px; opacity: .45; }
-    .haunt-spider { left: 10%; font-size: 18px; }
-    .haunt-bat { top: 13%; right: 5%; font-size: 18px; }
-    .haunt-ghost { display: none; }
-    .haunt-pumpkin { right: 9px; bottom: 120px; font-size: 21px; opacity: .5; }
-    .haunt-moon { top: 80px; right: 5%; width: 28px; height: 28px; }
     :root[data-theme="halloween"] .brand-subtitle::after { content: "  ✦ HALLOWEEN"; letter-spacing: .04em; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .halloween-scene, .haunt-icon, :root[data-theme="halloween"] .welcome-orb::before { animation: none !important; transition: none !important; }
+    .halloween-scene { transition: none !important; }
   }
   :root[data-theme="light"] { color-scheme: light; --bg: #f4f6fb; --panel: #ffffff; --panel-2: #edf0f7; --line: rgba(24,32,53,.14); --muted: #687188; --text: #171c2d; --accent: #6d5ce8; --accent-2: #3b82f6; }
   :root[data-theme="light"] body { color: var(--text); background: radial-gradient(ellipse at 14% -15%, rgba(109,92,232,.10), transparent 42%), radial-gradient(ellipse at 100% 0%, rgba(59,130,246,.07), transparent 35%), var(--bg); }
@@ -420,130 +402,263 @@
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   }
 
-  /* ===== v2: blocky UI, polish, Halloween upgrades ===== */
+  /* ===== v4: Blockcraft (blocky UI, readable pixel type, real Halloween) ===== */
+  :root {
+    --font-pixel: 'Press Start 2P', ui-monospace, monospace;
+    --font-ui: 'Pixelify Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-code: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+    --block: #151926; --block-2: #1c2132;
+    --btn: #3b4157; --btn-hover: #4f5aa0; --btn-text: #f5f7ff;
+    --hi: rgba(255,255,255,.16); --lo: rgba(0,0,0,.5); --edge: #000;
+    --drop: rgba(0,0,0,.55); --ink-shadow: 2px 2px 0 rgba(0,0,0,.45);
+    --accent-ink: #160f24; --splash: #ffff55;
+    --hat: #262a38; --hat-hi: #3c4258;
+    --bevel: inset 3px 3px 0 var(--hi), inset -3px -3px 0 var(--lo);
+  }
+  :root[data-theme="light"] { --block: #e4e4e4; --block-2: #d6d6d6; --btn: #c6c6c6; --btn-hover: #b4bce8; --btn-text: #1b1b1b; --hi: rgba(255,255,255,.85); --lo: rgba(0,0,0,.25); --edge: #2b2b2b; --drop: rgba(0,0,0,.22); --ink-shadow: none; --accent-ink: #ffffff; --splash: #b8860b; }
+  :root[data-theme="ocean"] { --block: #0b1f2d; --block-2: #102a3c; --btn: #1d4458; --btn-hover: #2a6a86; --accent-ink: #032030; --hat: #11293a; --hat-hi: #1d4458; }
+  :root[data-theme="forest"] { --block: #10221a; --block-2: #162d21; --btn: #3c5f2b; --btn-hover: #51803a; --accent-ink: #072010; --hat: #1b2c1f; --hat-hi: #2f4a33; }
+  :root[data-theme="halloween"] {
+    --bg: #12081a; --panel: #1d0e24; --panel-2: #2a1333; --text: #fff1e2; --muted: #d2b3c3;
+    --accent: #ff8a1f; --accent-2: #8dff5a;
+    --block: #1e0e26; --block-2: #2a1434; --btn: #4a2358; --btn-hover: #6c2f80; --btn-text: #fff1e2;
+    --accent-ink: #2a0f05; --splash: #ffd23f; --hat: #1a0b20; --hat-hi: #3a1a46;
+  }
+
+  *, *::before, *::after { border-radius: 0 !important; }
+  body { font-family: var(--font-ui); font-size: 16px; -webkit-font-smoothing: antialiased; }
+  button, textarea, input, select { font-family: var(--font-ui); }
+  img, svg.px, canvas { image-rendering: pixelated; }
+  svg.px { shape-rendering: crispEdges; display: block; }
+
+  /* Ambient pixel sky (stars / fireflies / bubbles / embers) drawn on a low-res canvas */
+  #pixel-sky { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; image-rendering: pixelated; opacity: .9; }
+  :root[data-theme="light"] #pixel-sky { display: none; }
   body::before {
     content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-    background-size: 32px 32px;
-    -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000, transparent 72%); mask-image: radial-gradient(ellipse at 50% 0%, #000, transparent 72%);
+    background-image: linear-gradient(rgba(255,255,255,.03) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,.03) 2px, transparent 2px);
+    background-size: 48px 48px;
+    -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000, transparent 70%); mask-image: radial-gradient(ellipse at 50% 0%, #000, transparent 70%);
   }
-  button, .icon-button, .suggestion, .mode-toggle, .status-pill, .avatar, .code-card, .code-head, .code-action,
-  .web-sources, .attachment-chip, .modal-box, .primary-button, .secondary-button, .conversation-item,
-  .conversation-load, .conversation-delete, .settings-field select, .settings-field input, .attachment-remove,
-  #toast, .modal-icon, .welcome-orb, .preview-dock, .bubble blockquote, .bubble code:not(pre code) { border-radius: 0 !important; }
+  :root[data-theme="light"] body::before { background-image: linear-gradient(rgba(0,0,0,.05) 2px, transparent 2px), linear-gradient(90deg, rgba(0,0,0,.05) 2px, transparent 2px); }
 
-  .settings-field input { width: 100%; min-height: 42px; border: 1px solid var(--line); padding: 0 12px; color: var(--text); background: var(--panel-2); font: inherit; font-weight: 400; }
-  .web-source-tag { display: inline-block; margin-right: 2px; color: var(--accent); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; }
-
-  /* Blocky composer, minecraft-style pixel type */
-  #input-wrap {
-    border: 3px solid #3a3f52 !important; background: #14171f !important; padding: 10px !important; gap: 10px !important;
-    box-shadow: 0 0 0 3px #000, 6px 6px 0 3px #000 !important;
-  }
-  #input-wrap:focus-within { border-color: #7dd3fc !important; box-shadow: 0 0 0 3px #000, 6px 6px 0 3px #000, inset 0 0 0 2px rgba(125,211,252,.18) !important; }
-  #user-input {
-    font-family: 'Press Start 2P', ui-monospace, monospace !important; font-size: 11px !important; line-height: 2 !important;
-    letter-spacing: .02em; padding: 12px 8px !important; min-height: 48px !important;
-  }
-  #user-input::placeholder { color: #6b7288 !important; font-family: 'Press Start 2P', ui-monospace, monospace !important; }
-  #file-btn, #send-btn {
-    width: 46px !important; height: 46px !important; flex-basis: 46px !important; border: 3px solid #000 !important;
-    box-shadow: inset -3px -3px 0 rgba(0,0,0,.35), inset 3px 3px 0 rgba(255,255,255,.22) !important;
-    font-family: 'Press Start 2P', ui-monospace, monospace !important;
-  }
-  #file-btn { background: #6b7280 !important; color: #f3f4f6 !important; font-size: 14px !important; }
-  #file-btn:hover { background: #7c8492 !important; }
-  #send-btn { background: #5cb85c !important; color: #0b2a0b !important; font-size: 14px !important; }
-  #send-btn:hover:not(:disabled) { background: #6fcb6f !important; transform: none !important; filter: none !important; }
-  #send-btn:active:not(:disabled) { transform: translate(2px, 2px) !important; box-shadow: inset 3px 3px 0 rgba(0,0,0,.35) !important; }
-  .mode-toggle { border: 2px solid #000 !important; box-shadow: 2px 2px 0 #000; font-family: 'Press Start 2P', ui-monospace, monospace; font-size: 8px; letter-spacing: .02em; padding: 8px 9px; line-height: 1.5; }
-  .suggestion { border: 2px solid #000 !important; box-shadow: 3px 3px 0 #000; }
-  .suggestion:hover { transform: translate(-1px, -1px) !important; box-shadow: 4px 4px 0 #000; }
-  .icon-button { border: 2px solid #000 !important; box-shadow: 2px 2px 0 #000; }
-  .msg.user .user-message-text { background: #1c2030; border: 2px solid #2d3349; box-shadow: 3px 3px 0 #000; padding: 10px 13px; display: inline-block; max-width: 100%; }
-  .msg.ai .avatar, .msg.user .avatar { border: 2px solid #000 !important; }
-  .code-card { border: 2px solid #000 !important; box-shadow: 4px 4px 0 #000 !important; }
-  .web-sources { border: 2px solid #000 !important; box-shadow: 3px 3px 0 #000; }
-  .plan-card { margin-top: 14px; padding: 10px 13px; border: 2px solid rgba(167,139,250,.35); background: rgba(167,139,250,.06); font-size: 12px; color: #d6cdf3; }
-  .plan-card summary { cursor: pointer; font-weight: 750; color: #ddd4ff; }
-  .plan-card .plan-body { margin-top: 9px; white-space: pre-wrap; line-height: 1.65; }
-  .modal-box { border: 2px solid #000 !important; box-shadow: 8px 8px 0 #000 !important; }
-
-  /* Halloween: stronger atmosphere, no header pumpkin */
+  /* Header */
+  .topbar { border-bottom: 0; box-shadow: 0 3px 0 var(--edge), 0 6px 0 var(--drop); background: color-mix(in srgb, var(--bg) 82%, transparent); }
+  .brand-hat { width: 40px; height: 34px; flex: 0 0 auto; filter: drop-shadow(3px 3px 0 var(--drop)); }
+  .brand-title { font-family: var(--font-pixel); font-size: 15px; line-height: 1.5; letter-spacing: 0; text-shadow: var(--ink-shadow); }
+  .brand-title span { color: var(--accent) !important; background: none !important; -webkit-text-fill-color: currentColor !important; filter: none !important; }
+  .brand-subtitle { font-size: 14px; letter-spacing: .02em; margin-top: 4px; }
   :root[data-theme="halloween"] .brand-title::after { content: none !important; }
-  :root[data-theme="halloween"] #send-btn { background: #ff8a2a !important; color: #2a0f05 !important; }
-  :root[data-theme="halloween"] #input-wrap { border-color: #5b2a1c !important; background: #1d0e20 !important; box-shadow: 0 0 0 3px #000, 6px 6px 0 3px #000, 0 0 24px rgba(255,138,42,.15) !important; }
-  :root[data-theme="halloween"] #input-wrap:focus-within { border-color: #ff9a38 !important; }
-  :root[data-theme="halloween"] #file-btn { background: #4a2456 !important; color: #ffd0a1 !important; }
-  :root[data-theme="halloween"] .msg.user .user-message-text { background: #2a1431; border-color: #5b2a4a; }
-  .halloween-scene { box-shadow: inset 0 0 130px rgba(0,0,0,.45); }
-  .halloween-scene::before {
-    content: ""; position: absolute; inset: 0;
-    background-image: radial-gradient(circle, rgba(255,184,92,.95) 1.5px, transparent 2.5px), radial-gradient(circle, rgba(255,120,40,.85) 1px, transparent 2px);
-    background-size: 160px 200px, 110px 150px; background-position: 0 0, 40px 0;
-    animation: embers-rise 16s linear infinite; opacity: .55;
-  }
-  .halloween-scene::after {
-    content: ""; position: absolute; left: -10%; right: -10%; bottom: -8%; height: 38%;
-    background: radial-gradient(ellipse at 30% 100%, rgba(168,85,247,.20), transparent 60%), radial-gradient(ellipse at 75% 100%, rgba(255,138,42,.13), transparent 60%);
-    filter: blur(10px); animation: fog-drift 18s ease-in-out infinite alternate;
-  }
-  @keyframes embers-rise { from { background-position: 0 0, 40px 0; } to { background-position: 0 -200px, 40px -150px; } }
-  @keyframes fog-drift { from { transform: translateX(-3%); } to { transform: translateX(3%); } }
-  @media (prefers-reduced-motion: reduce) { .halloween-scene::before, .halloween-scene::after { animation: none !important; } }
-  @media (max-width: 620px) {
-    #user-input { font-size: 9px !important; line-height: 1.9 !important; }
-    .mode-toggle { font-size: 7px; }
-  }
+  :root[data-theme="halloween"] .brand-subtitle::after { content: "  ✦ SPOOKY SEASON"; font-family: var(--font-pixel); font-size: 9px; font-weight: 400; letter-spacing: .04em; }
 
-  /* ===== v3: full blocky + pixel type ===== */
-  *, *::before, *::after { border-radius: 0 !important; }
-  *, *::before, *::after { font-family: 'Press Start 2P', ui-monospace, monospace !important; letter-spacing: .01em; }
-  .welcome-orb, .welcome-orb::before { display: none !important; }
-  .brand-title { font-size: 13px !important; line-height: 1.6 !important; }
-  .brand-subtitle { font-size: 7px !important; line-height: 1.8 !important; margin-top: 8px !important; }
-  .brand-subtitle::after { font-size: 7px; }
-  .welcome-title { font-size: 20px !important; line-height: 1.6 !important; }
-  .welcome-title::before { font-size: 8px !important; }
-  .welcome-copy { font-size: 9px !important; line-height: 2 !important; max-width: 560px !important; }
-  .suggestion, .status-pill, .mode-toggle, .composer-footer, .conversation-meta, .attachment-meta { font-size: 7px !important; line-height: 1.8 !important; }
-  .status-pill { min-height: 40px; }
-  .bubble { font-size: 11px !important; line-height: 2.1 !important; }
-  .bubble h2 { font-size: 15px !important; line-height: 1.7 !important; }
-  .bubble h3 { font-size: 13px !important; line-height: 1.7 !important; }
-  .bubble h4 { font-size: 11px !important; line-height: 1.9 !important; }
-  .bubble code:not(pre code) { font-size: 10px !important; }
-  .user-message-text { font-size: 11px !important; line-height: 2.1 !important; }
-  .web-sources, .web-sources li, .plan-card, .plan-body { font-size: 8px !important; line-height: 2 !important; }
-  .web-source-tag { font-size: 7px !important; }
-  .avatar { font-size: 9px !important; }
-  .code-language, .code-action { font-size: 8px !important; }
-  .dialog-header h2, .modal-box h2 { font-size: 14px !important; line-height: 1.6 !important; }
-  .dialog-header p, .modal-box p, .settings-field, .settings-toggle, .settings-field small, .settings-toggle small,
-  .storage-note, .conversation-empty, .conversation-title, .primary-button, .secondary-button, .preview-title, .preview-note, #toast, .attachment-name {
-    font-size: 8px !important; line-height: 2 !important;
+  /* Minecraft-style buttons: bevel + black edge + hard drop */
+  .icon-button, .suggestion, .mode-toggle, .secondary-button, .code-action, #file-btn, .conversation-delete, .attachment-remove, .status-pill {
+    border: 0 !important; background: var(--btn) !important; color: var(--btn-text) !important;
+    box-shadow: var(--bevel), 0 0 0 2px var(--edge), 4px 4px 0 2px var(--drop) !important;
+    text-shadow: var(--ink-shadow); transition: background .12s, transform .08s, box-shadow .08s !important;
   }
-  .primary-button, .secondary-button { font-size: 9px !important; }
-  #user-input { font-size: 10px !important; }
-  #send-btn, #file-btn { font-size: 14px !important; }
-  /* Code stays monospaced so it stays readable */
-  .code-card pre, .code-card pre *, .code-card pre code, .bubble code, .bubble code:not(pre code) { font-family: ui-monospace, SFMono-Regular, Consolas, monospace !important; }
-  .code-card pre, .code-card pre code { font-size: 12px !important; line-height: 1.7 !important; }
-  /* Blocky composer */
-  #input-wrap, #input-wrap:focus-within { border-radius: 0 !important; }
-  @media (max-width: 620px) { #user-input { font-size: 9px !important; } .bubble { font-size: 10px !important; } }
+  .icon-button:hover:not(:disabled), .suggestion:hover, .mode-toggle:hover, .secondary-button:hover, .code-action:hover:not(:disabled), #file-btn:hover, .conversation-delete:hover, .attachment-remove:hover {
+    background: var(--btn-hover) !important; color: #fff !important; transform: translate(-1px, -1px) !important;
+    box-shadow: var(--bevel), 0 0 0 2px #fff, 5px 5px 0 2px var(--drop) !important;
+  }
+  :root[data-theme="light"] .icon-button:hover:not(:disabled), :root[data-theme="light"] .suggestion:hover, :root[data-theme="light"] .mode-toggle:hover, :root[data-theme="light"] .secondary-button:hover, :root[data-theme="light"] .code-action:hover:not(:disabled), :root[data-theme="light"] #file-btn:hover { color: #111 !important; box-shadow: var(--bevel), 0 0 0 2px #2b2b2b, 5px 5px 0 2px var(--drop) !important; }
+  .icon-button:active:not(:disabled), .suggestion:active, .mode-toggle:active, .secondary-button:active, .code-action:active, #file-btn:active, #send-btn:active:not(:disabled), .primary-button:active {
+    transform: translate(3px, 3px) !important; box-shadow: inset 3px 3px 0 var(--lo), 0 0 0 2px var(--edge), 1px 1px 0 2px var(--drop) !important;
+  }
+  .icon-button { width: 40px; height: 40px; font-size: 18px; }
+  .status-pill { min-height: 40px; padding: 0 14px; font-size: 14px; cursor: default; }
+  .status-dot { width: 10px; height: 10px; box-shadow: 0 0 0 2px #000 !important; }
+  .status-pill.online .status-dot { animation: px-blink 1.6s steps(1) infinite; }
+  @keyframes px-blink { 0%, 70% { opacity: 1; } 71%, 100% { opacity: .35; } }
+
+  .primary-button, #send-btn {
+    border: 0 !important; background: var(--accent) !important; color: var(--accent-ink) !important; font-weight: 700;
+    box-shadow: inset 3px 3px 0 rgba(255,255,255,.35), inset -3px -3px 0 rgba(0,0,0,.3), 0 0 0 2px var(--edge), 4px 4px 0 2px var(--drop) !important;
+    transition: transform .08s, box-shadow .08s, filter .12s !important;
+  }
+  .primary-button:hover, #send-btn:hover:not(:disabled) { filter: brightness(1.1) !important; transform: translate(-1px, -1px) !important; }
+  .primary-button { font-size: 16px; padding: 12px 20px; }
+  .secondary-button { font-size: 16px; padding: 12px 18px; }
+
+  /* Welcome */
+  .welcome-orb { display: none !important; }
+  .hero-hat { width: 128px; height: 96px; margin: 0 auto 26px; filter: drop-shadow(6px 6px 0 var(--drop)); animation: hat-bob 2.4s steps(4) infinite; }
+  .hero-hat rect { animation: px-place .22s steps(2) both; }
+  @keyframes px-place { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes hat-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .title-wrap { position: relative; display: inline-block; }
+  .welcome-title { font-family: var(--font-pixel); font-weight: 400; font-size: clamp(22px, 3.4vw, 36px); line-height: 1.55; letter-spacing: 0; text-shadow: 4px 4px 0 var(--drop); }
+  .welcome-title .gradient { background: none !important; color: var(--accent) !important; -webkit-text-fill-color: currentColor !important; filter: none !important; }
+  :root[data-theme="halloween"] .welcome-title::before { content: none !important; }
+  .splash {
+    position: absolute; right: -64px; top: -40px; z-index: 2; pointer-events: auto; cursor: pointer;
+    font-family: var(--font-pixel); font-size: 12px; line-height: 1.4; color: var(--splash); white-space: nowrap;
+    text-shadow: 2px 2px 0 color-mix(in srgb, var(--splash) 25%, #000); background: none; border: 0; padding: 0;
+    transform: rotate(-14deg); animation: splash-pulse .5s ease-in-out infinite alternate;
+  }
+  @keyframes splash-pulse { from { transform: rotate(-14deg) scale(.94); } to { transform: rotate(-14deg) scale(1.06); } }
+  .welcome-copy { font-size: 18px; line-height: 1.6; max-width: 520px; margin-top: 18px; }
+  .suggestions { gap: 14px; margin-top: 32px; }
+  .suggestion { font-size: 16px; padding: 12px 16px; }
+  #empty-state > * { animation: px-rise .5s steps(5) both; }
+  #empty-state > :nth-child(2) { animation-delay: .25s; }
+  #empty-state > :nth-child(3) { animation-delay: .35s; }
+  #empty-state > :nth-child(4) { animation-delay: .45s; }
+  @keyframes px-rise { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Messages */
+  .msg { animation: px-rise .3s steps(3) both; }
+  .avatar { width: 38px; height: 38px; flex: 0 0 38px; padding: 0; overflow: hidden; border: 0 !important; background: var(--block-2) !important; box-shadow: 0 0 0 2px var(--edge), 3px 3px 0 2px var(--drop) !important; }
+  .avatar svg { width: 100%; height: 100%; }
+  .bubble { font-size: 17px; line-height: 1.65; }
+  .bubble h2, .bubble h3, .bubble h4 { font-family: var(--font-pixel); font-weight: 400; letter-spacing: 0; line-height: 1.6; }
+  .bubble h2 { font-size: 17px; } .bubble h3 { font-size: 15px; } .bubble h4 { font-size: 13px; }
+  .bubble code, .code-card pre, .code-card pre * { font-family: var(--font-code) !important; }
+  .bubble code:not(pre code) { font-size: .88em; }
+  .msg.user .user-message-text { display: inline-block; max-width: 100%; padding: 12px 15px; background: var(--block-2); border: 0; box-shadow: var(--bevel), 0 0 0 2px var(--edge), 4px 4px 0 2px var(--drop); }
+  .bubble blockquote { border-left: 6px solid var(--accent); }
+  .thinking { font-size: 16px; }
+  .thinking-dots { gap: 5px; margin-left: 8px; }
+  .thinking-dots span { width: 8px; height: 8px; background: var(--accent) !important; box-shadow: 2px 2px 0 var(--drop) !important; animation: px-hop .9s steps(3) infinite; }
+  @keyframes px-hop { 0%, 60%, 100% { transform: translateY(0); opacity: .45; } 30% { transform: translateY(-6px); opacity: 1; } }
+
+  .code-card { border: 0 !important; background: color-mix(in srgb, var(--bg) 70%, #000) ; box-shadow: 0 0 0 2px var(--edge), 6px 6px 0 2px var(--drop) !important; }
+  :root[data-theme="light"] .code-card { background: #f4f4f4; }
+  .code-head { background: var(--block-2) !important; border-bottom: 2px solid var(--edge) !important; box-shadow: inset 3px 3px 0 var(--hi); }
+  .code-language { font-family: var(--font-pixel); font-size: 10px; letter-spacing: .04em; }
+  .code-language::before { width: 10px; height: 10px; }
+  .code-action { font-size: 14px; padding: 7px 11px; margin: 2px; }
+  .code-card pre { font-size: 13px !important; line-height: 1.7 !important; }
+  .web-sources, .plan-card { font-size: 15px; border: 0 !important; background: var(--block) !important; box-shadow: var(--bevel), 0 0 0 2px var(--edge), 4px 4px 0 2px var(--drop) !important; }
+  .web-sources-heading { font-family: var(--font-pixel); font-size: 10px; }
+  .web-source-tag { display: inline-block; margin-right: 4px; color: var(--accent); font-size: 13px; font-weight: 700; text-transform: uppercase; }
+  .plan-card { margin-top: 16px; padding: 12px 14px; color: var(--text); }
+  .plan-card summary { cursor: pointer; font-weight: 700; }
+  .plan-card .plan-body { margin-top: 9px; white-space: pre-wrap; line-height: 1.6; }
+
+  /* Composer */
+  #input-wrap {
+    border: 0 !important; background: var(--block) !important; padding: 10px; gap: 12px;
+    box-shadow: var(--bevel), 0 0 0 3px var(--edge), 7px 7px 0 3px var(--drop) !important;
+  }
+  #input-wrap:focus-within { box-shadow: var(--bevel), 0 0 0 3px var(--accent), 7px 7px 0 3px var(--drop) !important; }
+  #user-input { font-size: 17px; line-height: 1.5; padding: 11px 6px; min-height: 46px; color: var(--text) !important; }
+  #user-input::placeholder { color: var(--muted) !important; opacity: .85; }
+  #file-btn, #send-btn { width: 46px; height: 46px; flex-basis: 46px; font-size: 20px; }
+  .composer-footer { font-size: 14px; color: var(--muted); padding-top: 14px; align-items: center; }
+  .mode-tools { gap: 12px; }
+  .mode-toggle { font-size: 14px; padding: 8px 11px; }
+  .mode-toggle[aria-pressed="true"] { background: var(--accent) !important; color: var(--accent-ink) !important; text-shadow: none; }
+  .attachment-chip { border: 0 !important; background: var(--block) !important; box-shadow: 0 0 0 2px var(--edge), 3px 3px 0 2px var(--drop); }
+  .attachment-name { font-size: 15px; } .attachment-meta { font-size: 13px; }
+
+  /* Dialogs */
+  .overlay { backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+  .modal-box { border: 0 !important; background: var(--block) !important; box-shadow: var(--bevel), 0 0 0 3px var(--edge), 10px 10px 0 3px var(--drop) !important; animation: px-pop .28s steps(4) both; }
+  @keyframes px-pop { from { opacity: 0; transform: scale(.9); } to { opacity: 1; transform: scale(1); } }
+  .modal-icon { width: 76px; height: 76px; border: 0 !important; background: var(--block-2) !important; box-shadow: 0 0 0 2px var(--edge), 4px 4px 0 2px var(--drop); }
+  .modal-icon svg { width: 52px; height: 52px; }
+  .modal-box h2, .dialog-header h2 { font-family: var(--font-pixel); font-weight: 400; font-size: 16px; line-height: 1.6; letter-spacing: 0; }
+  .modal-box p, .dialog-header p { font-size: 16px; line-height: 1.6; }
+  .dialog-header { border-bottom: 2px solid var(--edge); }
+  .settings-field { font-size: 16px; } .settings-field small, .settings-toggle small { font-size: 14px; }
+  .settings-toggle strong { font-size: 16px; }
+  .settings-field select, .settings-field input { min-height: 44px; border: 0 !important; font-size: 16px; background: var(--block-2) !important; box-shadow: inset 3px 3px 0 var(--lo), 0 0 0 2px var(--edge); }
+  .settings-field input { width: 100%; padding: 0 12px; color: var(--text); font-weight: 400; }
+  .settings-toggle { border: 0 !important; background: var(--block-2) !important; box-shadow: var(--bevel), 0 0 0 2px var(--edge); }
+  .settings-toggle input { width: 20px; height: 20px; }
+  .conversation-item { border: 0 !important; }
+  .conversation-item:hover, .conversation-item.active { background: var(--block-2) !important; box-shadow: 0 0 0 2px var(--edge); }
+  .conversation-title { font-size: 16px; } .conversation-meta { font-size: 14px; }
+  .storage-note, .conversation-empty { font-size: 14px; }
+  .preview-title { font-size: 16px; } .preview-note { font-size: 13px; }
+  .preview-dock:not([hidden]) { border-left: 3px solid var(--edge) !important; }
+
+  /* Toast = achievement pop-up */
+  #toast {
+    left: auto; right: 20px; top: 92px; bottom: auto; transform: translateX(130%); opacity: 1;
+    min-width: 240px; max-width: 340px; padding: 12px 16px 12px 58px; font-size: 15px; line-height: 1.4;
+    border: 0 !important; background: #212121 !important; color: #fff;
+    box-shadow: inset 3px 3px 0 rgba(255,255,255,.12), inset -3px -3px 0 rgba(0,0,0,.6), 0 0 0 2px #000, 5px 5px 0 2px rgba(0,0,0,.5) !important;
+    transition: transform .3s steps(4) !important;
+  }
+  #toast::before { content: "TOPHATZ AI"; display: block; margin-bottom: 4px; color: var(--splash); font-family: var(--font-pixel); font-size: 9px; }
+  #toast::after { content: ""; position: absolute; left: 14px; top: 50%; width: 30px; height: 30px; margin-top: -15px; background: var(--accent); box-shadow: inset 3px 3px 0 rgba(255,255,255,.35), inset -3px -3px 0 rgba(0,0,0,.35), 0 0 0 2px #000; }
+  #toast.show { transform: translateX(0); }
+
+  /* Blocky scrollbars */
+  ::-webkit-scrollbar { width: 12px; height: 12px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--btn); border: 2px solid var(--edge); box-shadow: inset 2px 2px 0 var(--hi); }
+
+  /* ---------- Halloween scene ---------- */
+  .halloween-scene { box-shadow: inset 0 0 160px rgba(0,0,0,.55); }
+  .halloween-scene > * { position: absolute; }
+  .hw-moon { top: 96px; right: 8%; width: 84px; height: 84px; filter: drop-shadow(0 0 28px rgba(255,190,110,.35)); animation: moon-glow 6s steps(6) infinite; }
+  @keyframes moon-glow { 0%, 100% { filter: drop-shadow(0 0 20px rgba(255,190,110,.25)); } 50% { filter: drop-shadow(0 0 36px rgba(255,190,110,.5)); } }
+  .hw-web { top: 76px; width: 120px; height: 120px; opacity: .5; }
+  .hw-web.left { left: 0; } .hw-web.right { right: 0; transform: scaleX(-1); }
+  .hw-spider { top: 76px; left: 14%; width: 36px; animation: spider-drop 7s steps(14) infinite; }
+  .hw-spider .thread { width: 2px; height: 120px; margin: -120px auto 0; background: rgba(255,210,170,.55); }
+  .hw-spider svg { width: 36px; height: 24px; }
+  @keyframes spider-drop { 0%, 100% { transform: translateY(0); } 45%, 60% { transform: translateY(120px); } }
+  .hw-bat { width: 56px; height: 28px; left: -80px; animation: bat-fly var(--dur, 16s) linear infinite; animation-delay: var(--delay, 0s); }
+  .hw-bat .f1 { animation: flap-a .28s steps(1) infinite; }
+  .hw-bat .f2 { animation: flap-b .28s steps(1) infinite; }
+  @keyframes flap-a { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  @keyframes flap-b { 0%, 49% { opacity: 0; } 50%, 100% { opacity: 1; } }
+  @keyframes bat-fly {
+    0% { transform: translate(0, 0); } 25% { transform: translate(28vw, -40px); } 50% { transform: translate(55vw, 30px); }
+    75% { transform: translate(82vw, -20px); } 100% { transform: translate(115vw, 10px); }
+  }
+  .hw-ghost { width: 60px; height: 72px; top: 40%; left: -90px; opacity: .55; animation: ghost-drift 38s linear infinite, ghost-bob 3s steps(6) infinite; }
+  @keyframes ghost-drift { from { left: -90px; } to { left: calc(100% + 90px); } }
+  @keyframes ghost-bob { 0%, 100% { margin-top: 0; opacity: .55; } 50% { margin-top: -14px; opacity: .3; } }
+  .hw-flash { inset: 0; background: #d9c2ff; opacity: 0; mix-blend-mode: overlay; animation: lightning 17s linear infinite; }
+  @keyframes lightning { 0%, 91%, 93.5%, 100% { opacity: 0; } 91.5% { opacity: .5; } 92.3% { opacity: .1; } 92.8% { opacity: .4; } }
+  .hw-fog { left: -10%; right: -10%; bottom: -6%; height: 34%; background: radial-gradient(ellipse at 30% 100%, rgba(168,85,247,.22), transparent 60%), radial-gradient(ellipse at 75% 100%, rgba(255,138,42,.14), transparent 60%); filter: blur(12px); animation: fog-drift 18s ease-in-out infinite alternate; }
+  @keyframes fog-drift { from { transform: translateX(-3%); } to { transform: translateX(3%); } }
+  :root[data-theme="halloween"] #input-area { background: linear-gradient(180deg, transparent, rgba(18,8,26,.55) 40%, rgba(18,8,26,.35)); }
+  :root[data-theme="halloween"] .msg.ai .avatar, :root[data-theme="halloween"] .msg.user .avatar { background: #2a1434 !important; }
+  .hw-pumpkin-glow { animation: candle 1.4s steps(3) infinite; }
+  @keyframes candle { 0%, 100% { opacity: 1; } 33% { opacity: .7; } 66% { opacity: .9; } }
+
+  @media (max-width: 620px) {
+    .brand-hat { width: 32px; height: 27px; }
+    .brand-title { font-size: 12px; }
+    .brand-subtitle { display: none; }
+    .topbar { flex-wrap: nowrap; padding: 11px 12px; }
+    .topbar-actions { flex-wrap: nowrap !important; gap: 8px !important; }
+    .brand { gap: 8px; }
+    .brand-title { white-space: nowrap; }
+    .icon-button { width: 36px; height: 36px; font-size: 16px; }
+    #status-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .status-pill { width: 36px; padding: 0 !important; justify-content: center; }
+    .status-pill { min-height: 36px; }
+    .hero-hat { width: 84px; height: 63px; margin-bottom: 18px; }
+    .welcome-title { font-size: 19px; }
+    .splash { font-size: 10px; right: -6px; top: -26px; }
+    .welcome-copy { font-size: 16px; }
+    .suggestion { font-size: 15px; padding: 10px 12px; }
+    .bubble { font-size: 16px; }
+    #user-input { font-size: 16px; }
+    .composer-footer { font-size: 13px; align-items: flex-start; }
+    .mode-toggle { font-size: 13px; }
+    .hw-moon { width: 52px; height: 52px; top: 120px; }
+    .hw-web { width: 70px; height: 70px; }
+    .hw-ghost { display: none; }
+    #toast { right: 10px; left: 10px; max-width: none; top: 80px; }
+    :root[data-theme="halloween"] .brand-subtitle::after { content: none; }
+  }
+  @media (max-width: 420px) { .brand-hat { width: 28px; height: 21px; } .brand-title { font-size: 11px; } .icon-button, .status-pill { width: 34px !important; height: 34px !important; min-height: 34px; } }
+  @media (prefers-reduced-motion: reduce) {
+    .halloween-scene *, .hero-hat, .hero-hat rect, .splash, .msg, #empty-state > * { animation: none !important; }
+    .hw-bat, .hw-ghost, .hw-flash { display: none; }
+  }
 </style>
 </head>
 <body>
-<div class="halloween-scene" aria-hidden="true">
-  <div class="spiderweb spiderweb-left"></div>
-  <div class="spiderweb spiderweb-right"></div>
-  <span class="haunt-icon haunt-spider">🕷️</span>
-  <span class="haunt-icon haunt-bat">🦇</span>
-  <span class="haunt-icon haunt-ghost">👻</span>
-  <span class="haunt-icon haunt-pumpkin">🎃</span>
-  <div class="haunt-moon"></div>
-</div>
+<div class="halloween-scene" aria-hidden="true"></div>
 <header class="topbar">
   <div class="brand">
     <div>
@@ -606,7 +721,7 @@
         <div><div class="preview-title" id="preview-heading">HTML preview</div><div class="preview-note">Runs in a sandboxed preview frame</div></div>
         <button id="preview-close" class="icon-button" type="button" aria-label="Close preview" title="Close preview">✕</button>
       </div>
-      <iframe id="preview-frame" title="Generated HTML preview" sandbox="allow-scripts" src="./TOPHATZ AI_files/saved_resource.html"></iframe>
+      <iframe id="preview-frame" title="Generated HTML preview" sandbox="allow-scripts" src="./TOPHATZ AI updated_files/saved_resource.html"></iframe>
     </div>
   </aside>
 </div>
@@ -626,10 +741,10 @@
   <div class="modal-box">
     <div class="modal-content">
       <div class="modal-icon" aria-hidden="true">🎃</div>
-      <h2 id="halloween-heading">Hey check out this new theme!</h2>
-      <p>Halloween mode is here, with spooky purple and pumpkin-orange colors. Try it now or keep your current look.</p>
+      <h2 id="halloween-heading">Halloween got a glow-up!</h2>
+      <p>Pixel bats, a graveyard of glowing pumpkins, drifting embers and the odd ghost. Try it now or keep your current look.</p>
       <button id="halloween-try" class="primary-button" type="button">Try Halloween theme</button>
-      <button id="halloween-later" class="secondary-button" type="button" style="margin:12px 0 0 8px">Maybe later</button>
+      <button id="halloween-later" class="secondary-button" type="button" style="margin:22px 0 0 14px">Maybe later</button>
     </div>
   </div>
 </div>
@@ -676,7 +791,7 @@ const STATUS_URL = 'https://raw.githubusercontent.com/BrianTopHat/TOPHATZ-AI/mai
 const STATUS_REFRESH_MS = 45000;
 const CURRENT_YEAR = 2026;
 const WIKIPEDIA_API = 'https://en.wikipedia.org/w/api.php';
-const HALLOWEEN_NOTICE_KEY = 'tophatz-ai-halloween-notice-v1';
+const HALLOWEEN_NOTICE_KEY = 'tophatz-ai-halloween-notice-v2';
 const WELCOME_NOTICE_KEY = 'tophatz-ai-welcome-notice-v1';
 
 const CONVERSATIONS_STORAGE_KEY = 'tophatz-ai-conversations-v1';
@@ -939,7 +1054,7 @@ async function sendMessage() {
       const query = makeWebQuery(visiblePrompt, attachment && attachment.name);
       webResults = await searchWeb(query);
       showThinking(aiBubble, settings.deepThinking ? 'Thinking deeply' : 'Thinking');
-      if (!webResults.length) showToast('No Wikipedia results found; answering with the model only.');
+      if (!webResults.length) showToast('No search results found; answering with the model only.');
     }
 
     let plan = '';
@@ -967,7 +1082,7 @@ async function sendMessage() {
     aiBubble.appendChild(errorText);
     const tip = document.createElement('p');
     tip.style.color = 'var(--muted)';
-    tip.style.fontSize = '12px';
+    tip.style.fontSize = '15px';
     tip.style.marginTop = '7px';
     tip.textContent = 'The GitHub status flag is separate from the chat connection, so a green status does not always guarantee the model endpoint is reachable.';
     aiBubble.appendChild(tip);
@@ -986,7 +1101,7 @@ function appendMsg(text, cls, attachment = null) {
   row.className = 'msg ' + cls;
   const avatar = document.createElement('div');
   avatar.className = 'avatar';
-  avatar.textContent = cls === 'user' ? 'Y' : '✦';
+  avatar.innerHTML = cls === 'user' ? HEAD_ICON : HAT_ICON;
   avatar.setAttribute('aria-hidden', 'true');
   const bubble = document.createElement('div');
   bubble.className = 'bubble';
@@ -1081,13 +1196,62 @@ async function callModel(messages, { maxTokens = 0, temperature = 0.3, deep = fa
   const requestBody = { model: MODEL, messages, stream: false };
   if (maxTokens) requestBody.options = { num_predict: maxTokens, temperature };
   if (deep && /qwen3|deepseek-r1|gpt-oss|gemma4/i.test(MODEL)) requestBody.think = true;
-  const response = await fetch(OLLAMA_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(requestBody)
-  });
-  if (!response.ok) throw new Error('AI server returned HTTP ' + response.status);
-  const data = await response.json();
+
+  // Keep the request compatible with Ollama's normal CORS allow-list.
+  // A custom ngrok-skip-browser-warning header forces an extra CORS preflight
+  // and Ollama may reject that header before /api/chat is ever reached.
+  // API responses are JSON, so the ngrok HTML interstitial should not be needed.
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), 120000);
+  let response;
+  try {
+    response = await fetch(OLLAMA_URL, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'omit',
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(requestBody),
+      signal: controller.signal
+    });
+  } catch (error) {
+    if (error && error.name === 'AbortError') {
+      throw new Error('The AI request timed out after 120 seconds. The model may be loading or the server may be busy.');
+    }
+    // Browsers intentionally hide detailed CORS/network failure information
+    // from JavaScript. Do not incorrectly report every TypeError as ngrok offline.
+    throw new Error(
+      'The browser could not connect to the AI endpoint. This is commonly a CORS/preflight block (the page origin is not allowed by Ollama), but it can also mean the tunnel URL is unreachable. Check the browser Console for the exact CORS or network error. Endpoint: ' + OLLAMA_URL
+    );
+  } finally {
+    window.clearTimeout(timeoutId);
+  }
+
+  const raw = await response.text();
+  let data = null;
+  try { data = raw ? JSON.parse(raw) : null; } catch (_) { /* handled below */ }
+
+  if (!response.ok) {
+    const detail = data && typeof data.error === 'string' ? ': ' + data.error : '';
+    let hint = '';
+    if (response.status === 404) hint = ' (check that the model "' + MODEL + '" is installed and that /api/chat is the correct route)';
+    else if (response.status === 403) hint = ' (the server may be rejecting this page origin; check Ollama OLLAMA_ORIGINS and the CORS response headers)';
+    else if (response.status === 405) hint = ' (the tunnel may not be forwarding to the Ollama API server)';
+    throw new Error('AI server returned HTTP ' + response.status + hint + detail);
+  }
+
+  if (!data) {
+    const isHtml = /<html|<!doctype html/i.test(raw);
+    throw new Error(isHtml
+      ? 'The endpoint returned an HTML page instead of JSON. Check that the ngrok URL points directly to Ollama and that no ngrok warning page is being returned.'
+      : 'The AI server returned an empty or invalid JSON response.');
+  }
+  if (data && typeof data.error === 'string' && data.error) {
+    throw new Error('Ollama: ' + data.error);
+  }
   if (data && data.message && typeof data.message.content === 'string') return data.message.content;
   if (data && typeof data.response === 'string') return data.response;
   return 'The AI returned an empty response.';
@@ -1773,10 +1937,13 @@ document.getElementById('settings-reset').addEventListener('click', () => {
 function initializeSavedConversations() {
   applyTheme(settings.theme);
   updateSettingsControls();
-  if (settings.saveChats && conversations.length) loadConversation(conversations[0].id, { quiet: true });
+  if (settings.saveChats && conversations.length) loadConversation(conversations.slice().sort((a, b) => b.updatedAt - a.updatedAt)[0].id, { quiet: true });
   renderConversationList();
 }
 function showHalloweenNoticeOnce() {
+  const today = new Date();
+  const spookySeason = today.getMonth() === 9 || (today.getMonth() === 10 && today.getDate() <= 2);
+  if (!spookySeason || settings.theme === 'halloween') return;
   try {
     if (localStorage.getItem(HALLOWEEN_NOTICE_KEY) === 'shown') return;
     localStorage.setItem(HALLOWEEN_NOTICE_KEY, 'shown');
@@ -1792,6 +1959,328 @@ document.getElementById('halloween-try').addEventListener('click', () => {
   showToast('Halloween theme applied 🎃');
 });
 document.getElementById('halloween-later').addEventListener('click', () => halloweenOverlay.classList.add('hidden'));
+// ===== v4: Blockcraft extras (pixel art, splash text, ambient pixel sky) =====
+const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const PIXEL_ART = {
+  hat: {
+    rows: [
+      '....KKKKKKKK....',
+      '...KLHHHHHHHK...',
+      '...KLHHHHHHHK...',
+      '...KLHHHHHHHK...',
+      '...KLHHHHHHHK...',
+      '...KLHHHHHHHK...',
+      '...KBBBBBBBBK...',
+      '...KBBBBBBBBK...',
+      '...KLHHHHHHHK...',
+      '.KKKKKKKKKKKKKK.',
+      'KLLHHHHHHHHHHHHK',
+      '.KKKKKKKKKKKKKK.'
+    ],
+    palette: { K: '#000', H: 'var(--hat)', L: 'var(--hat-hi)', B: 'var(--accent)' }
+  },
+  head: {
+    rows: [
+      'HHHHHHHH',
+      'HHHHHHHH',
+      'HSSSSSSH',
+      'SSSSSSSS',
+      'SWESSEWS',
+      'SSSNNSSS',
+      'SSMSSMSS',
+      'SSMMMMSS'
+    ],
+    palette: { H: '#4a2f1b', S: '#d9a273', W: '#fff', E: '#3b5bdb', N: '#a8754d', M: '#6b3b26' }
+  },
+  pumpkin: {
+    rows: [
+      '.....GG......',
+      '......G......',
+      '..OODOOODOO..',
+      '.OOODOOODOOO.',
+      'OOYYDOOODYYOO',
+      'OOYYDOOODYYOO',
+      'OOODOOYOODOOO',
+      'OOYYYYYYYYYOO',
+      'OOOYOYOYOYOOO',
+      '.OOODOOODOOO.',
+      '..OODOOODOO..'
+    ],
+    palette: { G: '#4caf32', O: '#ff8a1f', D: '#c85d0c', Y: '#ffd23f' },
+    glow: 'Y'
+  },
+  ghost: {
+    rows: [
+      '...WWWW...',
+      '..WWWWWW..',
+      '.WWWWWWWW.',
+      '.WKKWWKKW.',
+      '.WKKWWKKW.',
+      'WWWWWWWWWW',
+      'WWWWKKWWWW',
+      'WWWWKKWWWW',
+      'WWWWWWWWWW',
+      'WWWWWWWWWW',
+      'WW.WWW.WWW',
+      'W...W...WW'
+    ],
+    palette: { W: '#f3ecff', K: '#2a1434' }
+  },
+  spider: {
+    rows: [
+      '..K.....K..',
+      'K..K...K..K',
+      '.K.KKKKK.K.',
+      '..KKRKRKK..',
+      '.K.KKKKK.K.',
+      'K..K...K..K'
+    ],
+    palette: { K: '#0b0610', R: '#ff3b3b' }
+  },
+  batUp: {
+    rows: [
+      'K............K',
+      'KK....KK....KK',
+      'KKK..KKKK..KKK',
+      '.KKKKRKKRKKKK.',
+      '..KKKKKKKKKK..',
+      '......KK......',
+      '..............'
+    ],
+    palette: { K: '#0b0610', R: '#ff5a2a' }
+  },
+  batDown: {
+    rows: [
+      '..............',
+      '......KK......',
+      '....KKKKKK....',
+      '..KKKRKKRKKK..',
+      '.KKKK.KK.KKKK.',
+      'KKK........KKK',
+      'K............K'
+    ],
+    palette: { K: '#0b0610', R: '#ff5a2a' }
+  }
+};
+function pixelRects(art, { build = false, cls = '' } = {}) {
+  const rows = art.rows;
+  let out = '';
+  let index = 0;
+  const order = [];
+  rows.forEach((row, y) => [...row].forEach((ch, x) => { if (art.palette[ch]) order.push([x, y, ch]); }));
+  if (build) order.sort((a, b) => b[1] - a[1] || a[0] - b[0]);
+  for (const [x, y, ch] of order) {
+    const glow = art.glow === ch ? ' class="hw-pumpkin-glow"' : '';
+    const delay = build ? ';animation-delay:' + (index * 7) + 'ms' : '';
+    out += '<rect x="' + x + '" y="' + y + '" width="1.02" height="1.02"' + glow + ' style="fill:' + art.palette[ch] + delay + '"/>';
+    index++;
+  }
+  return out;
+}
+function pixelSVG(art, className = '', options = {}) {
+  const w = art.rows[0].length, h = art.rows.length;
+  return '<svg class="px ' + className + '" viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true">' + pixelRects(art, options) + '</svg>';
+}
+function batSVG() {
+  const w = 14, h = 7;
+  return '<svg class="px" viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true"><g class="f1">' + pixelRects(PIXEL_ART.batUp) + '</g><g class="f2">' + pixelRects(PIXEL_ART.batDown) + '</g></svg>';
+}
+function moonSVG() {
+  let rects = '';
+  const r = 7.5, c = 7.5;
+  const craters = new Set(['5,4', '6,4', '5,5', '10,8', '11,8', '10,9', '4,10', '8,12']);
+  for (let y = 0; y < 16; y++) for (let x = 0; x < 16; x++) {
+    const d = Math.hypot(x + .5 - c - .5, y + .5 - c - .5);
+    if (d > r) continue;
+    const fill = craters.has(x + ',' + y) ? '#e3b77a' : (d > r - 1.3 ? '#ffd9a0' : '#fff0cf');
+    rects += '<rect x="' + x + '" y="' + y + '" width="1.02" height="1.02" style="fill:' + fill + '"/>';
+  }
+  return '<svg class="px hw-moon" viewBox="0 0 16 16" aria-hidden="true">' + rects + '</svg>';
+}
+function webSVG(side) {
+  const n = 30, on = new Set();
+  [0, 18, 36, 54, 72, 90].forEach(deg => {
+    const a = deg * Math.PI / 180;
+    for (let t = 0; t < n * 1.42; t += .5) on.add(Math.round(Math.cos(a) * t) + ',' + Math.round(Math.sin(a) * t));
+  });
+  [8, 15, 22, 29].forEach(rad => {
+    for (let deg = 0; deg <= 90; deg += 1.5) {
+      const a = deg * Math.PI / 180, sag = 1 + .08 * Math.sin(((deg % 18) / 18) * Math.PI);
+      on.add(Math.round(Math.cos(a) * rad / sag) + ',' + Math.round(Math.sin(a) * rad / sag));
+    }
+  });
+  let rects = '';
+  on.forEach(key => { const [x, y] = key.split(',').map(Number); if (x < n && y < n) rects += '<rect x="' + x + '" y="' + y + '" width="1" height="1"/>'; });
+  return '<svg class="px hw-web ' + side + '" viewBox="0 0 ' + n + ' ' + n + '" aria-hidden="true" style="fill:#ffc896">' + rects + '</svg>';
+}
+const HAT_ICON = pixelSVG(PIXEL_ART.hat);
+const HEAD_ICON = pixelSVG(PIXEL_ART.head);
+
+function buildBlockcraftDecor() {
+  const brand = document.querySelector('.brand');
+  if (brand && !brand.querySelector('.brand-hat')) brand.insertAdjacentHTML('afterbegin', pixelSVG(PIXEL_ART.hat, 'brand-hat'));
+  const empty = document.getElementById('empty-state');
+  if (empty && !empty.querySelector('.hero-hat')) empty.insertAdjacentHTML('afterbegin', pixelSVG(PIXEL_ART.hat, 'hero-hat', { build: !REDUCED_MOTION }));
+  const pumpkinIcon = document.querySelector('#halloween-overlay .modal-icon');
+  if (pumpkinIcon) pumpkinIcon.innerHTML = pixelSVG(PIXEL_ART.pumpkin);
+  const scene = document.querySelector('.halloween-scene');
+  if (scene) {
+    scene.innerHTML =
+      '<div class="hw-fog"></div>' + moonSVG() + webSVG('left') + webSVG('right') +
+      '<div class="hw-spider"><div class="thread"></div>' + pixelSVG(PIXEL_ART.spider) + '</div>' +
+      '<div class="hw-bat" style="top:14%;--dur:17s;--delay:-3s">' + batSVG() + '</div>' +
+      '<div class="hw-bat" style="top:24%;--dur:23s;--delay:-12s;width:40px;height:20px">' + batSVG() + '</div>' +
+      '<div class="hw-bat" style="top:9%;--dur:29s;--delay:-20s;width:34px;height:17px">' + batSVG() + '</div>' +
+      '<div class="hw-ghost">' + pixelSVG(PIXEL_ART.ghost) + '</div>' +
+      '<div class="hw-flash"></div>';
+  }
+}
+
+// Minecraft-style splash text next to the welcome title. Click it for a new one.
+const SPLASHES = {
+  normal: ['Now 100% blocky!', 'Also try Halloween!', 'Made by Brian!', 'Runs on qwen!', 'Pixel perfect!', 'Ask me anything!', 'Top hats only!', 'Now with achievements!'],
+  halloween: ['Spooky edition!', 'Boo!', 'Trick or treat!', 'Pumpkin powered!', 'Do not feed the ghosts!', 'Now with 100% more bats!', 'Happy Halloween!', 'Candy accepted!']
+};
+let lastSplash = '';
+function setSplash() {
+  const splash = document.getElementById('splash');
+  if (!splash) return;
+  const list = SPLASHES[document.documentElement.getAttribute('data-theme') === 'halloween' ? 'halloween' : 'normal'];
+  let pick = lastSplash;
+  while (pick === lastSplash && list.length > 1) pick = list[Math.floor(Math.random() * list.length)];
+  lastSplash = pick;
+  splash.textContent = pick;
+}
+function setupSplash() {
+  const title = document.querySelector('.welcome-title');
+  if (!title || document.getElementById('splash')) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'title-wrap';
+  title.replaceWith(wrap);
+  wrap.appendChild(title);
+  const splash = document.createElement('button');
+  splash.type = 'button';
+  splash.id = 'splash';
+  splash.className = 'splash';
+  splash.title = 'Click for a new splash';
+  splash.addEventListener('click', setSplash);
+  wrap.appendChild(splash);
+  setSplash();
+}
+
+// Ambient pixel sky on a low-res canvas: each canvas pixel is a 4px block on screen.
+function startPixelSky() {
+  const canvas = document.createElement('canvas');
+  canvas.id = 'pixel-sky';
+  canvas.setAttribute('aria-hidden', 'true');
+  document.body.prepend(canvas);
+  const ctx = canvas.getContext('2d');
+  const SCALE = 4;
+  let W = 0, H = 0, stars = [], parts = [], ground = [], props = [], shooting = null, last = 0;
+  let seed = 7;
+  const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const theme = () => document.documentElement.getAttribute('data-theme') || 'midnight';
+  function resize() {
+    W = Math.ceil(window.innerWidth / SCALE); H = Math.ceil(window.innerHeight / SCALE);
+    canvas.width = W; canvas.height = H;
+    seed = 7;
+    stars = Array.from({ length: Math.round(W * H / 260) }, () => ({ x: Math.floor(rand() * W), y: Math.floor(rand() * H * .7), p: rand() * 6.28, s: .6 + rand() * 1.6 }));
+    ground = []; let h = 9;
+    for (let x = 0; x < W; x += 3) { h += Math.round((rand() - .5) * 3); h = Math.max(6, Math.min(15, h)); ground.push(h); }
+    const at = f => Math.floor(W * f);
+    const gy = x => H - ground[Math.min(ground.length - 1, Math.floor(x / 3))];
+    props = [
+      { type: 'stone', x: at(.04) }, { type: 'pumpkin', x: at(.1) }, { type: 'stone', x: at(.17) },
+      { type: 'stone', x: at(.8) }, { type: 'pumpkin', x: at(.87) }, { type: 'pumpkin', x: at(.94) }
+    ].map(p => ({ ...p, y: gy(p.x) }));
+    parts = [];
+  }
+  function drawArt(art, x0, y0, flicker) {
+    art.rows.forEach((row, y) => [...row].forEach((ch, x) => {
+      const color = art.palette[ch];
+      if (!color) return;
+      ctx.globalAlpha = art.glow === ch ? flicker : 1;
+      ctx.fillStyle = color; ctx.fillRect(x0 + x, y0 + y, 1, 1);
+    }));
+    ctx.globalAlpha = 1;
+  }
+  function drawStone(x0, y0) {
+    ctx.fillStyle = '#4b4560'; ctx.fillRect(x0 + 1, y0 - 9, 6, 9); ctx.fillRect(x0 + 2, y0 - 10, 4, 1);
+    ctx.fillStyle = '#5f587a'; ctx.fillRect(x0 + 1, y0 - 9, 1, 9);
+    ctx.fillStyle = '#2b263a'; ctx.fillRect(x0 + 4, y0 - 8, 1, 5); ctx.fillRect(x0 + 3, y0 - 7, 3, 1);
+  }
+  function spawn(t) {
+    const th = theme();
+    if (th === 'halloween' && parts.length < 70 && rand() < .5) {
+      const p = props.filter(item => item.type === 'pumpkin')[Math.floor(rand() * 3)];
+      const fromPumpkin = rand() < .5 && p;
+      parts.push({ kind: 'ember', x: fromPumpkin ? p.x + 6 : rand() * W, y: fromPumpkin ? p.y - 10 : H - 4, vx: (rand() - .5) * .3, vy: -(.25 + rand() * .45), life: 1, decay: .004 + rand() * .006 });
+    } else if (th === 'forest' && parts.length < 26 && rand() < .08) {
+      parts.push({ kind: 'firefly', x: rand() * W, y: H * (.3 + rand() * .65), vx: (rand() - .5) * .25, vy: (rand() - .5) * .2, life: 1, decay: .002 + rand() * .002, p: rand() * 6.28 });
+    } else if (th === 'ocean' && parts.length < 30 && rand() < .12) {
+      parts.push({ kind: 'bubble', x: rand() * W, y: H + 2, vx: 0, vy: -(.15 + rand() * .3), life: 1, decay: .002, p: rand() * 6.28 });
+    } else if (th === 'midnight' && !shooting && rand() < .004) {
+      shooting = { x: rand() * W * .7, y: rand() * H * .3, len: 0 };
+    }
+  }
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (document.hidden || now - last < 50) return;
+    last = now;
+    const th = theme();
+    const t = now / 1000;
+    ctx.clearRect(0, 0, W, H);
+    if (th === 'light') return;
+    const starColor = { midnight: '#c4b5fd', ocean: '#7dd3fc', forest: '#bef264', halloween: '#ffcf9a' }[th] || '#fff';
+    ctx.fillStyle = starColor;
+    for (const s of stars) {
+      const a = .15 + .55 * (Math.sin(t * s.s + s.p) * .5 + .5);
+      ctx.globalAlpha = Math.round(a * 4) / 4;
+      ctx.fillRect(s.x, s.y, 1, 1);
+    }
+    ctx.globalAlpha = 1;
+    if (shooting && th === 'midnight') {
+      shooting.len += 2;
+      for (let i = 0; i < Math.min(shooting.len, 10); i++) {
+        ctx.globalAlpha = 1 - i / 10; ctx.fillStyle = '#ffffff';
+        ctx.fillRect(Math.floor(shooting.x + shooting.len - i), Math.floor(shooting.y + (shooting.len - i) * .45), 1, 1);
+      }
+      ctx.globalAlpha = 1;
+      if (shooting.len > 70) shooting = null;
+    }
+    if (th === 'halloween') {
+      ground.forEach((h, i) => {
+        ctx.fillStyle = '#1b0a22'; ctx.fillRect(i * 3, H - h, 3, h);
+        ctx.fillStyle = '#3a1747'; ctx.fillRect(i * 3, H - h, 3, 1);
+      });
+      const flicker = .7 + .3 * Math.round(Math.random() * 2) / 2;
+      for (const p of props) {
+        if (p.type === 'stone') drawStone(p.x, p.y);
+        else drawArt(PIXEL_ART.pumpkin, p.x, p.y - 11, flicker);
+      }
+    }
+    if (!REDUCED_MOTION) spawn(t);
+    parts = parts.filter(p => p.life > 0 && p.y > -4 && p.x > -4 && p.x < W + 4);
+    for (const p of parts) {
+      p.life -= p.decay;
+      if (p.kind === 'ember') { p.x += p.vx + Math.sin(t * 2 + p.y * .1) * .15; p.y += p.vy; ctx.fillStyle = p.life > .6 ? '#ffd23f' : '#ff7a1a'; ctx.globalAlpha = Math.max(0, Math.min(1, p.life * 1.4)); }
+      else if (p.kind === 'firefly') { p.x += p.vx + Math.sin(t + p.p) * .1; p.y += p.vy + Math.cos(t * .8 + p.p) * .08; ctx.fillStyle = '#d9ff6b'; ctx.globalAlpha = Math.sin(t * 2.5 + p.p) > .2 ? Math.min(1, p.life * 2) : .1; }
+      else { p.x += Math.sin(t * 1.5 + p.p) * .12; p.y += p.vy; ctx.fillStyle = '#9fe7ff'; ctx.globalAlpha = .55; }
+      ctx.fillRect(Math.round(p.x), Math.round(p.y), 1, 1);
+    }
+    ctx.globalAlpha = 1;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(frame);
+}
+
+buildBlockcraftDecor();
+setupSplash();
+startPixelSky();
+const _applyThemeOriginal = applyTheme;
+applyTheme = function (theme) { _applyThemeOriginal(theme); setSplash(); };
+
 initializeSavedConversations();
 syncModeToggles();
 showHalloweenNoticeOnce();
