@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0122)https://t90141820846.p.clickup-attachments.com/t90141820846/fc2304ff-95fc-5d28-9892-95e61a647ed5/tophatz-ai.html?view=open -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080a10">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./TOPHATZ AI_files/css2" rel="stylesheet">
 <title>TOPHATZ AI</title>
 <style>
   :root {
@@ -416,6 +419,119 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   }
+
+  /* ===== v2: blocky UI, polish, Halloween upgrades ===== */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 32px 32px;
+    -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000, transparent 72%); mask-image: radial-gradient(ellipse at 50% 0%, #000, transparent 72%);
+  }
+  button, .icon-button, .suggestion, .mode-toggle, .status-pill, .avatar, .code-card, .code-head, .code-action,
+  .web-sources, .attachment-chip, .modal-box, .primary-button, .secondary-button, .conversation-item,
+  .conversation-load, .conversation-delete, .settings-field select, .settings-field input, .attachment-remove,
+  #toast, .modal-icon, .welcome-orb, .preview-dock, .bubble blockquote, .bubble code:not(pre code) { border-radius: 0 !important; }
+
+  .settings-field input { width: 100%; min-height: 42px; border: 1px solid var(--line); padding: 0 12px; color: var(--text); background: var(--panel-2); font: inherit; font-weight: 400; }
+  .web-source-tag { display: inline-block; margin-right: 2px; color: var(--accent); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; }
+
+  /* Blocky composer, minecraft-style pixel type */
+  #input-wrap {
+    border: 3px solid #3a3f52 !important; background: #14171f !important; padding: 10px !important; gap: 10px !important;
+    box-shadow: 0 0 0 3px #000, 6px 6px 0 3px #000 !important;
+  }
+  #input-wrap:focus-within { border-color: #7dd3fc !important; box-shadow: 0 0 0 3px #000, 6px 6px 0 3px #000, inset 0 0 0 2px rgba(125,211,252,.18) !important; }
+  #user-input {
+    font-family: 'Press Start 2P', ui-monospace, monospace !important; font-size: 11px !important; line-height: 2 !important;
+    letter-spacing: .02em; padding: 12px 8px !important; min-height: 48px !important;
+  }
+  #user-input::placeholder { color: #6b7288 !important; font-family: 'Press Start 2P', ui-monospace, monospace !important; }
+  #file-btn, #send-btn {
+    width: 46px !important; height: 46px !important; flex-basis: 46px !important; border: 3px solid #000 !important;
+    box-shadow: inset -3px -3px 0 rgba(0,0,0,.35), inset 3px 3px 0 rgba(255,255,255,.22) !important;
+    font-family: 'Press Start 2P', ui-monospace, monospace !important;
+  }
+  #file-btn { background: #6b7280 !important; color: #f3f4f6 !important; font-size: 14px !important; }
+  #file-btn:hover { background: #7c8492 !important; }
+  #send-btn { background: #5cb85c !important; color: #0b2a0b !important; font-size: 14px !important; }
+  #send-btn:hover:not(:disabled) { background: #6fcb6f !important; transform: none !important; filter: none !important; }
+  #send-btn:active:not(:disabled) { transform: translate(2px, 2px) !important; box-shadow: inset 3px 3px 0 rgba(0,0,0,.35) !important; }
+  .mode-toggle { border: 2px solid #000 !important; box-shadow: 2px 2px 0 #000; font-family: 'Press Start 2P', ui-monospace, monospace; font-size: 8px; letter-spacing: .02em; padding: 8px 9px; line-height: 1.5; }
+  .suggestion { border: 2px solid #000 !important; box-shadow: 3px 3px 0 #000; }
+  .suggestion:hover { transform: translate(-1px, -1px) !important; box-shadow: 4px 4px 0 #000; }
+  .icon-button { border: 2px solid #000 !important; box-shadow: 2px 2px 0 #000; }
+  .msg.user .user-message-text { background: #1c2030; border: 2px solid #2d3349; box-shadow: 3px 3px 0 #000; padding: 10px 13px; display: inline-block; max-width: 100%; }
+  .msg.ai .avatar, .msg.user .avatar { border: 2px solid #000 !important; }
+  .code-card { border: 2px solid #000 !important; box-shadow: 4px 4px 0 #000 !important; }
+  .web-sources { border: 2px solid #000 !important; box-shadow: 3px 3px 0 #000; }
+  .plan-card { margin-top: 14px; padding: 10px 13px; border: 2px solid rgba(167,139,250,.35); background: rgba(167,139,250,.06); font-size: 12px; color: #d6cdf3; }
+  .plan-card summary { cursor: pointer; font-weight: 750; color: #ddd4ff; }
+  .plan-card .plan-body { margin-top: 9px; white-space: pre-wrap; line-height: 1.65; }
+  .modal-box { border: 2px solid #000 !important; box-shadow: 8px 8px 0 #000 !important; }
+
+  /* Halloween: stronger atmosphere, no header pumpkin */
+  :root[data-theme="halloween"] .brand-title::after { content: none !important; }
+  :root[data-theme="halloween"] #send-btn { background: #ff8a2a !important; color: #2a0f05 !important; }
+  :root[data-theme="halloween"] #input-wrap { border-color: #5b2a1c !important; background: #1d0e20 !important; box-shadow: 0 0 0 3px #000, 6px 6px 0 3px #000, 0 0 24px rgba(255,138,42,.15) !important; }
+  :root[data-theme="halloween"] #input-wrap:focus-within { border-color: #ff9a38 !important; }
+  :root[data-theme="halloween"] #file-btn { background: #4a2456 !important; color: #ffd0a1 !important; }
+  :root[data-theme="halloween"] .msg.user .user-message-text { background: #2a1431; border-color: #5b2a4a; }
+  .halloween-scene { box-shadow: inset 0 0 130px rgba(0,0,0,.45); }
+  .halloween-scene::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(255,184,92,.95) 1.5px, transparent 2.5px), radial-gradient(circle, rgba(255,120,40,.85) 1px, transparent 2px);
+    background-size: 160px 200px, 110px 150px; background-position: 0 0, 40px 0;
+    animation: embers-rise 16s linear infinite; opacity: .55;
+  }
+  .halloween-scene::after {
+    content: ""; position: absolute; left: -10%; right: -10%; bottom: -8%; height: 38%;
+    background: radial-gradient(ellipse at 30% 100%, rgba(168,85,247,.20), transparent 60%), radial-gradient(ellipse at 75% 100%, rgba(255,138,42,.13), transparent 60%);
+    filter: blur(10px); animation: fog-drift 18s ease-in-out infinite alternate;
+  }
+  @keyframes embers-rise { from { background-position: 0 0, 40px 0; } to { background-position: 0 -200px, 40px -150px; } }
+  @keyframes fog-drift { from { transform: translateX(-3%); } to { transform: translateX(3%); } }
+  @media (prefers-reduced-motion: reduce) { .halloween-scene::before, .halloween-scene::after { animation: none !important; } }
+  @media (max-width: 620px) {
+    #user-input { font-size: 9px !important; line-height: 1.9 !important; }
+    .mode-toggle { font-size: 7px; }
+  }
+
+  /* ===== v3: full blocky + pixel type ===== */
+  *, *::before, *::after { border-radius: 0 !important; }
+  *, *::before, *::after { font-family: 'Press Start 2P', ui-monospace, monospace !important; letter-spacing: .01em; }
+  .welcome-orb, .welcome-orb::before { display: none !important; }
+  .brand-title { font-size: 13px !important; line-height: 1.6 !important; }
+  .brand-subtitle { font-size: 7px !important; line-height: 1.8 !important; margin-top: 8px !important; }
+  .brand-subtitle::after { font-size: 7px; }
+  .welcome-title { font-size: 20px !important; line-height: 1.6 !important; }
+  .welcome-title::before { font-size: 8px !important; }
+  .welcome-copy { font-size: 9px !important; line-height: 2 !important; max-width: 560px !important; }
+  .suggestion, .status-pill, .mode-toggle, .composer-footer, .conversation-meta, .attachment-meta { font-size: 7px !important; line-height: 1.8 !important; }
+  .status-pill { min-height: 40px; }
+  .bubble { font-size: 11px !important; line-height: 2.1 !important; }
+  .bubble h2 { font-size: 15px !important; line-height: 1.7 !important; }
+  .bubble h3 { font-size: 13px !important; line-height: 1.7 !important; }
+  .bubble h4 { font-size: 11px !important; line-height: 1.9 !important; }
+  .bubble code:not(pre code) { font-size: 10px !important; }
+  .user-message-text { font-size: 11px !important; line-height: 2.1 !important; }
+  .web-sources, .web-sources li, .plan-card, .plan-body { font-size: 8px !important; line-height: 2 !important; }
+  .web-source-tag { font-size: 7px !important; }
+  .avatar { font-size: 9px !important; }
+  .code-language, .code-action { font-size: 8px !important; }
+  .dialog-header h2, .modal-box h2 { font-size: 14px !important; line-height: 1.6 !important; }
+  .dialog-header p, .modal-box p, .settings-field, .settings-toggle, .settings-field small, .settings-toggle small,
+  .storage-note, .conversation-empty, .conversation-title, .primary-button, .secondary-button, .preview-title, .preview-note, #toast, .attachment-name {
+    font-size: 8px !important; line-height: 2 !important;
+  }
+  .primary-button, .secondary-button { font-size: 9px !important; }
+  #user-input { font-size: 10px !important; }
+  #send-btn, #file-btn { font-size: 14px !important; }
+  /* Code stays monospaced so it stays readable */
+  .code-card pre, .code-card pre *, .code-card pre code, .bubble code, .bubble code:not(pre code) { font-family: ui-monospace, SFMono-Regular, Consolas, monospace !important; }
+  .code-card pre, .code-card pre code { font-size: 12px !important; line-height: 1.7 !important; }
+  /* Blocky composer */
+  #input-wrap, #input-wrap:focus-within { border-radius: 0 !important; }
+  @media (max-width: 620px) { #user-input { font-size: 9px !important; } .bubble { font-size: 10px !important; } }
 </style>
 </head>
 <body>
@@ -469,28 +585,28 @@
     <div id="input-wrap">
       <button id="file-btn" type="button" title="Attach a text or code file" aria-label="Attach a text or code file">＋</button>
       <input type="file" id="file-input" accept=".txt,.html,.htm,.css,.js,.mjs,.cjs,.ts,.tsx,.jsx,.json,.py,.md,.xml,.svg,.yml,.yaml,.sh,.sql,.java,.cs,.cpp,.c,.h,.go,.rs,.rb,.php,.lua,.ps1,.bat">
-      <textarea id="user-input" placeholder="Message TOPHATZ AI…" rows="1" autofocus aria-label="Message AI"></textarea>
+      <textarea id="user-input" placeholder="Message TOPHATZ AI…" rows="1" autofocus="" aria-label="Message AI"></textarea>
       <button id="send-btn" type="button" aria-label="Send message" title="Send message">↑</button>
     </div>
     <div class="composer-footer">
       <span>Enter to send · Shift + Enter for a new line</span>
       <div class="mode-tools" aria-label="AI modes">
         <button id="deep-toggle" class="mode-toggle" type="button" aria-pressed="false" title="Ask the model to spend more effort on complex answers and code">🧠 Deep thinking: Off</button>
-        <button id="web-toggle" class="mode-toggle" type="button" aria-pressed="false" title="Add live Wikipedia search results as context">🌐 Web lookup: Off</button>
+        <button id="web-toggle" class="mode-toggle" type="button" aria-pressed="false" title="Search GitHub, Wikipedia, Hacker News, Stack Overflow, and YouTube and add the top results as context">🌐 Search: Off</button>
       </div>
     </div>
   </div>
 </footer>
   </div>
 
-  <aside id="preview-dock" class="preview-dock" hidden aria-label="HTML preview panel">
+  <aside id="preview-dock" class="preview-dock" hidden="" aria-label="HTML preview panel">
     <div id="preview-resizer" class="preview-resizer" role="separator" aria-orientation="vertical" aria-label="Resize preview panel" tabindex="0"></div>
     <div class="preview-panel">
       <div class="preview-head">
         <div><div class="preview-title" id="preview-heading">HTML preview</div><div class="preview-note">Runs in a sandboxed preview frame</div></div>
         <button id="preview-close" class="icon-button" type="button" aria-label="Close preview" title="Close preview">✕</button>
       </div>
-      <iframe id="preview-frame" title="Generated HTML preview" sandbox="allow-scripts"></iframe>
+      <iframe id="preview-frame" title="Generated HTML preview" sandbox="allow-scripts" src="./TOPHATZ AI_files/saved_resource.html"></iframe>
     </div>
   </aside>
 </div>
@@ -539,8 +655,9 @@
     <div class="settings-content">
       <label class="settings-field" for="theme-select"><span>Appearance</span><select id="theme-select"><option value="midnight">Midnight (default)</option><option value="light">Light</option><option value="ocean">Ocean blue</option><option value="forest">Forest green</option><option value="halloween">🎃 Halloween</option></select><small>Changes the interface colors.</small></label>
       <label class="settings-field" for="conversation-limit"><span>Keep recent conversations</span><select id="conversation-limit"><option value="5">5 conversations</option><option value="10">10 conversations</option><option value="12">12 conversations</option><option value="15">15 conversations</option></select><small>Older conversations are automatically removed when the limit is reached.</small></label>
-      <label class="settings-toggle" for="deep-thinking-setting"><input id="deep-thinking-setting" type="checkbox"><span><strong>Deep thinking &amp; coding mode</strong><small>Prompts the current model to be more methodical, check edge cases, and produce longer coding answers. Native thinking depends on the model you run.</small></span></label>
-      <label class="settings-toggle" for="web-search-setting"><input id="web-search-setting" type="checkbox"><span><strong>Web lookup</strong><small>Searches Wikipedia for live article snippets and passes them to the AI with source links. This standalone page cannot do full Google/Bing-style search without a configured search API or backend.</small></span></label>
+      <label class="settings-toggle" for="deep-thinking-setting"><input id="deep-thinking-setting" type="checkbox"><span><strong>Deep thinking &amp; coding mode</strong><small>Runs a planning pass first, answers from that plan, then double-checks its own draft. Slower, but more careful.</small></span></label>
+      <label class="settings-toggle" for="web-search-setting"><input id="web-search-setting" type="checkbox"><span><strong>Search mode</strong><small>Searches GitHub, Wikipedia, Hacker News, Stack Overflow, and YouTube, then passes the top results to the AI with source links.</small></span></label>
+      <label class="settings-field" for="youtube-key"><span>YouTube API key (optional)</span><input id="youtube-key" type="password" autocomplete="off" placeholder="Paste a key to enable video results"><small>Search mode adds YouTube videos when this is set. Without a key you get a one-click YouTube search link instead.</small></label>
       <label class="settings-toggle" for="save-chats"><input id="save-chats" type="checkbox"><span><strong>Save conversations on this browser</strong><small>Remember chats when you return. Turning this off pauses future saves; existing saved chats remain.</small></span></label>
     </div>
     <div class="dialog-footer"><button id="settings-reset" class="secondary-button" type="button">Reset defaults</button><button id="settings-done" class="primary-button" type="button">Done</button></div>
@@ -564,7 +681,7 @@ const WELCOME_NOTICE_KEY = 'tophatz-ai-welcome-notice-v1';
 
 const CONVERSATIONS_STORAGE_KEY = 'tophatz-ai-conversations-v1';
 const SETTINGS_STORAGE_KEY = 'tophatz-ai-settings-v1';
-const DEFAULT_SETTINGS = { theme: 'midnight', deepThinking: false, webSearch: false, saveChats: true, maxConversations: 12 };
+const DEFAULT_SETTINGS = { theme: 'midnight', deepThinking: false, webSearch: false, saveChats: true, maxConversations: 12, youtubeKey: '' };
 const MAX_MESSAGES_PER_CONVERSATION = 60;
 const MAX_STORED_JSON_CHARS = 1400000;
 let settings = readSettings();
@@ -820,41 +937,26 @@ async function sendMessage() {
   try {
     if (settings.webSearch) {
       const query = makeWebQuery(visiblePrompt, attachment && attachment.name);
-      webResults = await searchWikipedia(query);
+      webResults = await searchWeb(query);
       showThinking(aiBubble, settings.deepThinking ? 'Thinking deeply' : 'Thinking');
       if (!webResults.length) showToast('No Wikipedia results found; answering with the model only.');
     }
 
-    const requestMessages = [
-      { role: 'system', content: buildSystemPrompt(webResults) },
-      ...history.slice(-40)
-    ];
-    const requestBody = {
-      model: MODEL,
-      messages: requestMessages,
-      stream: false
-    };
+    let plan = '';
     if (settings.deepThinking) {
-      // Ollama-compatible generation options allow a larger answer budget. Qwen2.5:7b
-      // does not expose native thinking tokens, so the system prompt is also important.
-      requestBody.options = { num_predict: 4096, temperature: 0.3 };
-      if (/qwen3|deepseek-r1|gpt-oss|gemma4/i.test(MODEL)) requestBody.think = true;
+      showThinking(aiBubble, 'Planning');
+      plan = await runPlanningPass(webResults);
+      showThinking(aiBubble, 'Reasoning it through');
     }
-
-    const response = await fetch(OLLAMA_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(requestBody)
-    });
-    if (!response.ok) throw new Error('AI server returned HTTP ' + response.status);
-    const data = await response.json();
-    let reply = data && data.message && typeof data.message.content === 'string'
-      ? data.message.content
-      : (data && typeof data.response === 'string' ? data.response : 'The AI returned an empty response.');
-    reply = normalizeCopyrightYears(reply);
+    const answer = await callModel(
+      [{ role: 'system', content: buildSystemPrompt(webResults, plan) }, ...history.slice(-40)],
+      settings.deepThinking ? { maxTokens: 6144, temperature: 0.3, deep: true } : {}
+    );
+    const reply = normalizeCopyrightYears(answer);
     history.push({ role: 'assistant', content: reply });
     recordConversationMessage('assistant', reply, reply, null, webResults);
     renderAI(aiBubble, reply);
+    if (plan) appendPlanCard(aiBubble, plan);
     if (webResults.length) appendWebSources(aiBubble, webResults);
   } catch (error) {
     aiBubble.replaceChildren();
@@ -919,20 +1021,26 @@ function makeWebQuery(prompt, fallbackName = '') {
   const query = String(prompt || '').replace(/```[\s\S]*?```/g, ' ').replace(/\s+/g, ' ').trim();
   return (query || fallbackName || 'web development').slice(0, 180);
 }
-function buildSystemPrompt(webResults = []) {
+function buildSystemPrompt(webResults = [], plan = '') {
   const parts = [
     'You are TOPHATZ AI, a helpful assistant with a strong focus on accurate coding and clear explanations.',
     'The current year is 2026. When generating new websites, scripts, footers, or copyright notices, use 2026 rather than outdated placeholder years. Preserve older dates only when they are historically relevant or explicitly requested.',
     'For code requests, provide complete, runnable code where appropriate. Check requirements, obvious edge cases, mobile support when relevant, and mention any setup steps. Never claim that you executed or tested code unless a test was actually performed.'
   ];
   if (settings.deepThinking) {
-    parts.push('Deep thinking mode is ON: take extra care to reason through the problem internally, consider alternatives and edge cases, check the solution for bugs, and prioritize correctness for coding tasks. Give a useful explanation and brief verification checklist, but do not reveal private chain-of-thought. Prefer a robust complete solution over a quick incomplete answer.');
+    parts.push('Deep thinking mode is ON. Work through the problem carefully before writing: consider alternatives and edge cases, then check your own draft for bugs and factual errors before you finish. For code, make sure it is complete and would run as written. Do not reveal private chain-of-thought; give a clear answer and a short verification checklist when useful.');
+    if (plan) parts.push('Your planning stage produced this plan for the current request. Follow it, and revise it if you find a problem:\n' + plan);
   }
-  if (webResults.length) {
-    const formatted = webResults.map((result, index) => (index + 1) + '. ' + result.title + '\nSnippet: ' + result.snippet + '\nURL: ' + result.url).join('\n\n');
-    parts.push('Web lookup results retrieved for this request (Wikipedia search snippets). Use these as limited external context, do not pretend they represent all of the web, and do not invent facts. When useful, include a Sources section linking to the exact URLs below.\n\n' + formatted);
+  const usable = webResults.filter(result => !result.searchOnly);
+  if (usable.length) {
+    parts.push('Web lookup results retrieved for this request from GitHub, Wikipedia, Hacker News, Stack Overflow, and YouTube (search snippets only). Use them as limited external context, do not pretend they represent all of the web, and do not invent facts. When useful, include a Sources section linking to the exact URLs below.\n\n' + formatWebContext(usable));
   }
   return parts.join('\n\n');
+}
+function formatWebContext(results) {
+  return results.filter(result => !result.searchOnly).slice(0, 14).map((result, index) =>
+    (index + 1) + '. [' + (WEB_SOURCE_LABELS[result.source] || 'Web') + '] ' + result.title + '\nSnippet: ' + result.snippet + '\nURL: ' + result.url
+  ).join('\n\n');
 }
 function normalizeCopyrightYears(text) {
   return String(text).split('\n').map(line => {
@@ -967,17 +1075,147 @@ async function searchWikipedia(query) {
     window.clearTimeout(timeout);
   }
 }
+const WEB_SOURCE_LABELS = { github: 'GitHub', wikipedia: 'Wikipedia', hackernews: 'Hacker News', stackoverflow: 'Stack Overflow', youtube: 'YouTube' };
+
+async function callModel(messages, { maxTokens = 0, temperature = 0.3, deep = false } = {}) {
+  const requestBody = { model: MODEL, messages, stream: false };
+  if (maxTokens) requestBody.options = { num_predict: maxTokens, temperature };
+  if (deep && /qwen3|deepseek-r1|gpt-oss|gemma4/i.test(MODEL)) requestBody.think = true;
+  const response = await fetch(OLLAMA_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(requestBody)
+  });
+  if (!response.ok) throw new Error('AI server returned HTTP ' + response.status);
+  const data = await response.json();
+  if (data && data.message && typeof data.message.content === 'string') return data.message.content;
+  if (data && typeof data.response === 'string') return data.response;
+  return 'The AI returned an empty response.';
+}
+async function runPlanningPass(webResults = []) {
+  const system = [
+    'You are the planning stage of TOPHATZ AI. Do not answer the user yet. Read the latest user message and the conversation, then write a short plan in exactly this format:',
+    'GOAL: one line on what the user actually needs.',
+    'ASSUMPTIONS: 1-3 short bullets, or "none".',
+    'STEPS: 3-6 numbered steps for the best possible answer.',
+    'RISKS: 1-4 bullets on edge cases, bugs, or facts to double-check.',
+    'Keep the whole plan under 180 words. No preamble.'
+  ].join('\n');
+  const context = webResults.length ? '\n\n' + formatWebContext(webResults) : '';
+  try {
+    return (await callModel([{ role: 'system', content: system + context }, ...history.slice(-40)], { maxTokens: 700, temperature: 0.2 })).trim();
+  } catch (error) {
+    showToast('Planning step was skipped; answering directly.');
+    return '';
+  }
+}
+function appendPlanCard(container, plan) {
+  const details = document.createElement('details');
+  details.className = 'plan-card';
+  const summary = document.createElement('summary');
+  summary.textContent = '🧭 Plan used for this answer';
+  const body = document.createElement('div');
+  body.className = 'plan-body';
+  body.textContent = plan;
+  details.append(summary, body);
+  container.appendChild(details);
+}
+async function fetchJson(url, timeoutMs = 9000) {
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(url, { signal: controller.signal, cache: 'no-store' });
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    return await response.json();
+  } finally {
+    window.clearTimeout(timer);
+  }
+}
+function cleanText(value, max = 400) {
+  const doc = new DOMParser().parseFromString(String(value || ''), 'text/html');
+  return (doc.body.textContent || '').replace(/\s+/g, ' ').trim().slice(0, max);
+}
+async function searchWeb(query) {
+  const q = String(query || '').slice(0, 180);
+  const providers = [
+    ['github', () => searchGitHub(q)],
+    ['wikipedia', async () => (await searchWikipedia(q)).map(item => ({ ...item, source: 'wikipedia' }))],
+    ['hackernews', () => searchHackerNews(q)],
+    ['stackoverflow', () => searchStackOverflow(q)],
+    ['youtube', () => searchYouTube(q)]
+  ];
+  const settled = await Promise.allSettled(providers.map(([, run]) => run()));
+  const results = [];
+  const failed = [];
+  settled.forEach((outcome, index) => {
+    if (outcome.status === 'fulfilled') results.push(...outcome.value);
+    else failed.push(WEB_SOURCE_LABELS[providers[index][0]]);
+  });
+  if (failed.length === providers.length) showToast('Search unavailable; answering with the model only.');
+  else if (failed.length) showToast('Some sources did not respond: ' + failed.join(', '));
+  return results;
+}
+async function searchGitHub(query) {
+  // Unauthenticated GitHub search allows about 10 requests per minute per visitor.
+  const data = await fetchJson('https://api.github.com/search/repositories?' + new URLSearchParams({ q: query, per_page: '4', sort: 'stars', order: 'desc' }));
+  return (data.items || []).slice(0, 4).map(repo => ({
+    source: 'github',
+    title: repo.full_name,
+    snippet: [repo.description, '★ ' + repo.stargazers_count, repo.language].filter(Boolean).join(' · ').slice(0, 400),
+    url: repo.html_url
+  }));
+}
+async function searchHackerNews(query) {
+  const data = await fetchJson('https://hn.algolia.com/api/v1/search?' + new URLSearchParams({ query, tags: 'story', hitsPerPage: '4' }));
+  return (data.hits || []).slice(0, 4).map(hit => ({
+    source: 'hackernews',
+    title: cleanText(hit.title, 160),
+    snippet: (hit.points || 0) + ' points · ' + (hit.num_comments || 0) + ' comments',
+    url: hit.url || ('https://news.ycombinator.com/item?id=' + hit.objectID)
+  })).filter(result => result.title);
+}
+async function searchStackOverflow(query) {
+  const data = await fetchJson('https://api.stackexchange.com/2.3/search/advanced?' + new URLSearchParams({ order: 'desc', sort: 'relevance', q: query, site: 'stackoverflow', pagesize: '4' }));
+  return (data.items || []).slice(0, 4).map(item => ({
+    source: 'stackoverflow',
+    title: cleanText(item.title, 160),
+    snippet: (item.score || 0) + ' score · ' + (item.is_answered ? 'answered' : 'unanswered') + ' · ' + (item.tags || []).slice(0, 4).join(', '),
+    url: item.link
+  })).filter(result => result.title && result.url);
+}
+async function searchYouTube(query) {
+  const key = String(settings.youtubeKey || '').trim();
+  const searchUrl = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(query);
+  if (!key) {
+    return [{ source: 'youtube', searchOnly: true, title: 'Search YouTube for "' + query.slice(0, 60) + '"', snippet: '', url: searchUrl }];
+  }
+  const data = await fetchJson('https://www.googleapis.com/youtube/v3/search?' + new URLSearchParams({ part: 'snippet', type: 'video', maxResults: '3', safeSearch: 'moderate', q: query, key }));
+  return (data.items || []).filter(item => item.id && item.id.videoId).slice(0, 3).map(item => {
+    const snippet = item.snippet || {};
+    return {
+      source: 'youtube',
+      title: cleanText(snippet.title, 150),
+      snippet: cleanText((snippet.channelTitle ? snippet.channelTitle + ': ' : '') + (snippet.description || ''), 300),
+      url: 'https://www.youtube.com/watch?v=' + encodeURIComponent(item.id.videoId)
+    };
+  });
+}
 function appendWebSources(container, sources) {
   if (!sources || !sources.length) return;
   const section = document.createElement('section');
   section.className = 'web-sources';
   const heading = document.createElement('div');
   heading.className = 'web-sources-heading';
-  heading.textContent = '🌐 Web lookup sources · Wikipedia';
+  const labels = [...new Set(sources.map(source => WEB_SOURCE_LABELS[source.source] || 'Web'))];
+  heading.textContent = '🌐 Search sources · ' + labels.join(', ');
   section.appendChild(heading);
   const list = document.createElement('ul');
   for (const source of sources) {
     const item = document.createElement('li');
+    const tag = document.createElement('span');
+    tag.className = 'web-source-tag';
+    tag.textContent = (WEB_SOURCE_LABELS[source.source] || 'Web') + ': ';
+    item.appendChild(tag);
     const link = document.createElement('a');
     link.href = source.url;
     link.target = '_blank';
@@ -1356,13 +1594,14 @@ function updateSettingsControls() {
   saveChatsCheckbox.checked = settings.saveChats;
   deepThinkingCheckbox.checked = settings.deepThinking;
   webSearchCheckbox.checked = settings.webSearch;
+  document.getElementById('youtube-key').value = settings.youtubeKey || '';
   syncModeToggles();
 }
 function syncModeToggles() {
   deepToggle.setAttribute('aria-pressed', String(settings.deepThinking));
   deepToggle.textContent = '🧠 Deep thinking: ' + (settings.deepThinking ? 'On' : 'Off');
   webToggle.setAttribute('aria-pressed', String(settings.webSearch));
-  webToggle.textContent = '🌐 Web lookup: ' + (settings.webSearch ? 'On' : 'Off');
+  webToggle.textContent = '🌐 Search: ' + (settings.webSearch ? 'On' : 'Off');
 }
 function formatConversationDate(timestamp) {
   const date = new Date(timestamp);
@@ -1490,6 +1729,11 @@ saveChatsCheckbox.addEventListener('change', () => {
   if (settings.saveChats) saveConversationState();
   showToast(settings.saveChats ? 'Conversation saving enabled' : 'Conversation saving paused');
 });
+document.getElementById('youtube-key').addEventListener('change', (event) => {
+  settings.youtubeKey = String(event.target.value || '').trim();
+  saveSettings();
+  showToast(settings.youtubeKey ? 'YouTube results enabled for search mode' : 'YouTube key removed');
+});
 deepThinkingCheckbox.addEventListener('change', () => {
   settings.deepThinking = deepThinkingCheckbox.checked;
   saveSettings();
@@ -1500,7 +1744,7 @@ webSearchCheckbox.addEventListener('change', () => {
   settings.webSearch = webSearchCheckbox.checked;
   saveSettings();
   syncModeToggles();
-  showToast(settings.webSearch ? 'Wikipedia web lookup enabled' : 'Web lookup disabled');
+  showToast(settings.webSearch ? 'Search mode enabled' : 'Search mode disabled');
 });
 deepToggle.addEventListener('click', () => {
   settings.deepThinking = !settings.deepThinking;
@@ -1514,7 +1758,7 @@ webToggle.addEventListener('click', () => {
   webSearchCheckbox.checked = settings.webSearch;
   saveSettings();
   syncModeToggles();
-  showToast(settings.webSearch ? 'Wikipedia web lookup enabled' : 'Web lookup disabled');
+  showToast(settings.webSearch ? 'Search mode enabled' : 'Search mode disabled');
 });
 document.getElementById('settings-reset').addEventListener('click', () => {
   settings = { ...DEFAULT_SETTINGS };
@@ -1552,5 +1796,6 @@ initializeSavedConversations();
 syncModeToggles();
 showHalloweenNoticeOnce();
 </script>
-</body>
-</html>
+
+
+</body></html>
