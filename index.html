@@ -703,6 +703,52 @@
     .live-response { font-size: 12px; padding: 10px; }
   }
 
+
+  /* Compact phone layout: keep the full feature set while reducing oversized spacing. */
+  @media (max-width: 620px) {
+    .topbar { min-height: 50px !important; padding: 7px 9px !important; gap: 6px !important; }
+    .topbar-actions { gap: 5px !important; }
+    .icon-button { width: 31px !important; height: 31px !important; min-width: 31px !important; font-size: 14px !important; }
+    .brand { gap: 6px !important; }
+    .brand-title { font-size: 11px !important; }
+    .status-pill { width: 31px !important; min-height: 31px !important; height: 31px !important; }
+    #messages { padding: 12px 10px 16px !important; gap: 14px !important; }
+    .msg { gap: 7px !important; }
+    .avatar { width: 25px !important; height: 25px !important; flex-basis: 25px !important; border-radius: 8px !important; font-size: 12px !important; }
+    .bubble { font-size: 12px !important; line-height: 1.5 !important; }
+    .welcome-orb { width: 48px !important; height: 48px !important; margin-bottom: 12px !important; }
+    .welcome-title { font-size: 17px !important; }
+    .welcome-copy { font-size: 12px !important; line-height: 1.45 !important; }
+    .suggestions { gap: 6px !important; }
+    .suggestion { font-size: 12px !important; padding: 7px 9px !important; }
+    #input-area { padding: 6px 8px max(7px, env(safe-area-inset-bottom)) !important; }
+    #input-wrap { padding: 7px !important; gap: 7px !important; }
+    #user-input { font-size: 14px !important; line-height: 1.4 !important; min-height: 36px !important; padding: 7px 4px !important; }
+    #file-btn, #send-btn { width: 34px !important; height: 34px !important; min-width: 34px !important; font-size: 14px !important; }
+    .work-progress { padding: 8px !important; margin-bottom: 8px !important; }
+    .work-progress-head { gap: 6px !important; }
+    .work-progress-title { font-size: 8px !important; }
+    .work-progress-model { font-size: 9px !important; padding: 3px 5px !important; }
+    .work-progress-summary { margin-top: 6px !important; padding: 6px 7px !important; border-left-width: 3px !important; }
+    .work-progress-summary strong { font-size: 9px !important; margin-bottom: 2px !important; }
+    .work-progress-summary span, .work-progress-detail { font-size: 10px !important; line-height: 1.4 !important; }
+    .work-progress-stage { margin-top: 7px !important; gap: 6px !important; font-size: 11px !important; }
+    .work-progress-pulse { width: 7px !important; height: 7px !important; flex-basis: 7px !important; }
+    .work-progress-detail { margin: 3px 0 0 13px !important; }
+    .live-response { margin-top: 8px !important; padding: 8px !important; font-size: 11px !important; line-height: 1.5 !important; }
+    .code-head { padding: 6px !important; }
+    .code-action { font-size: 9px !important; padding: 5px 6px !important; }
+    .code-card pre { padding: 9px !important; font-size: 10px !important; }
+    .dialog-header { padding: 14px 15px 10px !important; gap: 8px !important; }
+    .dialog-header h2 { font-size: 17px !important; }
+    .settings-content { padding: 10px 14px !important; gap: 10px !important; }
+    .settings-field, .settings-toggle { padding: 9px !important; gap: 8px !important; }
+    .settings-field > span, .settings-toggle strong { font-size: 12px !important; }
+    .settings-field small, .settings-toggle small { font-size: 10px !important; line-height: 1.4 !important; }
+    .dialog-footer { padding: 9px 14px !important; gap: 7px !important; }
+    .dialog-footer button, .primary-button, .secondary-button { min-height: 34px !important; padding: 7px 10px !important; font-size: 11px !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -842,8 +888,19 @@
       <label class="settings-toggle" for="web-search-setting"><input id="web-search-setting" type="checkbox"><span><strong>Search mode</strong><small>Searches GitHub, Wikipedia, Hacker News, Stack Overflow, and YouTube, then passes the top results to the AI with source links.</small></span></label>
       <label class="settings-field" for="youtube-key"><span>YouTube API key (optional)</span><input id="youtube-key" type="password" autocomplete="off" placeholder="Paste a key to enable video results"><small>Search mode adds YouTube videos when this is set. Without a key you get a one-click YouTube search link instead.</small></label>
       <label class="settings-toggle" for="save-chats"><input id="save-chats" type="checkbox"><span><strong>Save conversations on this browser</strong><small>Remember chats when you return. Turning this off pauses future saves; existing saved chats remain.</small></span></label>
+      <label class="settings-toggle" for="vibrate-setting"><input id="vibrate-setting" type="checkbox"><span><strong>Vibrate while AI is typing</strong><small>Uses short phone vibrations while the AI response streams in. Works only on supported phones and browsers.</small></span></label>
     </div>
     <div class="dialog-footer"><button id="settings-reset" class="secondary-button" type="button">Reset defaults</button><button id="settings-done" class="primary-button" type="button">Done</button></div>
+  </div>
+</div>
+
+
+<div id="pro-limit-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="pro-limit-title">
+  <div class="modal-box" style="width:min(92vw,430px);padding:22px;text-align:center">
+    <div style="font-size:30px;margin-bottom:8px">⏳</div>
+    <h2 id="pro-limit-title" style="margin:0 0 10px;font-size:20px">TOPHATZ AI PRO limit</h2>
+    <p id="pro-limit-message" style="color:var(--muted);line-height:1.55;margin:0 0 18px"></p>
+    <button id="pro-limit-close" class="primary-button" type="button">Got it</button>
   </div>
 </div>
 
@@ -868,7 +925,204 @@ const WELCOME_NOTICE_KEY = 'tophatz-ai-welcome-notice-v1';
 
 const CONVERSATIONS_STORAGE_KEY = 'tophatz-ai-conversations-v1';
 const SETTINGS_STORAGE_KEY = 'tophatz-ai-settings-v1';
-const DEFAULT_SETTINGS = { theme: 'midnight', model: 'lite', deepThinking: false, webSearch: false, saveChats: true, maxConversations: 12, youtubeKey: '' };
+const DEFAULT_SETTINGS = { theme: 'midnight', model: 'lite', deepThinking: false, webSearch: false, saveChats: true, vibrateWhileTyping: true, maxConversations: 12, youtubeKey: '' };
+
+// PRO access is tracked per browser profile and resets at the user's local midnight.
+// This is a client-side convenience limit, not account-level/server-side enforcement.
+const PRO_USAGE_STORAGE_KEY = 'tophatz-ai-pro-usage-v1';
+const PRO_FIRST_SEEN_KEY = 'tophatz-ai-first-seen-v1';
+const PRO_DEFAULT_DAILY_LIMIT = 15;
+const PRO_SLOW_CODING_DAILY_LIMIT = 8;
+const PRO_SLOW_CODING_THRESHOLD_MS = 5 * 60 * 1000;
+const PRO_REPEAT_SLOW_CODING_THRESHOLD_MS = 4 * 60 * 1000;
+const PRO_REPEAT_SLOW_CODING_COUNT = 2;
+const PRO_REPEAT_SLOW_COOLDOWN_MS = 2 * 60 * 60 * 1000;
+const PRO_COOLDOWN_STORAGE_KEY = 'tophatz-ai-pro-cooldown-until-v1';
+const STREAM_IDLE_TIMEOUT_MS = 30 * 1000;
+const STREAM_RESUME_WAIT_MS = 30;
+const STREAM_MAX_AUTO_RESUMES = 8;
+
+function localDateKey(date = new Date()) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+function nextLocalMidnight() {
+  const next = new Date();
+  next.setHours(24, 0, 0, 0);
+  return next;
+}
+function formatProResetTime() {
+  return nextLocalMidnight().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+}
+function readProUsage() {
+  try {
+    const value = JSON.parse(localStorage.getItem(PRO_USAGE_STORAGE_KEY) || '{}');
+    return value && typeof value === 'object' ? value : {};
+  } catch (_) { return {}; }
+}
+function writeProUsage(value) {
+  try { localStorage.setItem(PRO_USAGE_STORAGE_KEY, JSON.stringify(value)); } catch (_) {}
+}
+function ensureProFirstSeen() {
+  try {
+    if (localStorage.getItem(PRO_FIRST_SEEN_KEY)) return;
+    // Existing TOPHATZ users keep their access when this feature is introduced.
+    const isExistingUser = Boolean(
+      localStorage.getItem(SETTINGS_STORAGE_KEY) ||
+      localStorage.getItem(PRO_INTRO_NOTICE_KEY) ||
+      localStorage.getItem(CONVERSATIONS_STORAGE_KEY)
+    );
+    const firstSeen = new Date();
+    if (isExistingUser) firstSeen.setDate(firstSeen.getDate() - 1);
+    localStorage.setItem(PRO_FIRST_SEEN_KEY, firstSeen.toISOString());
+  } catch (_) {}
+}
+ensureProFirstSeen();
+
+function isFirstDayOnThisBrowser() {
+  try {
+    const firstSeen = localStorage.getItem(PRO_FIRST_SEEN_KEY);
+    if (!firstSeen) return true;
+    return localDateKey(new Date(firstSeen)) === localDateKey();
+  } catch (_) { return false; }
+}
+function getTodayProUsageRecord() {
+  const usage = readProUsage();
+  return usage.date === localDateKey() ? usage : { date: localDateKey(), count: 0, limit: PRO_DEFAULT_DAILY_LIMIT, slowCodingOver4Count: 0, slowCodingLastUsePending: false, slowCodingCooldownMode: false };
+}
+function getTodayProUsage() {
+  return Math.max(0, Number(getTodayProUsageRecord().count) || 0);
+}
+function getTodayProLimit() {
+  const savedLimit = Number(getTodayProUsageRecord().limit);
+  return Number.isFinite(savedLimit) && savedLimit >= 1 && savedLimit <= 1000
+    ? Math.floor(savedLimit) : PRO_DEFAULT_DAILY_LIMIT;
+}
+function readProCooldownUntil() {
+  try {
+    const value = Number(localStorage.getItem(PRO_COOLDOWN_STORAGE_KEY) || 0);
+    return Number.isFinite(value) ? value : 0;
+  } catch (_) { return 0; }
+}
+function writeProCooldownUntil(timestamp) {
+  try {
+    if (timestamp > 0) localStorage.setItem(PRO_COOLDOWN_STORAGE_KEY, String(timestamp));
+    else localStorage.removeItem(PRO_COOLDOWN_STORAGE_KEY);
+  } catch (_) {}
+}
+function formatProCooldownTime(timestamp) {
+  return new Date(timestamp).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+}
+function activateNextSlowCodingUseIfCooldownEnded() {
+  const cooldownUntil = readProCooldownUntil();
+  if (!cooldownUntil || Date.now() < cooldownUntil) return;
+  writeProCooldownUntil(0);
+  const usage = getTodayProUsageRecord();
+  if (usage.slowCodingCooldownMode) {
+    usage.limit = Math.max(getTodayProUsage() + 1, Number(usage.limit) || 0);
+    usage.slowCodingLastUsePending = true;
+    writeProUsage(usage);
+  }
+}
+function proAccessProblem() {
+  const cooldownUntil = readProCooldownUntil();
+  if (cooldownUntil && Date.now() < cooldownUntil) {
+    return {
+      type: 'cooldown',
+      message: `Sorry, TOPHATZ AI PRO is on a 2-hour cooldown after two long coding requests. Automatically switched to TOPHATZ AI LITE. You will be able to use PRO again at: ${formatProCooldownTime(cooldownUntil)}!`
+    };
+  }
+  activateNextSlowCodingUseIfCooldownEnded();
+  if (isFirstDayOnThisBrowser()) {
+    return {
+      type: 'first-day',
+      message: 'TOPHATZ AI PRO unlocks tomorrow for new browsers. You can keep chatting with TOPHATZ AI LITE in the meantime.'
+    };
+  }
+  const used = getTodayProUsage();
+  if (used >= getTodayProLimit()) {
+    return {
+      type: 'daily-limit',
+      message: `Sorry but you reached the ${getTodayProLimit()}-use limit for TOPHATZ AI PRO today. Automatically switched to TOPHATZ AI LITE. You will be able to use it again at: ${formatProResetTime()}!`
+    };
+  }
+  return null;
+}
+function showProLimitPopup(problem) {
+  const overlay = document.getElementById('pro-limit-overlay');
+  const message = document.getElementById('pro-limit-message');
+  if (!overlay || !message) { showToast(problem.message); return; }
+  message.textContent = problem.message;
+  overlay.classList.remove('hidden');
+}
+function closeProLimitPopup() {
+  document.getElementById('pro-limit-overlay')?.classList.add('hidden');
+}
+document.getElementById('pro-limit-close').addEventListener('click', closeProLimitPopup);
+document.getElementById('pro-limit-overlay').addEventListener('click', event => {
+  if (event.target.id === 'pro-limit-overlay') closeProLimitPopup();
+});
+function switchToLiteAfterProLimit(problem) {
+  settings.model = 'lite';
+  saveSettings();
+  updateModelSelector();
+  showProLimitPopup(problem);
+}
+function recordProUse() {
+  const today = localDateKey();
+  const usage = getTodayProUsageRecord();
+  const count = getTodayProUsage() + 1;
+  usage.date = today;
+  usage.count = count;
+  usage.limit = getTodayProLimit();
+  const startedCooldown = Boolean(usage.slowCodingLastUsePending);
+  if (startedCooldown) {
+    usage.slowCodingLastUsePending = false;
+    usage.slowCodingCooldownMode = true;
+    // Start immediately as a safe fallback; sendMessage extends it to two full
+    // hours after this final request finishes.
+    writeProCooldownUntil(Date.now() + PRO_REPEAT_SLOW_COOLDOWN_MS);
+  }
+  writeProUsage(usage);
+  return { count, startedCooldown };
+}
+function isCodingTaskPrompt(prompt) {
+  const text = String(prompt || '').toLowerCase();
+  const asksToCreateOrChange = /\b(make|create|build|write|code|program|develop|fix|debug|update|edit|add|generate|implement|script)\b/.test(text);
+  const codingSubject = /\b(code|coding|program|script|html|css|javascript|\bjs\b|python|lua|website|web\s?page|webapp|app|game|blender|roblox|software|function|bug|error|feature|api)\b/.test(text);
+  return asksToCreateOrChange && codingSubject;
+}
+function applySlowCodingLimitIfNeeded(startedAt, isCodingRequest) {
+  if (!startedAt || !isCodingRequest) return false;
+  const elapsed = Date.now() - startedAt;
+  if (elapsed < PRO_REPEAT_SLOW_CODING_THRESHOLD_MS) return false;
+
+  const usage = getTodayProUsageRecord();
+  usage.slowCodingOver4Count = Math.max(0, Number(usage.slowCodingOver4Count) || 0) + 1;
+
+  // Keep the existing 8-use rule for a single coding request lasting 5+ minutes.
+  if (elapsed >= PRO_SLOW_CODING_THRESHOLD_MS) {
+    usage.limit = Math.min(Number(usage.limit) || PRO_DEFAULT_DAILY_LIMIT, PRO_SLOW_CODING_DAILY_LIMIT);
+  }
+
+  // After two 4+ minute coding requests, leave exactly one final PRO use.
+  // That final use starts a 2-hour cooldown; when it expires, one more use
+  // becomes available, followed by another 2-hour cooldown.
+  let createdLastUse = false;
+  if (usage.slowCodingOver4Count >= PRO_REPEAT_SLOW_CODING_COUNT &&
+      !usage.slowCodingLastUsePending && !usage.slowCodingCooldownMode &&
+      !readProCooldownUntil()) {
+    usage.limit = getTodayProUsage() + 1;
+    usage.slowCodingLastUsePending = true;
+    usage.slowCodingCooldownMode = true;
+    createdLastUse = true;
+  }
+  writeProUsage(usage);
+  return createdLastUse;
+}
+
 const MAX_MESSAGES_PER_CONVERSATION = 60;
 const MAX_STORED_JSON_CHARS = 1400000;
 let settings = readSettings();
@@ -884,6 +1138,17 @@ let fileImageMime = '';
 let isBusy = false;
 let activeRequestController = null;
 let toastTimer = null;
+let lastTypingVibrationAt = 0;
+function vibrateForTyping() {
+  if (!settings.vibrateWhileTyping || !navigator.vibrate || document.visibilityState !== 'visible') return;
+  const now = Date.now();
+  if (now - lastTypingVibrationAt < 850) return;
+  lastTypingVibrationAt = now;
+  try { navigator.vibrate(12); } catch (_) { /* vibration is optional and browser-controlled */ }
+}
+function stopTypingVibration() {
+  if (navigator.vibrate) { try { navigator.vibrate(0); } catch (_) {} }
+}
 
 const messagesEl = document.getElementById('messages');
 const inputEl = document.getElementById('user-input');
@@ -908,6 +1173,7 @@ const settingsOverlay = document.getElementById('settings-overlay');
 const themeSelect = document.getElementById('theme-select');
 const conversationLimitSelect = document.getElementById('conversation-limit');
 const saveChatsCheckbox = document.getElementById('save-chats');
+const vibrateSettingCheckbox = document.getElementById('vibrate-setting');
 const deepThinkingCheckbox = document.getElementById('deep-thinking-setting');
 const webSearchCheckbox = document.getElementById('web-search-setting');
 const deepToggle = document.getElementById('deep-toggle');
@@ -1141,6 +1407,16 @@ function updateModelSelector() {
   if (modelSelect.value !== modelId) modelSelect.value = modelId;
   modelSelect.title = 'Currently using ' + MODEL_OPTIONS[modelId].label + ' · click to switch models';
 }
+// Re-check a saved PRO selection whenever the page is opened.
+if (settings.model === 'pro') {
+  const savedProProblem = proAccessProblem();
+  if (savedProProblem) {
+    settings.model = 'lite';
+    saveSettings();
+    // Show the explanation after the UI has been initialized.
+    window.addEventListener('DOMContentLoaded', () => showProLimitPopup(savedProProblem), { once: true });
+  }
+}
 function showProIntroOnce() {
   let alreadyShown = false;
   try { alreadyShown = localStorage.getItem(PRO_INTRO_NOTICE_KEY) === 'shown'; } catch (_) {}
@@ -1154,6 +1430,13 @@ modelSelect.addEventListener('change', () => {
     modelSelect.value = 'pro';
     showToast('Remove the image before switching to TOPHATZ AI LITE.');
     return;
+  }
+  if (selectedModel === 'pro') {
+    const problem = proAccessProblem();
+    if (problem) {
+      switchToLiteAfterProLimit(problem);
+      return;
+    }
   }
   settings.model = selectedModel;
   saveSettings();
@@ -1207,6 +1490,9 @@ async function sendMessage() {
   }
   const visiblePrompt = inputEl.value.trim();
   if (!visiblePrompt && !fileName) return;
+  let proRequestStartedAt = 0;
+  let proCodingRequest = false;
+  let proCooldownStartedByThisRequest = false;
 
   const attachment = fileName ? {
     name: fileName, size: fileSize, type: fileIsImage ? 'image' : 'file',
@@ -1216,6 +1502,18 @@ async function sendMessage() {
   if (fileIsImage && settings.model !== 'pro') {
     showToast('Switch to TOPHATZ AI PRO to send images.');
     return;
+  }
+  if (settings.model === 'pro') {
+    const problem = proAccessProblem();
+    if (problem) {
+      switchToLiteAfterProLimit(problem);
+      if (fileIsImage) showToast('The attached image needs PRO. It was not sent; try again after PRO unlocks.');
+      return;
+    }
+    const proUse = recordProUse();
+    proCooldownStartedByThisRequest = proUse.startedCooldown;
+    proRequestStartedAt = Date.now();
+    proCodingRequest = isCodingTaskPrompt(userText);
   }
 
   let apiPrompt = userText;
@@ -1268,23 +1566,27 @@ async function sendMessage() {
       {
         ...(settings.deepThinking ? { maxTokens: 6144, temperature: 0.3, deep: true } : {}),
         onProgress: (stage, detail) => workDisplay.setStage(stage, detail),
-        onChunk: (delta, fullText) => workDisplay.showStream(delta, fullText)
+        onChunk: (delta, fullText) => workDisplay.showStream(delta, fullText),
+        onPause: seconds => workDisplay.setPauseCountdown(seconds)
       }
     );
-    const reply = normalizeCopyrightYears(answer);
+    stopTypingVibration();
+    const replyText = shouldMakeSingleFileHtml(visiblePrompt || userText) ? combineHtmlCssJsIntoOneFile(answer) : answer;
+    const reply = normalizeCopyrightYears(replyText);
     history.push({ role: 'assistant', content: reply });
     recordConversationMessage('assistant', reply, reply, null, webResults);
     renderAI(aiBubble, reply);
     if (plan) appendPlanCard(aiBubble, plan);
     if (webResults.length) appendWebSources(aiBubble, webResults);
   } catch (error) {
+    stopTypingVibration();
     if (error && error.code === 'USER_ABORT') {
       const stopped = document.createElement('span');
       stopped.className = 'generation-note';
       stopped.textContent = workDisplay.hasStream() ? 'Generation stopped. The text above is the partial response.' : 'Generation stopped.';
       aiBubble.appendChild(stopped);
     } else {
-      aiBubble.replaceChildren();
+      if (!workDisplay.hasStream()) aiBubble.replaceChildren();
       const errorText = document.createElement('span');
       errorText.className = 'error-message';
       errorText.style.color = '#fda4af';
@@ -1308,6 +1610,18 @@ async function sendMessage() {
     fileBtn.disabled = false;
     modelSelect.disabled = false;
     clearChatBtn.disabled = false;
+    if (proCooldownStartedByThisRequest) writeProCooldownUntil(Date.now() + PRO_REPEAT_SLOW_COOLDOWN_MS);
+    const slowCodeLastUseCreated = applySlowCodingLimitIfNeeded(proRequestStartedAt, proCodingRequest);
+    if (slowCodeLastUseCreated && settings.model === 'pro') {
+      showProLimitPopup({
+        type: 'last-use',
+        message: 'You have had two coding requests take over 4 minutes. You have 1 PRO use left. After that use, TOPHATZ AI PRO will pause for 2 hours before another use becomes available.'
+      });
+    }
+    if (settings.model === 'pro') {
+      const accessProblem = proAccessProblem();
+      if (accessProblem) switchToLiteAfterProLimit(accessProblem);
+    }
     inputEl.focus();
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
@@ -1417,7 +1731,7 @@ function createWorkDisplay(bubble, { prompt, attachment, modelName }) {
     },
     showStream(delta, fullText) {
       streamed = Boolean(fullText);
-      if (delta) outputText.appendData(delta);
+      if (delta) { outputText.appendData(delta); vibrateForTyping(); }
       if (streamed) {
         stageText.textContent = 'Writing the answer';
         detail.textContent = 'New text is arriving from the model. The formatted answer will appear when generation finishes.';
@@ -1425,8 +1739,74 @@ function createWorkDisplay(bubble, { prompt, attachment, modelName }) {
         messagesEl.scrollTop = messagesEl.scrollHeight;
       }
     },
+    setPauseCountdown(seconds) {
+      if (seconds > 0) {
+        stageText.textContent = `Paused for ${seconds} seconds`;
+        detail.textContent = 'The response stream paused. TOPHATZ AI will automatically continue when the timer reaches 0.';
+      } else {
+        stageText.textContent = 'Continuing response';
+        detail.textContent = 'Reconnecting to continue from the last text received. Your partial response is being kept.';
+      }
+    },
     hasStream() { return streamed; }
   };
+}
+
+function shouldMakeSingleFileHtml(prompt) {
+  const text = String(prompt || '');
+  const target = /\b(html|website|web\s*page|webpage|web\s*app|browser\s*game)\b/i.test(text);
+  const action = /\b(make|create|build|generate|write|code|develop|update|edit|design)\b/i.test(text);
+  return target && action;
+}
+function combineHtmlCssJsIntoOneFile(answer) {
+  const source = String(answer || '');
+  const fence = /```([^\n`]*)\n([\s\S]*?)```/g;
+  const blocks = [];
+  let match;
+  while ((match = fence.exec(source)) !== null) {
+    const language = String(match[1] || '').trim().toLowerCase().split(/[\s,]+/)[0];
+    const code = match[2].replace(/^\s+|\s+$/g, '');
+    if (language === 'html' || language === 'htm' || /^<!doctype\s+html|^<html\b/i.test(code)) blocks.push({ type: 'html', code, index: match.index, end: fence.lastIndex });
+    else if (language === 'css' || language === 'scss') blocks.push({ type: 'css', code });
+    else if (language === 'js' || language === 'javascript' || language === 'mjs') blocks.push({ type: 'js', code });
+  }
+  const htmlBlock = blocks.find(block => block.type === 'html');
+  const css = blocks.filter(block => block.type === 'css').map(block => block.code.replace(/^<style\b[^>]*>|<\/style>$/gi, '').trim()).filter(Boolean);
+  const js = blocks.filter(block => block.type === 'js').map(block => block.code.replace(/^<script\b[^>]*>|<\/script>$/gi, '').trim()).filter(Boolean);
+  if (!htmlBlock || (!css.length && !js.length)) return source;
+
+  let html = htmlBlock.code;
+  // Remove references to the separate local files that are being folded into this document.
+  html = html.replace(/<link\b(?=[^>]*\b rel=["']?stylesheet)[^>]*\bhref=["'][^"']+\.css(?:\?[^"']*)?["'][^>]*>/gi, '');
+  html = html.replace(/<script\b(?=[^>]*\bsrc=["'][^"']+\.m?js(?:\?[^"']*)?["'])[^>]*>\s*<\/script>/gi, '');
+  if (css.length) {
+    const styleTag = '\n<style>\n' + css.join('\n\n') + '\n</style>\n';
+    if (/<\/head>/i.test(html)) html = html.replace(/<\/head>/i, styleTag + '</head>');
+    else if (/<html\b[^>]*>/i.test(html)) html = html.replace(/<html\b[^>]*>/i, '$&\n<head>' + styleTag + '</head>');
+    else html = styleTag + html;
+  }
+  if (js.length) {
+    const scriptClose = '</scr' + 'ipt>';
+    const scriptTag = '\n<script>\n' + js.join('\n\n') + '\n' + scriptClose + '\n';
+    if (/<\/body>/i.test(html)) html = html.replace(/<\/body>/i, scriptTag + '</body>');
+    else html += scriptTag;
+  }
+  const replacement = '```html\n' + html.trim() + '\n```';
+  const selected = blocks.filter(block => block.type === 'html' || block.type === 'css' || block.type === 'js');
+  let result = source;
+  // Replace the HTML fence, then remove any separate CSS/JS fences from the response.
+  const htmlFenceStart = htmlBlock.index;
+  const htmlFenceEnd = htmlBlock.end;
+  result = result.slice(0, htmlFenceStart) + replacement + result.slice(htmlFenceEnd);
+  const otherRanges = [];
+  const scan = /```([^\n`]*)\n([\s\S]*?)```/g;
+  while ((match = scan.exec(result)) !== null) {
+    if (match[0] === replacement) continue;
+    const lang = String(match[1] || '').trim().toLowerCase().split(/[\s,]+/)[0];
+    if (['css', 'scss', 'js', 'javascript', 'mjs'].includes(lang)) otherRanges.push([match.index, scan.lastIndex]);
+  }
+  for (const [start, end] of otherRanges.reverse()) result = result.slice(0, start) + result.slice(end);
+  return result.replace(/\n{3,}/g, '\n\n');
 }
 
 function makeWebQuery(prompt, fallbackName = '') {
@@ -1437,7 +1817,8 @@ function buildSystemPrompt(webResults = [], plan = '') {
   const parts = [
     'You are TOPHATZ AI, a helpful assistant with a strong focus on accurate coding and clear explanations.',
     'The current year is 2026. When generating new websites, scripts, footers, or copyright notices, use 2026 rather than outdated placeholder years. Preserve older dates only when they are historically relevant or explicitly requested.',
-    'For code requests, provide complete, runnable code where appropriate. Check requirements, obvious edge cases, mobile support when relevant, and mention any setup steps. Never claim that you executed or tested code unless a test was actually performed.'
+    'For code requests, provide complete, runnable code where appropriate. Check requirements, obvious edge cases, mobile support when relevant, and mention any setup steps. Never claim that you executed or tested code unless a test was actually performed.',
+    'Whenever the user asks you to create, build, generate, or edit an HTML website, webpage, web app, or browser game, deliver ONE self-contained .html file: put all custom CSS inside a <style> tag in the HTML and all custom JavaScript inside <script> tags in the same HTML file. Do not split the project into separate HTML, CSS, or JS files. Prefer one complete ```html code block that can be downloaded and opened directly. External libraries may use CDN links only when genuinely needed; do not create separate local asset files.'
   ];
   if (settings.deepThinking) {
     parts.push('Deep thinking mode is ON. Work through the problem carefully before writing: consider alternatives and edge cases, then check your own draft for bugs and factual errors before you finish. For code, make sure it is complete and would run as written. Do not reveal private chain-of-thought; give a clear answer and a short verification checklist when useful.');
@@ -1494,7 +1875,8 @@ async function callModel(messages, {
   temperature = 0.3,
   deep = false,
   onProgress = null,
-  onChunk = null
+  onChunk = null,
+  onPause = null
 } = {}) {
   const activeModel = getActiveModelName();
   const requestBody = { model: activeModel, messages, stream: true };
@@ -1573,41 +1955,153 @@ async function callModel(messages, {
       return content;
     }
 
-    // Ollama stream:true returns newline-delimited JSON chunks. Append only the
-    // public response text; internal model-thought fields are deliberately not exposed.
-    const reader = response.body.getReader();
+    // Ollama stream:true returns newline-delimited JSON chunks. If the stream
+    // becomes silent for 30 seconds after text has arrived, keep the partial
+    // answer, show a 30-second pause countdown, then ask the model to continue.
     const decoder = new TextDecoder();
-    let pending = '';
     let answer = '';
-
-    function consumeLine(line) {
-      line = String(line || '').trim();
-      if (!line || line === '[DONE]') return;
-      if (line.startsWith('data:')) line = line.slice(5).trim();
-      if (!line || line === '[DONE]') return;
-      let chunk;
-      try { chunk = JSON.parse(line); }
-      catch (_) { return; }
-      if (chunk && typeof chunk.error === 'string' && chunk.error) throw new Error('Ollama: ' + chunk.error);
-      const delta = chunk && chunk.message && typeof chunk.message.content === 'string'
-        ? chunk.message.content
-        : chunk && typeof chunk.response === 'string' ? chunk.response : '';
-      if (delta) {
-        answer += delta;
-        if (typeof onChunk === 'function') onChunk(delta, answer);
-      }
-    }
+    let resumeMessages = messages;
+    let autoResumeCount = 0;
 
     while (true) {
-      const result = await reader.read();
-      if (result.done) break;
-      pending += decoder.decode(result.value, { stream: true });
-      const lines = pending.split(/\r?\n/);
-      pending = lines.pop() || '';
-      for (const line of lines) consumeLine(line);
+      const body = { ...requestBody, messages: resumeMessages };
+      let streamResponse;
+      if (resumeMessages === messages) {
+        streamResponse = response;
+      } else {
+        if (typeof onProgress === 'function') onProgress('Continuing response', 'Reconnecting to continue from the last text received.');
+        streamResponse = await fetch(OLLAMA_URL, {
+          method: 'POST',
+          mode: 'cors',
+          credentials: 'omit',
+          cache: 'no-store',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/x-ndjson, application/json'
+          },
+          body: JSON.stringify(body),
+          signal: controller.signal
+        });
+        if (!streamResponse.ok) {
+          const rawError = await streamResponse.text();
+          throw new Error('AI server returned HTTP ' + streamResponse.status + (rawError ? ': ' + rawError.slice(0, 250) : ''));
+        }
+      }
+
+      if (!streamResponse.body || typeof streamResponse.body.getReader !== 'function') {
+        const raw = await streamResponse.text();
+        let data;
+        try { data = raw ? JSON.parse(raw) : null; } catch (_) { throw new Error('The AI server returned invalid JSON while continuing.'); }
+        const content = data && data.message && typeof data.message.content === 'string'
+          ? data.message.content : data && typeof data.response === 'string' ? data.response : '';
+        if (content) {
+          answer += content;
+          if (typeof onChunk === 'function') onChunk(content, answer);
+        }
+        break;
+      }
+
+      const reader = streamResponse.body.getReader();
+      let pending = '';
+      let shouldResume = false;
+      let streamDone = false;
+
+      function consumeLine(line) {
+        line = String(line || '').trim();
+        if (!line || line === '[DONE]') return;
+        if (line.startsWith('data:')) line = line.slice(5).trim();
+        if (!line || line === '[DONE]') return;
+        let chunk;
+        try { chunk = JSON.parse(line); }
+        catch (_) { return; }
+        if (chunk && typeof chunk.error === 'string' && chunk.error) throw new Error('Ollama: ' + chunk.error);
+        const delta = chunk && chunk.message && typeof chunk.message.content === 'string'
+          ? chunk.message.content
+          : chunk && typeof chunk.response === 'string' ? chunk.response : '';
+        if (delta) {
+          answer += delta;
+          if (typeof onChunk === 'function') onChunk(delta, answer);
+        }
+      }
+
+      while (true) {
+        let idleTimer;
+        let readResult;
+        try {
+          if (!answer.trim()) {
+            // Let the first token arrive without queuing multiple pending reader.read() calls.
+            readResult = await reader.read();
+          } else {
+            readResult = await new Promise((resolve, reject) => {
+              idleTimer = window.setTimeout(() => resolve({ idleTimeout: true }), STREAM_IDLE_TIMEOUT_MS);
+              reader.read().then(resolve, reject);
+            });
+          }
+        } catch (readError) {
+          if (controller.signal.aborted) throw readError;
+          if (answer.trim()) readResult = { idleTimeout: true, readError };
+          else throw readError;
+        } finally {
+          if (idleTimer) window.clearTimeout(idleTimer);
+        }
+
+        if (readResult && readResult.idleTimeout) {
+          if (!answer.trim()) {
+            if (typeof onProgress === 'function') onProgress('Still waiting for the first text', 'The model has not sent response text yet. Waiting for its first chunk.');
+            continue;
+          }
+          shouldResume = true;
+          try { await reader.cancel(); } catch (_) {}
+          break;
+        }
+        if (readResult.done) {
+          streamDone = true;
+          break;
+        }
+        pending += decoder.decode(readResult.value, { stream: true });
+        const lines = pending.split(/\r?\n/);
+        pending = lines.pop() || '';
+        for (const line of lines) consumeLine(line);
+      }
+      pending += decoder.decode();
+      if (pending.trim()) consumeLine(pending);
+
+      if (!shouldResume || streamDone) break;
+      autoResumeCount += 1;
+      if (autoResumeCount > STREAM_MAX_AUTO_RESUMES) {
+        throw new Error('The response kept pausing. The partial text is still available above; please ask TOPHATZ AI to continue from where it stopped.');
+      }
+
+      for (let remaining = STREAM_RESUME_WAIT_MS; remaining > 0; remaining--) {
+        if (controller.signal.aborted) {
+          const stopped = new Error('Generation stopped by you.');
+          stopped.code = 'USER_ABORT';
+          throw stopped;
+        }
+        if (typeof onPause === 'function') onPause(remaining);
+        await new Promise((resolve, reject) => {
+          const timer = window.setTimeout(() => {
+            controller.signal.removeEventListener('abort', handleAbort);
+            resolve();
+          }, 1000);
+          function handleAbort() {
+            window.clearTimeout(timer);
+            controller.signal.removeEventListener('abort', handleAbort);
+            const stopped = new Error('Generation stopped by you.');
+            stopped.code = 'USER_ABORT';
+            reject(stopped);
+          }
+          controller.signal.addEventListener('abort', handleAbort, { once: true });
+        });
+      }
+      if (typeof onPause === 'function') onPause(0);
+      resumeMessages = [
+        ...messages,
+        { role: 'assistant', content: answer },
+        { role: 'user', content: 'Continue the response from exactly where you stopped. Do not repeat or restart the previous content. If you were writing code, continue the same code and make sure the overall result is complete and valid.' }
+      ];
     }
-    pending += decoder.decode();
-    if (pending.trim()) consumeLine(pending);
+
     if (controller.signal.aborted) {
       const stopped = new Error('Generation stopped by you.');
       stopped.code = 'USER_ABORT';
@@ -2038,6 +2532,7 @@ function readSettings() {
     merged.saveChats = merged.saveChats !== false;
     merged.deepThinking = merged.deepThinking === true;
     merged.webSearch = merged.webSearch === true;
+    merged.vibrateWhileTyping = merged.vibrateWhileTyping !== false;
     delete merged.typingSpeed;
     return merged;
   } catch (_) { return { ...DEFAULT_SETTINGS }; }
@@ -2143,6 +2638,7 @@ function updateSettingsControls() {
   themeSelect.value = settings.theme;
   conversationLimitSelect.value = String(settings.maxConversations);
   saveChatsCheckbox.checked = settings.saveChats;
+  vibrateSettingCheckbox.checked = settings.vibrateWhileTyping;
   deepThinkingCheckbox.checked = settings.deepThinking;
   webSearchCheckbox.checked = settings.webSearch;
   document.getElementById('youtube-key').value = settings.youtubeKey || '';
@@ -2279,6 +2775,12 @@ saveChatsCheckbox.addEventListener('change', () => {
   saveSettings();
   if (settings.saveChats) saveConversationState();
   showToast(settings.saveChats ? 'Conversation saving enabled' : 'Conversation saving paused');
+});
+vibrateSettingCheckbox.addEventListener('change', () => {
+  settings.vibrateWhileTyping = vibrateSettingCheckbox.checked;
+  if (!settings.vibrateWhileTyping && navigator.vibrate) navigator.vibrate(0);
+  saveSettings();
+  showToast(settings.vibrateWhileTyping ? 'Typing vibration enabled' : 'Typing vibration disabled');
 });
 document.getElementById('youtube-key').addEventListener('change', (event) => {
   settings.youtubeKey = String(event.target.value || '').trim();
