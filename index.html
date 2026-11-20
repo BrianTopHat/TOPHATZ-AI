@@ -58,15 +58,6 @@
   .brand-title span { color: #c4b5fd; }
   .brand-subtitle { color: var(--muted); font-size: 11px; margin-top: 5px; letter-spacing: .025em; }
   .topbar-actions { display: flex; align-items: center; gap: 10px; }
-  .status-pill {
-    display: inline-flex; align-items: center; gap: 9px; min-height: 36px; padding: 0 12px;
-    border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.035);
-    color: #d5d9e6; font-size: 12px; white-space: nowrap;
-  }
-  .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 4px rgba(251,191,36,.10); }
-  .status-pill.online .status-dot { background: var(--green); box-shadow: 0 0 0 4px rgba(74,222,128,.10); }
-  .status-pill.offline .status-dot { background: var(--red); box-shadow: 0 0 0 4px rgba(251,113,133,.10); }
-  .status-pill.unavailable .status-dot { background: var(--amber); box-shadow: 0 0 0 4px rgba(251,191,36,.10); }
   .icon-button {
     width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 12px;
     background: rgba(255,255,255,.035); color: #c9cfe0; cursor: pointer;
@@ -212,13 +203,6 @@
   .modal-box p { margin: 0; color: #9da4b8; line-height: 1.75; font-size: 13px; }
   .primary-button { border: 0; border-radius: 12px; padding: 11px 18px; margin-top: 22px; cursor: pointer; font-size: 13px; font-weight: 750; color: #211d3a; background: linear-gradient(135deg, #ddd6fe, #a5b4fc); transition: filter .18s; }
   .primary-button:hover { filter: brightness(1.08); }
-  .pro-feature-list { display: grid; gap: 12px; margin: 20px 0 4px; text-align: left; }
-  .pro-feature-list > div { display: flex; align-items: flex-start; gap: 12px; padding: 12px; border: 1px solid var(--line); background: rgba(255,255,255,.035); }
-  .pro-feature-list > div > span { flex: 0 0 28px; display: grid; place-items: center; width: 28px; height: 28px; color: var(--accent); font-weight: 900; }
-  .pro-feature-list strong, .pro-feature-list small { display: block; }
-  .pro-feature-list strong { margin-bottom: 4px; color: var(--text); font-size: 12px; }
-  .pro-feature-list small { color: var(--muted); font-size: 11px; line-height: 1.55; font-weight: 400; }
-  :root[data-theme="light"] .pro-feature-list > div { background: rgba(30,41,59,.035); }
   .preview-dock[hidden] { display: none; }
   .preview-dock:not([hidden]) { flex: 0 0 min(48vw, 780px); width: min(48vw, 780px); min-width: 340px; max-width: 72%; min-height: 0; display: flex; position: relative; border-left: 1px solid rgba(255,255,255,.12); background: #10131d; box-shadow: -18px 0 50px rgba(0,0,0,.18); }
   .preview-resizer { flex: 0 0 7px; width: 7px; margin-left: -4px; position: relative; z-index: 4; cursor: col-resize; touch-action: none; background: transparent; }
@@ -268,87 +252,11 @@
   :root[data-theme="ocean"] .brand-title span, :root[data-theme="ocean"] .welcome-title .gradient { background-image: linear-gradient(95deg, #67e8f9, #60a5fa 75%); -webkit-background-clip: text; background-clip: text; color: transparent; }
   :root[data-theme="ocean"] .welcome-orb { border-color: rgba(56,189,248,.28); background: linear-gradient(145deg, rgba(56,189,248,.2), rgba(45,212,191,.12)); }
   :root[data-theme="ocean"] .code-language::before { background: #38bdf8; box-shadow: 0 0 10px rgba(56,189,248,.3); }
-  :root[data-theme="forest"] { --bg: #0a140f; --panel: #0f1d15; --panel-2: #16291e; --accent: #4ade80; --accent-2: #a3e635; --muted: #91a99a; }
-  :root[data-theme="forest"] body { background: radial-gradient(ellipse at 14% -15%, rgba(74,222,128,.16), transparent 42%), radial-gradient(ellipse at 100% 0%, rgba(163,230,53,.08), transparent 35%), var(--bg); }
-  :root[data-theme="forest"] .brand-title span, :root[data-theme="forest"] .welcome-title .gradient { background-image: linear-gradient(95deg, #86efac, #bef264 75%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  :root[data-theme="forest"] .welcome-orb { border-color: rgba(74,222,128,.26); background: linear-gradient(145deg, rgba(74,222,128,.18), rgba(163,230,53,.10)); }
-  :root[data-theme="forest"] .code-language::before { background: #4ade80; box-shadow: 0 0 10px rgba(74,222,128,.28); }
-  :root[data-theme="halloween"] {
-    color-scheme: dark;
-    --bg: #100711; --panel: #1b0d20; --panel-2: #29132f;
-    --line: rgba(255,156,75,.18); --muted: #c4a4b4; --text: #fff4e8;
-    --accent: #ff8a2a; --accent-2: #c084fc; --green: #86efac; --red: #fb7185; --amber: #fbbf24;
-  }
-  :root[data-theme="halloween"] body {
-    background:
-      radial-gradient(ellipse at 8% 18%, rgba(255,112,20,.16), transparent 32%),
-      radial-gradient(ellipse at 92% 8%, rgba(168,85,247,.19), transparent 34%),
-      radial-gradient(ellipse at 50% 110%, rgba(249,115,22,.10), transparent 42%),
-      linear-gradient(135deg, #100711, #170a20 58%, #0c0711);
-  }
-  :root[data-theme="halloween"] .brand-title span,
-  :root[data-theme="halloween"] .welcome-title .gradient {
-    background-image: linear-gradient(95deg, #ff9a38 0%, #ffd08a 44%, #d8b4fe 84%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-    filter: drop-shadow(0 0 13px rgba(255,138,42,.19));
-  }
-  :root[data-theme="halloween"] .brand-title::after { content: " 🎃"; font-size: .8em; filter: drop-shadow(0 0 8px rgba(255,138,42,.45)); }
-  :root[data-theme="halloween"] .brand-subtitle { color: #e5ad78; text-shadow: 0 0 11px rgba(255,138,42,.22); }
-  :root[data-theme="halloween"] .brand-subtitle::after { content: "  ✦ SPOOKY SEASON"; color: #ff9b48; font-weight: 800; letter-spacing: .09em; text-shadow: 0 0 10px rgba(255,138,42,.34); }
-  :root[data-theme="halloween"] .welcome-title::before {
-    content: "✦  SPOOKY SEASON  ✦"; display: block; margin: 0 0 12px;
-    color: #ff9a38; font-size: 10px; line-height: 1.4; letter-spacing: .22em; font-weight: 850;
-    text-shadow: 0 0 12px rgba(255,138,42,.55), 0 0 28px rgba(255,138,42,.20);
-  }
-  :root[data-theme="halloween"] .welcome-orb { border-color: rgba(255,138,42,.44); background: linear-gradient(145deg, rgba(255,138,42,.24), rgba(168,85,247,.20)); box-shadow: 0 12px 50px rgba(255,111,0,.15), 0 0 30px rgba(255,138,42,.12), inset 0 1px rgba(255,255,255,.12); font-size: 0; }
-  :root[data-theme="halloween"] .welcome-orb::before { content: "🎃"; font-size: 30px; filter: drop-shadow(0 0 10px rgba(255,138,42,.55)); animation: pumpkin-glow 3s ease-in-out infinite; }
-  :root[data-theme="halloween"] .code-language { color: #ffd0a1; }
-  :root[data-theme="halloween"] .code-language::before { background: #ff8a2a; box-shadow: 0 0 10px rgba(255,138,42,.55), 0 0 22px rgba(255,138,42,.18); }
-  :root[data-theme="halloween"] .code-card { border-color: rgba(255,138,42,.25); box-shadow: 0 8px 34px rgba(0,0,0,.2), 0 0 22px rgba(255,138,42,.055); }
-  :root[data-theme="halloween"] .code-head { background: linear-gradient(100deg, rgba(255,138,42,.10), rgba(192,132,252,.055)); border-bottom-color: rgba(255,138,42,.17); }
-  :root[data-theme="halloween"] .code-action:hover:not(:disabled) { background: rgba(255,138,42,.15); border-color: rgba(255,169,91,.34); box-shadow: 0 0 14px rgba(255,138,42,.10); }
-  :root[data-theme="halloween"] .code-action.preview { color: #ffd0a1; border-color: rgba(255,138,42,.3); background: rgba(255,138,42,.12); }
-  :root[data-theme="halloween"] .bubble strong { color: #ffd0a1; text-shadow: 0 0 12px rgba(255,138,42,.13); }
-  :root[data-theme="halloween"] .bubble code:not(pre code) { color: #ffbd7c; border-color: rgba(255,138,42,.2); background: rgba(255,138,42,.10); }
-  :root[data-theme="halloween"] .bubble blockquote { border-left-color: #ff8a2a; background: rgba(255,138,42,.065); color: #e9c4d8; }
-  :root[data-theme="halloween"] .msg.ai .avatar { border-color: rgba(255,138,42,.32); background: linear-gradient(145deg, rgba(255,138,42,.20), rgba(168,85,247,.19)); box-shadow: 0 0 16px rgba(255,138,42,.07); }
-  :root[data-theme="halloween"] .suggestion { border-color: rgba(255,156,75,.17); background: rgba(255,138,42,.035); }
-  :root[data-theme="halloween"] .suggestion:hover { border-color: rgba(255,156,75,.52); background: rgba(255,138,42,.105); box-shadow: 0 0 18px rgba(255,138,42,.09); }
-  :root[data-theme="halloween"] .icon-button:hover:not(:disabled) { border-color: rgba(255,156,75,.36); background: rgba(255,138,42,.10); box-shadow: 0 0 13px rgba(255,138,42,.08); }
-  :root[data-theme="halloween"] .mode-toggle[aria-pressed="true"] { border-color: rgba(255,156,75,.55); color: #ffd0a1; background: rgba(255,138,42,.12); box-shadow: 0 0 13px rgba(255,138,42,.08); }
-  :root[data-theme="halloween"] #input-area { background: linear-gradient(180deg, rgba(16,7,17,.04), rgba(16,7,17,.97) 24%); }
-  :root[data-theme="halloween"] #input-wrap { border-color: rgba(255,156,75,.22); background: rgba(27,13,32,.94); box-shadow: 0 15px 45px rgba(0,0,0,.29), 0 0 22px rgba(255,138,42,.04), inset 0 1px rgba(255,255,255,.035); }
-  :root[data-theme="halloween"] #input-wrap:focus-within { border-color: rgba(255,138,42,.66); box-shadow: 0 0 0 3px rgba(255,138,42,.10), 0 0 26px rgba(255,138,42,.12), 0 15px 45px rgba(0,0,0,.25); }
-  :root[data-theme="halloween"] #user-input { color: #fff4e8; }
-  :root[data-theme="halloween"] #user-input::placeholder { color: #b893a2; }
-  :root[data-theme="halloween"] #send-btn, :root[data-theme="halloween"] .primary-button { color: #2c1309; background: linear-gradient(135deg, #ffbd73, #ff8a2a 58%, #d8b4fe); box-shadow: 0 4px 18px rgba(255,138,42,.18); }
-  :root[data-theme="halloween"] .thinking { color: #ffbd7c; text-shadow: 0 0 12px rgba(255,138,42,.22); }
-  :root[data-theme="halloween"] .thinking-dots span { background: #ff9a38; box-shadow: 0 0 8px rgba(255,138,42,.6); }
-  :root[data-theme="halloween"] .attachment-chip { border-color: rgba(255,138,42,.28); background: rgba(255,138,42,.075); }
-  :root[data-theme="halloween"] .attachment-icon { background: rgba(255,138,42,.16); color: #ffd0a1; }
-  :root[data-theme="halloween"] .preview-dock:not([hidden]) { border-left-color: rgba(255,138,42,.22); }
-  :root[data-theme="halloween"] .preview-resizer:hover::after, :root[data-theme="halloween"] .preview-resizer:focus-visible::after, :root[data-theme="halloween"] .preview-resizer.is-dragging::after { background: #ff8a2a; box-shadow: 0 0 12px rgba(255,138,42,.55); }
-  :root[data-theme="halloween"] .modal-box { border-color: rgba(255,138,42,.25); box-shadow: 0 25px 100px rgba(0,0,0,.48), 0 0 28px rgba(255,138,42,.07); }
-  :root[data-theme="halloween"] .modal-icon { border-color: rgba(255,138,42,.26); background: linear-gradient(135deg, rgba(255,138,42,.17), rgba(168,85,247,.16)); filter: drop-shadow(0 0 10px rgba(255,138,42,.12)); }
-  :root[data-theme="halloween"] .conversation-item:hover, :root[data-theme="halloween"] .conversation-item.active { background: rgba(255,138,42,.07); border-color: rgba(255,138,42,.23); }
-  :root[data-theme="halloween"] #toast { border-color: rgba(255,156,75,.3); box-shadow: 0 8px 28px rgba(0,0,0,.3), 0 0 18px rgba(255,138,42,.12); }
-  :root[data-theme="halloween"] ::selection { color: #210d05; background: #ffbd73; }
 
-  /* Decorations are non-interactive and only visible while Halloween is selected. */
-  .halloween-scene { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; opacity: 0; visibility: hidden; transition: opacity .35s ease; }
-  :root[data-theme="halloween"] .halloween-scene { opacity: 1; visibility: visible; }
-  @keyframes pumpkin-glow { 0%,100% { filter: drop-shadow(0 0 5px rgba(255,138,42,.28)); transform: translateY(0); } 50% { filter: drop-shadow(0 0 15px rgba(255,138,42,.75)); transform: translateY(-3px); } }
-  :root[data-theme="halloween"] ::-webkit-scrollbar-thumb { background: rgba(255,138,42,.42); border-radius: 9px; }
-  @media (max-width: 620px) {
-    :root[data-theme="halloween"] .brand-subtitle::after { content: "  ✦ HALLOWEEN"; letter-spacing: .04em; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .halloween-scene { transition: none !important; }
-  }
   :root[data-theme="light"] { color-scheme: light; --bg: #f4f6fb; --panel: #ffffff; --panel-2: #edf0f7; --line: rgba(24,32,53,.14); --muted: #687188; --text: #171c2d; --accent: #6d5ce8; --accent-2: #3b82f6; }
   :root[data-theme="light"] body { color: var(--text); background: radial-gradient(ellipse at 14% -15%, rgba(109,92,232,.10), transparent 42%), radial-gradient(ellipse at 100% 0%, rgba(59,130,246,.07), transparent 35%), var(--bg); }
   :root[data-theme="light"] .topbar { background: rgba(244,246,251,.88); }
-  :root[data-theme="light"] .status-pill { color: #343b50; background: rgba(30,41,59,.035); }
+  
   :root[data-theme="light"] .icon-button { color: #424960; background: rgba(30,41,59,.035); }
   :root[data-theme="light"] .suggestion { color: #343b50; background: rgba(30,41,59,.035); }
   :root[data-theme="light"] .msg.ai .bubble, :root[data-theme="light"] .msg.user .bubble { color: #252b3d; }
@@ -374,7 +282,6 @@
     .brand-title { font-size: 17px; }
     .brand-subtitle { font-size: 10px; }
     .topbar-actions { gap: 6px; }
-    .status-pill { padding: 0 9px; min-height: 33px; gap: 7px; font-size: 10px; }
     #messages { padding: 20px 15px 25px; gap: 22px; }
     .msg { gap: 9px; }
     .avatar { width: 30px; height: 30px; flex-basis: 30px; border-radius: 10px; }
@@ -409,7 +316,6 @@
     #preview-frame { min-height: 0; }
   }
   @media (max-width: 380px) {
-    .status-pill { max-width: 92px; overflow: hidden; text-overflow: ellipsis; }
     .brand-subtitle { display: none; }
     .topbar-actions { gap: 4px; }
     .icon-button { width: 30px; height: 30px; }
@@ -421,7 +327,7 @@
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   }
 
-  /* ===== v4: Blockcraft (blocky UI, readable pixel type, real Halloween) ===== */
+  /* ===== Blockcraft pixel UI ===== */
   :root {
     --font-pixel: 'Press Start 2P', ui-monospace, monospace;
     --font-ui: 'Pixelify Sans', ui-sans-serif, system-ui, sans-serif;
@@ -430,19 +336,12 @@
     --btn: #3b4157; --btn-hover: #4f5aa0; --btn-text: #f5f7ff;
     --hi: rgba(255,255,255,.16); --lo: rgba(0,0,0,.5); --edge: #000;
     --drop: rgba(0,0,0,.55); --ink-shadow: 2px 2px 0 rgba(0,0,0,.45);
-    --accent-ink: #160f24; --splash: #ffff55;
+    --accent-ink: #160f24;
     --hat: #262a38; --hat-hi: #3c4258;
     --bevel: inset 3px 3px 0 var(--hi), inset -3px -3px 0 var(--lo);
   }
-  :root[data-theme="light"] { --block: #e4e4e4; --block-2: #d6d6d6; --btn: #c6c6c6; --btn-hover: #b4bce8; --btn-text: #1b1b1b; --hi: rgba(255,255,255,.85); --lo: rgba(0,0,0,.25); --edge: #2b2b2b; --drop: rgba(0,0,0,.22); --ink-shadow: none; --accent-ink: #ffffff; --splash: #b8860b; }
+  :root[data-theme="light"] { --block: #e4e4e4; --block-2: #d6d6d6; --btn: #c6c6c6; --btn-hover: #b4bce8; --btn-text: #1b1b1b; --hi: rgba(255,255,255,.85); --lo: rgba(0,0,0,.25); --edge: #2b2b2b; --drop: rgba(0,0,0,.22); --ink-shadow: none; --accent-ink: #ffffff; }
   :root[data-theme="ocean"] { --block: #0b1f2d; --block-2: #102a3c; --btn: #1d4458; --btn-hover: #2a6a86; --accent-ink: #032030; --hat: #11293a; --hat-hi: #1d4458; }
-  :root[data-theme="forest"] { --block: #10221a; --block-2: #162d21; --btn: #3c5f2b; --btn-hover: #51803a; --accent-ink: #072010; --hat: #1b2c1f; --hat-hi: #2f4a33; }
-  :root[data-theme="halloween"] {
-    --bg: #12081a; --panel: #1d0e24; --panel-2: #2a1333; --text: #fff1e2; --muted: #d2b3c3;
-    --accent: #ff8a1f; --accent-2: #8dff5a;
-    --block: #1e0e26; --block-2: #2a1434; --btn: #4a2358; --btn-hover: #6c2f80; --btn-text: #fff1e2;
-    --accent-ink: #2a0f05; --splash: #ffd23f; --hat: #1a0b20; --hat-hi: #3a1a46;
-  }
 
   *, *::before, *::after { border-radius: 0 !important; }
   body { font-family: var(--font-ui); font-size: 16px; -webkit-font-smoothing: antialiased; }
@@ -450,28 +349,15 @@
   img, svg.px, canvas { image-rendering: pixelated; }
   svg.px { shape-rendering: crispEdges; display: block; }
 
-  /* Ambient pixel sky (stars / fireflies / bubbles / embers) drawn on a low-res canvas */
-  #pixel-sky { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; image-rendering: pixelated; opacity: .9; }
-  :root[data-theme="light"] #pixel-sky { display: none; }
-  body::before {
-    content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background-image: linear-gradient(rgba(255,255,255,.03) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,.03) 2px, transparent 2px);
-    background-size: 48px 48px;
-    -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000, transparent 70%); mask-image: radial-gradient(ellipse at 50% 0%, #000, transparent 70%);
-  }
-  :root[data-theme="light"] body::before { background-image: linear-gradient(rgba(0,0,0,.05) 2px, transparent 2px), linear-gradient(90deg, rgba(0,0,0,.05) 2px, transparent 2px); }
-
   /* Header */
   .topbar { border-bottom: 0; box-shadow: 0 3px 0 var(--edge), 0 6px 0 var(--drop); background: color-mix(in srgb, var(--bg) 82%, transparent); }
   .brand-hat { width: 40px; height: 34px; flex: 0 0 auto; filter: drop-shadow(3px 3px 0 var(--drop)); }
   .brand-title { font-family: var(--font-pixel); font-size: 15px; line-height: 1.5; letter-spacing: 0; text-shadow: var(--ink-shadow); }
   .brand-title span { color: var(--accent) !important; background: none !important; -webkit-text-fill-color: currentColor !important; filter: none !important; }
   .brand-subtitle { font-size: 14px; letter-spacing: .02em; margin-top: 4px; }
-  :root[data-theme="halloween"] .brand-title::after { content: none !important; }
-  :root[data-theme="halloween"] .brand-subtitle::after { content: "  ✦ SPOOKY SEASON"; font-family: var(--font-pixel); font-size: 9px; font-weight: 400; letter-spacing: .04em; }
 
   /* Minecraft-style buttons: bevel + black edge + hard drop */
-  .icon-button, .suggestion, .mode-toggle, .secondary-button, .code-action, #file-btn, .conversation-delete, .attachment-remove, .status-pill {
+  .icon-button, .suggestion, .mode-toggle, .secondary-button, .code-action, #file-btn, .conversation-delete, .attachment-remove {
     border: 0 !important; background: var(--btn) !important; color: var(--btn-text) !important;
     box-shadow: var(--bevel), 0 0 0 2px var(--edge), 4px 4px 0 2px var(--drop) !important;
     text-shadow: var(--ink-shadow); transition: background .12s, transform .08s, box-shadow .08s !important;
@@ -484,11 +370,7 @@
   .icon-button:active:not(:disabled), .suggestion:active, .mode-toggle:active, .secondary-button:active, .code-action:active, #file-btn:active, #send-btn:active:not(:disabled), .primary-button:active {
     transform: translate(3px, 3px) !important; box-shadow: inset 3px 3px 0 var(--lo), 0 0 0 2px var(--edge), 1px 1px 0 2px var(--drop) !important;
   }
-  .icon-button { width: 40px; height: 40px; font-size: 18px; }
-  .status-pill { min-height: 40px; padding: 0 14px; font-size: 14px; cursor: default; }
-  .status-dot { width: 10px; height: 10px; box-shadow: 0 0 0 2px #000 !important; }
-  .status-pill.online .status-dot { animation: px-blink 1.6s steps(1) infinite; }
-  @keyframes px-blink { 0%, 70% { opacity: 1; } 71%, 100% { opacity: .35; } }
+  .icon-button { width: 40px; height: 40px; font-size: 18px; } 71%, 100% { opacity: .35; } }
 
   .primary-button, #send-btn {
     border: 0 !important; background: var(--accent) !important; color: var(--accent-ink) !important; font-weight: 700;
@@ -505,17 +387,9 @@
   .hero-hat rect { animation: px-place .22s steps(2) both; }
   @keyframes px-place { from { opacity: 0; } to { opacity: 1; } }
   @keyframes hat-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-  .title-wrap { position: relative; display: inline-block; }
   .welcome-title { font-family: var(--font-pixel); font-weight: 400; font-size: clamp(22px, 3.4vw, 36px); line-height: 1.55; letter-spacing: 0; text-shadow: 4px 4px 0 var(--drop); }
   .welcome-title .gradient { background: none !important; color: var(--accent) !important; -webkit-text-fill-color: currentColor !important; filter: none !important; }
-  :root[data-theme="halloween"] .welcome-title::before { content: none !important; }
-  .splash {
-    position: absolute; right: -64px; top: -40px; z-index: 2; pointer-events: auto; cursor: pointer;
-    font-family: var(--font-pixel); font-size: 12px; line-height: 1.4; color: var(--splash); white-space: nowrap;
-    text-shadow: 2px 2px 0 color-mix(in srgb, var(--splash) 25%, #000); background: none; border: 0; padding: 0;
-    transform: rotate(-14deg); animation: splash-pulse .5s ease-in-out infinite alternate;
-  }
-  @keyframes splash-pulse { from { transform: rotate(-14deg) scale(.94); } to { transform: rotate(-14deg) scale(1.06); } }
+
   .welcome-copy { font-size: 18px; line-height: 1.6; max-width: 520px; margin-top: 18px; }
   .suggestions { gap: 14px; margin-top: 32px; }
   .suggestion { font-size: 16px; padding: 12px 16px; }
@@ -601,7 +475,7 @@
     box-shadow: inset 3px 3px 0 rgba(255,255,255,.12), inset -3px -3px 0 rgba(0,0,0,.6), 0 0 0 2px #000, 5px 5px 0 2px rgba(0,0,0,.5) !important;
     transition: transform .3s steps(4) !important;
   }
-  #toast::before { content: "TOPHATZ AI"; display: block; margin-bottom: 4px; color: var(--splash); font-family: var(--font-pixel); font-size: 9px; }
+  #toast::before { content: "TOPHATZ AI"; display: block; margin-bottom: 4px; color: var(--accent); font-family: var(--font-pixel); font-size: 9px; }
   #toast::after { content: ""; position: absolute; left: 14px; top: 50%; width: 30px; height: 30px; margin-top: -15px; background: var(--accent); box-shadow: inset 3px 3px 0 rgba(255,255,255,.35), inset -3px -3px 0 rgba(0,0,0,.35), 0 0 0 2px #000; }
   #toast.show { transform: translateX(0); }
 
@@ -609,38 +483,6 @@
   ::-webkit-scrollbar { width: 12px; height: 12px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--btn); border: 2px solid var(--edge); box-shadow: inset 2px 2px 0 var(--hi); }
-
-  /* ---------- Halloween scene ---------- */
-  .halloween-scene { box-shadow: inset 0 0 160px rgba(0,0,0,.55); }
-  .halloween-scene > * { position: absolute; }
-  .hw-moon { top: 96px; right: 8%; width: 84px; height: 84px; filter: drop-shadow(0 0 28px rgba(255,190,110,.35)); animation: moon-glow 6s steps(6) infinite; }
-  @keyframes moon-glow { 0%, 100% { filter: drop-shadow(0 0 20px rgba(255,190,110,.25)); } 50% { filter: drop-shadow(0 0 36px rgba(255,190,110,.5)); } }
-  .hw-web { top: 76px; width: 120px; height: 120px; opacity: .5; }
-  .hw-web.left { left: 0; } .hw-web.right { right: 0; transform: scaleX(-1); }
-  .hw-spider { top: 76px; left: 14%; width: 36px; animation: spider-drop 7s steps(14) infinite; }
-  .hw-spider .thread { width: 2px; height: 120px; margin: -120px auto 0; background: rgba(255,210,170,.55); }
-  .hw-spider svg { width: 36px; height: 24px; }
-  @keyframes spider-drop { 0%, 100% { transform: translateY(0); } 45%, 60% { transform: translateY(120px); } }
-  .hw-bat { width: 56px; height: 28px; left: -80px; animation: bat-fly var(--dur, 16s) linear infinite; animation-delay: var(--delay, 0s); }
-  .hw-bat .f1 { animation: flap-a .28s steps(1) infinite; }
-  .hw-bat .f2 { animation: flap-b .28s steps(1) infinite; }
-  @keyframes flap-a { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-  @keyframes flap-b { 0%, 49% { opacity: 0; } 50%, 100% { opacity: 1; } }
-  @keyframes bat-fly {
-    0% { transform: translate(0, 0); } 25% { transform: translate(28vw, -40px); } 50% { transform: translate(55vw, 30px); }
-    75% { transform: translate(82vw, -20px); } 100% { transform: translate(115vw, 10px); }
-  }
-  .hw-ghost { width: 60px; height: 72px; top: 40%; left: -90px; opacity: .55; animation: ghost-drift 38s linear infinite, ghost-bob 3s steps(6) infinite; }
-  @keyframes ghost-drift { from { left: -90px; } to { left: calc(100% + 90px); } }
-  @keyframes ghost-bob { 0%, 100% { margin-top: 0; opacity: .55; } 50% { margin-top: -14px; opacity: .3; } }
-  .hw-flash { inset: 0; background: #d9c2ff; opacity: 0; mix-blend-mode: overlay; animation: lightning 17s linear infinite; }
-  @keyframes lightning { 0%, 91%, 93.5%, 100% { opacity: 0; } 91.5% { opacity: .5; } 92.3% { opacity: .1; } 92.8% { opacity: .4; } }
-  .hw-fog { left: -10%; right: -10%; bottom: -6%; height: 34%; background: radial-gradient(ellipse at 30% 100%, rgba(168,85,247,.22), transparent 60%), radial-gradient(ellipse at 75% 100%, rgba(255,138,42,.14), transparent 60%); filter: blur(12px); animation: fog-drift 18s ease-in-out infinite alternate; }
-  @keyframes fog-drift { from { transform: translateX(-3%); } to { transform: translateX(3%); } }
-  :root[data-theme="halloween"] #input-area { background: linear-gradient(180deg, transparent, rgba(18,8,26,.55) 40%, rgba(18,8,26,.35)); }
-  :root[data-theme="halloween"] .msg.ai .avatar, :root[data-theme="halloween"] .msg.user .avatar { background: #2a1434 !important; }
-  .hw-pumpkin-glow { animation: candle 1.4s steps(3) infinite; }
-  @keyframes candle { 0%, 100% { opacity: 1; } 33% { opacity: .7; } 66% { opacity: .9; } }
 
   @media (max-width: 620px) {
     .brand-hat { width: 32px; height: 27px; }
@@ -651,29 +493,21 @@
     .brand { gap: 8px; }
     .brand-title { white-space: nowrap; }
     .icon-button { width: 36px; height: 36px; font-size: 16px; }
-    #status-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-    .status-pill { width: 36px; padding: 0 !important; justify-content: center; }
-    .status-pill { min-height: 36px; }
     .hero-hat { width: 84px; height: 63px; margin-bottom: 18px; }
     .welcome-title { font-size: 19px; }
-    .splash { font-size: 10px; right: -6px; top: -26px; }
     .welcome-copy { font-size: 16px; }
     .suggestion { font-size: 15px; padding: 10px 12px; }
     .bubble { font-size: 16px; }
     #user-input { font-size: 16px; }
     .composer-footer { font-size: 13px; align-items: flex-start; }
     .mode-toggle { font-size: 13px; }
-    .hw-moon { width: 52px; height: 52px; top: 120px; }
-    .hw-web { width: 70px; height: 70px; }
-    .hw-ghost { display: none; }
-    #toast { right: 10px; left: 10px; max-width: none; top: 80px; }
-    :root[data-theme="halloween"] .brand-subtitle::after { content: none; }
   }
-  @media (max-width: 420px) { .brand-hat { width: 28px; height: 21px; } .brand-title { font-size: 11px; } .icon-button, .status-pill { width: 34px !important; height: 34px !important; min-height: 34px; } }
+  @media (max-width: 420px) { .brand-hat { width: 28px; height: 21px; } .brand-title { font-size: 11px; } .icon-button { width: 34px !important; height: 34px !important; min-height: 34px; } }
   @media (prefers-reduced-motion: reduce) {
-    .halloween-scene *, .hero-hat, .hero-hat rect, .splash, .msg, #empty-state > * { animation: none !important; }
-    .hw-bat, .hw-ghost, .hw-flash { display: none; }
+    .hero-hat, .hero-hat rect, .msg, #empty-state > * { animation: none !important; }
   }
+
+  .error-message { color: #fda4af; margin-top: 10px; font-size: 14px; }
 
   /* Live work summary and streaming response */
   .work-progress {
@@ -711,7 +545,6 @@
     .icon-button { width: 31px !important; height: 31px !important; min-width: 31px !important; font-size: 14px !important; }
     .brand { gap: 6px !important; }
     .brand-title { font-size: 11px !important; }
-    .status-pill { width: 31px !important; min-height: 31px !important; height: 31px !important; }
     #messages { padding: 12px 10px 16px !important; gap: 14px !important; }
     .msg { gap: 7px !important; }
     .avatar { width: 25px !important; height: 25px !important; flex-basis: 25px !important; border-radius: 8px !important; font-size: 12px !important; }
@@ -752,7 +585,6 @@
 </style>
 </head>
 <body>
-<div class="halloween-scene" aria-hidden="true"></div>
 <header class="topbar">
   <div class="brand">
     <div>
@@ -761,11 +593,6 @@
     </div>
   </div>
   <div class="topbar-actions">
-    <div id="status-pill" class="status-pill unavailable" title="Status is read from the GitHub status file">
-      <span class="status-dot" aria-hidden="true"></span>
-      <span id="status-text">Checking status…</span>
-    </div>
-    <button id="refresh-status" class="icon-button" type="button" title="Refresh online status" aria-label="Refresh online status">↻</button>
     <button id="open-conversations" class="icon-button" type="button" title="Saved conversations" aria-label="Saved conversations">☷</button>
     <button id="open-settings" class="icon-button" type="button" title="Settings" aria-label="Settings">⚙</button>
     <button id="clear-chat" class="icon-button" type="button" title="Clear this conversation" aria-label="Clear this conversation">⌫</button>
@@ -778,7 +605,7 @@
   <section id="empty-state" aria-label="Welcome">
     <div class="welcome-orb" aria-hidden="true">✦</div>
     <h1 class="welcome-title">What can we <span class="gradient">create today?</span></h1>
-    <p class="welcome-copy">Ask a question, explore an idea, or build something with code. Your TOPHATZ AI assistant is ready when its service is online.</p>
+    <p class="welcome-copy">Ask a question, explore an idea, or build something with code. Your TOPHATZ AI assistant is ready to help you create and explore.</p>
     <div class="suggestions">
       <button class="suggestion" type="button" data-prompt="Build me a modern personal website in HTML and CSS.">✧ Build a website</button>
       <button class="suggestion" type="button" data-prompt="Explain this code step by step: ">⌘ Explain code</button>
@@ -792,11 +619,11 @@
   <div class="composer-shell">
     <div id="file-name" aria-live="polite"></div>
     <div id="input-wrap">
-      <button id="file-btn" type="button" title="Attach a text/code file or an image for PRO" aria-label="Attach a text/code file or an image for PRO">＋</button>
-      <input type="file" id="file-input" accept=".txt,.html,.htm,.css,.js,.mjs,.cjs,.ts,.tsx,.jsx,.json,.py,.md,.xml,.svg,.yml,.yaml,.sh,.sql,.java,.cs,.cpp,.c,.h,.go,.rs,.rb,.php,.lua,.ps1,.bat,image/png,image/jpeg,image/webp">
+      <button id="file-btn" type="button" title="Attach a text or code file" aria-label="Attach a text or code file">＋</button>
+      <input type="file" id="file-input" accept=".txt,.html,.htm,.css,.js,.mjs,.cjs,.ts,.tsx,.jsx,.json,.py,.md,.xml,.svg,.yml,.yaml,.sh,.sql,.java,.cs,.cpp,.c,.h,.go,.rs,.rb,.php,.lua,.ps1,.bat">
       <textarea id="user-input" placeholder="Message TOPHATZ AI…" rows="1" autofocus="" aria-label="Message AI"></textarea>
       <select id="model-select" aria-label="Choose AI model" title="Choose which TOPHATZ AI model to use">
-        <option value="lite">TOPHATZ AI LITE</option>
+        <option value="lite">TOPHATZ AI LITE (Unavailable)</option>
         <option value="pro">TOPHATZ AI PRO</option>
       </select>
       <button id="send-btn" type="button" aria-label="Send message" title="Send message">↑</button>
@@ -829,36 +656,8 @@
     <div class="modal-content">
       <div class="modal-icon" aria-hidden="true">✦</div>
       <h2 id="welcome-heading">Welcome to TOPHATZ AI</h2>
-      <p>Welcome back to TOPHATZ AI. Your chats can be saved in this browser, and the status indicator checks the live flag in your GitHub repository. The AI service may not be online all the time.</p>
+      <p>Welcome to TOPHATZ AI. Your chats can be saved in this browser.</p>
       <button id="modal-close" class="primary-button" type="button">Let's get started</button>
-    </div>
-  </div>
-</div>
-
-<div id="halloween-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="halloween-heading">
-  <div class="modal-box">
-    <div class="modal-content">
-      <div class="modal-icon" aria-hidden="true">🎃</div>
-      <h2 id="halloween-heading">Halloween got a glow-up!</h2>
-      <p>Pixel bats, a graveyard of glowing pumpkins, drifting embers and the odd ghost. Try it now or keep your current look.</p>
-      <button id="halloween-try" class="primary-button" type="button">Try Halloween theme</button>
-      <button id="halloween-later" class="secondary-button" type="button" style="margin:22px 0 0 14px">Maybe later</button>
-    </div>
-  </div>
-</div>
-
-<div id="pro-intro-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="pro-intro-heading">
-  <div class="modal-box">
-    <div class="modal-content">
-      <div class="modal-icon" aria-hidden="true">✦</div>
-      <h2 id="pro-intro-heading">Meet TOPHATZ AI PRO</h2>
-      <p>You've unlocked the more capable model. PRO is built for tougher coding and problem-solving tasks, and it can understand images you attach to your message.</p>
-      <div class="pro-feature-list">
-        <div><span aria-hidden="true">▧</span><section><strong>Image understanding</strong><small>Attach a PNG, JPG, or WebP image and ask questions about what it shows.</small></section></div>
-        <div><span aria-hidden="true">{ }</span><section><strong>Stronger coding help</strong><small>Use it for building websites, debugging, explaining scripts, and larger coding tasks.</small></section></div>
-        <div><span aria-hidden="true">✧</span><section><strong>Keep both models</strong><small>LITE is still here for quick chats. Switch models any time beside the Send button.</small></section></div>
-      </div>
-      <button id="pro-intro-close" class="primary-button" type="button">Got it — let's try PRO</button>
     </div>
   </div>
 </div>
@@ -882,7 +681,7 @@
       <button id="settings-close" class="icon-button" type="button" aria-label="Close settings" title="Close">✕</button>
     </div>
     <div class="settings-content">
-      <label class="settings-field" for="theme-select"><span>Appearance</span><select id="theme-select"><option value="midnight">Midnight (default)</option><option value="light">Light</option><option value="ocean">Ocean blue</option><option value="forest">Forest green</option><option value="halloween">🎃 Halloween</option></select><small>Changes the interface colors.</small></label>
+      <label class="settings-field" for="theme-select"><span>Appearance</span><select id="theme-select"><option value="midnight">Midnight</option><option value="light">Light</option><option value="ocean">Ocean blue</option></select><small>Changes the interface colors.</small></label>
       <label class="settings-field" for="conversation-limit"><span>Keep recent conversations</span><select id="conversation-limit"><option value="5">5 conversations</option><option value="10">10 conversations</option><option value="12">12 conversations</option><option value="15">15 conversations</option></select><small>Older conversations are automatically removed when the limit is reached.</small></label>
       <label class="settings-toggle" for="deep-thinking-setting"><input id="deep-thinking-setting" type="checkbox"><span><strong>Deep thinking &amp; coding mode</strong><small>Runs a planning pass first, answers from that plan, then double-checks its own draft. Slower, but more careful.</small></span></label>
       <label class="settings-toggle" for="web-search-setting"><input id="web-search-setting" type="checkbox"><span><strong>Search mode</strong><small>Searches GitHub, Wikipedia, Hacker News, Stack Overflow, and YouTube, then passes the top results to the AI with source links.</small></span></label>
@@ -895,233 +694,28 @@
 </div>
 
 
-<div id="pro-limit-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="pro-limit-title">
-  <div class="modal-box" style="width:min(92vw,430px);padding:22px;text-align:center">
-    <div style="font-size:30px;margin-bottom:8px">⏳</div>
-    <h2 id="pro-limit-title" style="margin:0 0 10px;font-size:20px">TOPHATZ AI PRO limit</h2>
-    <p id="pro-limit-message" style="color:var(--muted);line-height:1.55;margin:0 0 18px"></p>
-    <button id="pro-limit-close" class="primary-button" type="button">Got it</button>
-  </div>
-</div>
-
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script>
 'use strict';
 
-// Both models use the same Ollama endpoint; the selector chooses which model tag is sent.
+// TOPHATZ AI PRO is the only active model in this build; no usage limits are applied.
 const OLLAMA_URL = 'https://canola-anteater-fool.ngrok-free.dev/api/chat';
 const MODEL_OPTIONS = {
-  lite: { label: 'TOPHATZ AI LITE', model: 'qwen2.5:7b' },
-  pro: { label: 'TOPHATZ AI PRO', model: 'gemma4:12b' }
+  lite: { label: 'TOPHATZ AI LITE (Unavailable)', model: null },
+  pro: { label: 'TOPHATZ AI PRO', model: 'qwen3.5:4b' }
 };
-const PRO_INTRO_NOTICE_KEY = 'tophatz-ai-pro-intro-v1';
-const STATUS_URL = 'https://raw.githubusercontent.com/BrianTopHat/TOPHATZ-AI/main/stat';
-const STATUS_REFRESH_MS = 45000;
 const CURRENT_YEAR = 2026;
 const WIKIPEDIA_API = 'https://en.wikipedia.org/w/api.php';
-const HALLOWEEN_NOTICE_KEY = 'tophatz-ai-halloween-notice-v2';
 const WELCOME_NOTICE_KEY = 'tophatz-ai-welcome-notice-v1';
 
 const CONVERSATIONS_STORAGE_KEY = 'tophatz-ai-conversations-v1';
 const SETTINGS_STORAGE_KEY = 'tophatz-ai-settings-v1';
-const DEFAULT_SETTINGS = { theme: 'midnight', model: 'lite', deepThinking: false, webSearch: false, saveChats: true, vibrateWhileTyping: true, maxConversations: 12, youtubeKey: '' };
+const DEFAULT_SETTINGS = { theme: 'midnight', model: 'pro', deepThinking: false, webSearch: false, saveChats: true, vibrateWhileTyping: true, maxConversations: 12, youtubeKey: '' };
 
-// PRO access is tracked per browser profile and resets at the user's local midnight.
-// This is a client-side convenience limit, not account-level/server-side enforcement.
-const PRO_USAGE_STORAGE_KEY = 'tophatz-ai-pro-usage-v1';
-const PRO_FIRST_SEEN_KEY = 'tophatz-ai-first-seen-v1';
-const PRO_DEFAULT_DAILY_LIMIT = 15;
-const PRO_SLOW_CODING_DAILY_LIMIT = 8;
-const PRO_SLOW_CODING_THRESHOLD_MS = 5 * 60 * 1000;
-const PRO_REPEAT_SLOW_CODING_THRESHOLD_MS = 4 * 60 * 1000;
-const PRO_REPEAT_SLOW_CODING_COUNT = 2;
-const PRO_REPEAT_SLOW_COOLDOWN_MS = 2 * 60 * 60 * 1000;
-const PRO_COOLDOWN_STORAGE_KEY = 'tophatz-ai-pro-cooldown-until-v1';
-const STREAM_IDLE_TIMEOUT_MS = 30 * 1000;
-const STREAM_RESUME_WAIT_MS = 30;
-const STREAM_MAX_AUTO_RESUMES = 8;
-
-function localDateKey(date = new Date()) {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, '0');
-  const d = String(date.getDate()).padStart(2, '0');
-  return `${y}-${m}-${d}`;
-}
-function nextLocalMidnight() {
-  const next = new Date();
-  next.setHours(24, 0, 0, 0);
-  return next;
-}
-function formatProResetTime() {
-  return nextLocalMidnight().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-}
-function readProUsage() {
-  try {
-    const value = JSON.parse(localStorage.getItem(PRO_USAGE_STORAGE_KEY) || '{}');
-    return value && typeof value === 'object' ? value : {};
-  } catch (_) { return {}; }
-}
-function writeProUsage(value) {
-  try { localStorage.setItem(PRO_USAGE_STORAGE_KEY, JSON.stringify(value)); } catch (_) {}
-}
-function ensureProFirstSeen() {
-  try {
-    if (localStorage.getItem(PRO_FIRST_SEEN_KEY)) return;
-    // Existing TOPHATZ users keep their access when this feature is introduced.
-    const isExistingUser = Boolean(
-      localStorage.getItem(SETTINGS_STORAGE_KEY) ||
-      localStorage.getItem(PRO_INTRO_NOTICE_KEY) ||
-      localStorage.getItem(CONVERSATIONS_STORAGE_KEY)
-    );
-    const firstSeen = new Date();
-    if (isExistingUser) firstSeen.setDate(firstSeen.getDate() - 1);
-    localStorage.setItem(PRO_FIRST_SEEN_KEY, firstSeen.toISOString());
-  } catch (_) {}
-}
-ensureProFirstSeen();
-
-function isFirstDayOnThisBrowser() {
-  try {
-    const firstSeen = localStorage.getItem(PRO_FIRST_SEEN_KEY);
-    if (!firstSeen) return true;
-    return localDateKey(new Date(firstSeen)) === localDateKey();
-  } catch (_) { return false; }
-}
-function getTodayProUsageRecord() {
-  const usage = readProUsage();
-  return usage.date === localDateKey() ? usage : { date: localDateKey(), count: 0, limit: PRO_DEFAULT_DAILY_LIMIT, slowCodingOver4Count: 0, slowCodingLastUsePending: false, slowCodingCooldownMode: false };
-}
-function getTodayProUsage() {
-  return Math.max(0, Number(getTodayProUsageRecord().count) || 0);
-}
-function getTodayProLimit() {
-  const savedLimit = Number(getTodayProUsageRecord().limit);
-  return Number.isFinite(savedLimit) && savedLimit >= 1 && savedLimit <= 1000
-    ? Math.floor(savedLimit) : PRO_DEFAULT_DAILY_LIMIT;
-}
-function readProCooldownUntil() {
-  try {
-    const value = Number(localStorage.getItem(PRO_COOLDOWN_STORAGE_KEY) || 0);
-    return Number.isFinite(value) ? value : 0;
-  } catch (_) { return 0; }
-}
-function writeProCooldownUntil(timestamp) {
-  try {
-    if (timestamp > 0) localStorage.setItem(PRO_COOLDOWN_STORAGE_KEY, String(timestamp));
-    else localStorage.removeItem(PRO_COOLDOWN_STORAGE_KEY);
-  } catch (_) {}
-}
-function formatProCooldownTime(timestamp) {
-  return new Date(timestamp).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-}
-function activateNextSlowCodingUseIfCooldownEnded() {
-  const cooldownUntil = readProCooldownUntil();
-  if (!cooldownUntil || Date.now() < cooldownUntil) return;
-  writeProCooldownUntil(0);
-  const usage = getTodayProUsageRecord();
-  if (usage.slowCodingCooldownMode) {
-    usage.limit = Math.max(getTodayProUsage() + 1, Number(usage.limit) || 0);
-    usage.slowCodingLastUsePending = true;
-    writeProUsage(usage);
-  }
-}
-function proAccessProblem() {
-  const cooldownUntil = readProCooldownUntil();
-  if (cooldownUntil && Date.now() < cooldownUntil) {
-    return {
-      type: 'cooldown',
-      message: `Sorry, TOPHATZ AI PRO is on a 2-hour cooldown after two long coding requests. Automatically switched to TOPHATZ AI LITE. You will be able to use PRO again at: ${formatProCooldownTime(cooldownUntil)}!`
-    };
-  }
-  activateNextSlowCodingUseIfCooldownEnded();
-  if (isFirstDayOnThisBrowser()) {
-    return {
-      type: 'first-day',
-      message: 'TOPHATZ AI PRO unlocks tomorrow for new browsers. You can keep chatting with TOPHATZ AI LITE in the meantime.'
-    };
-  }
-  const used = getTodayProUsage();
-  if (used >= getTodayProLimit()) {
-    return {
-      type: 'daily-limit',
-      message: `Sorry but you reached the ${getTodayProLimit()}-use limit for TOPHATZ AI PRO today. Automatically switched to TOPHATZ AI LITE. You will be able to use it again at: ${formatProResetTime()}!`
-    };
-  }
-  return null;
-}
-function showProLimitPopup(problem) {
-  const overlay = document.getElementById('pro-limit-overlay');
-  const message = document.getElementById('pro-limit-message');
-  if (!overlay || !message) { showToast(problem.message); return; }
-  message.textContent = problem.message;
-  overlay.classList.remove('hidden');
-}
-function closeProLimitPopup() {
-  document.getElementById('pro-limit-overlay')?.classList.add('hidden');
-}
-document.getElementById('pro-limit-close').addEventListener('click', closeProLimitPopup);
-document.getElementById('pro-limit-overlay').addEventListener('click', event => {
-  if (event.target.id === 'pro-limit-overlay') closeProLimitPopup();
-});
-function switchToLiteAfterProLimit(problem) {
-  settings.model = 'lite';
-  saveSettings();
-  updateModelSelector();
-  showProLimitPopup(problem);
-}
-function recordProUse() {
-  const today = localDateKey();
-  const usage = getTodayProUsageRecord();
-  const count = getTodayProUsage() + 1;
-  usage.date = today;
-  usage.count = count;
-  usage.limit = getTodayProLimit();
-  const startedCooldown = Boolean(usage.slowCodingLastUsePending);
-  if (startedCooldown) {
-    usage.slowCodingLastUsePending = false;
-    usage.slowCodingCooldownMode = true;
-    // Start immediately as a safe fallback; sendMessage extends it to two full
-    // hours after this final request finishes.
-    writeProCooldownUntil(Date.now() + PRO_REPEAT_SLOW_COOLDOWN_MS);
-  }
-  writeProUsage(usage);
-  return { count, startedCooldown };
-}
-function isCodingTaskPrompt(prompt) {
-  const text = String(prompt || '').toLowerCase();
-  const asksToCreateOrChange = /\b(make|create|build|write|code|program|develop|fix|debug|update|edit|add|generate|implement|script)\b/.test(text);
-  const codingSubject = /\b(code|coding|program|script|html|css|javascript|\bjs\b|python|lua|website|web\s?page|webapp|app|game|blender|roblox|software|function|bug|error|feature|api)\b/.test(text);
-  return asksToCreateOrChange && codingSubject;
-}
-function applySlowCodingLimitIfNeeded(startedAt, isCodingRequest) {
-  if (!startedAt || !isCodingRequest) return false;
-  const elapsed = Date.now() - startedAt;
-  if (elapsed < PRO_REPEAT_SLOW_CODING_THRESHOLD_MS) return false;
-
-  const usage = getTodayProUsageRecord();
-  usage.slowCodingOver4Count = Math.max(0, Number(usage.slowCodingOver4Count) || 0) + 1;
-
-  // Keep the existing 8-use rule for a single coding request lasting 5+ minutes.
-  if (elapsed >= PRO_SLOW_CODING_THRESHOLD_MS) {
-    usage.limit = Math.min(Number(usage.limit) || PRO_DEFAULT_DAILY_LIMIT, PRO_SLOW_CODING_DAILY_LIMIT);
-  }
-
-  // After two 4+ minute coding requests, leave exactly one final PRO use.
-  // That final use starts a 2-hour cooldown; when it expires, one more use
-  // becomes available, followed by another 2-hour cooldown.
-  let createdLastUse = false;
-  if (usage.slowCodingOver4Count >= PRO_REPEAT_SLOW_CODING_COUNT &&
-      !usage.slowCodingLastUsePending && !usage.slowCodingCooldownMode &&
-      !readProCooldownUntil()) {
-    usage.limit = getTodayProUsage() + 1;
-    usage.slowCodingLastUsePending = true;
-    usage.slowCodingCooldownMode = true;
-    createdLastUse = true;
-  }
-  writeProUsage(usage);
-  return createdLastUse;
-}
+// If a stream goes quiet for too long, preserve and show any partial response.
+const STREAM_IDLE_TIMEOUT_MS = 90 * 1000;
+const STREAM_FIRST_TOKEN_TIMEOUT_MS = 180 * 1000;
 
 const MAX_MESSAGES_PER_CONVERSATION = 60;
 const MAX_STORED_JSON_CHARS = 1400000;
@@ -1154,13 +748,9 @@ const messagesEl = document.getElementById('messages');
 const inputEl = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 const modelSelect = document.getElementById('model-select');
-const proIntroOverlay = document.getElementById('pro-intro-overlay');
 const fileBtn = document.getElementById('file-btn');
 const fileInput = document.getElementById('file-input');
 const fileNameEl = document.getElementById('file-name');
-const statusPill = document.getElementById('status-pill');
-const statusText = document.getElementById('status-text');
-const refreshStatusBtn = document.getElementById('refresh-status');
 const clearChatBtn = document.getElementById('clear-chat');
 const emptyState = document.getElementById('empty-state');
 const welcomeOverlay = document.getElementById('welcome-overlay');
@@ -1178,15 +768,11 @@ const deepThinkingCheckbox = document.getElementById('deep-thinking-setting');
 const webSearchCheckbox = document.getElementById('web-search-setting');
 const deepToggle = document.getElementById('deep-toggle');
 const webToggle = document.getElementById('web-toggle');
-const halloweenOverlay = document.getElementById('halloween-overlay');
 
 // Welcome and preview overlays.
 function closeWelcome() { welcomeOverlay.classList.add('hidden'); }
 document.getElementById('modal-close').addEventListener('click', closeWelcome);
 welcomeOverlay.addEventListener('click', event => { if (event.target === welcomeOverlay) closeWelcome(); });
-function closeProIntro() { proIntroOverlay.classList.add('hidden'); }
-document.getElementById('pro-intro-close').addEventListener('click', closeProIntro);
-proIntroOverlay.addEventListener('click', event => { if (event.target === proIntroOverlay) closeProIntro(); });
 function closePreview() {
   previewDock.hidden = true;
   previewFrame.srcdoc = '<!doctype html><html><body></body></html>';
@@ -1195,10 +781,8 @@ document.getElementById('preview-close').addEventListener('click', closePreview)
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape') {
     closeWelcome();
-    proIntroOverlay.classList.add('hidden');
     conversationsOverlay.classList.add('hidden');
     settingsOverlay.classList.add('hidden');
-    halloweenOverlay.classList.add('hidden');
     if (!previewDock.hidden) closePreview();
   }
 });
@@ -1240,35 +824,7 @@ previewResizer.addEventListener('keydown', event => {
   previewDock.style.flexBasis = width + 'px';
 });
 
-// Live status is based on the literal IsOnline flag in the raw GitHub file.
-async function checkOnlineStatus() {
-  statusPill.className = 'status-pill unavailable';
-  statusText.textContent = 'Checking status…';
-  refreshStatusBtn.disabled = true;
-  try {
-    const response = await fetch(STATUS_URL + '?_=' + Date.now(), { cache: 'no-store' });
-    if (!response.ok) throw new Error('GitHub returned HTTP ' + response.status);
-    const statusFile = await response.text();
-    const match = statusFile.match(/\bIsOnline\s*=\s*(true|false)\b/i);
-    if (!match) throw new Error('IsOnline flag was not found');
-    const online = match[1].toLowerCase() === 'true';
-    statusPill.className = 'status-pill ' + (online ? 'online' : 'offline');
-    statusText.textContent = online ? 'AI is online' : 'AI is offline';
-    statusPill.title = 'GitHub stat file: IsOnline = ' + online + ' · checked ' + new Date().toLocaleTimeString();
-  } catch (error) {
-    // A fetch/CORS/network error is not proof that the AI is offline.
-    statusPill.className = 'status-pill unavailable';
-    statusText.textContent = 'Status unavailable';
-    statusPill.title = 'Could not read the GitHub stat file. Check your connection or GitHub access.';
-  } finally {
-    refreshStatusBtn.disabled = false;
-  }
-}
-refreshStatusBtn.addEventListener('click', checkOnlineStatus);
-checkOnlineStatus();
-setInterval(checkOnlineStatus, STATUS_REFRESH_MS);
-
-// File upload: text/code files work with both models; image understanding is PRO-only.
+// File upload: text and code files are supported by TOPHATZ AI PRO.
 fileBtn.addEventListener('click', () => fileInput.click());
 fileInput.addEventListener('change', event => {
   const file = event.target.files && event.target.files[0];
@@ -1283,42 +839,8 @@ fileInput.addEventListener('change', event => {
   const isImage = Boolean(imageMime);
 
   if (isImage) {
-    if (settings.model !== 'pro') {
-      fileInput.value = '';
-      showToast('Image understanding is available in TOPHATZ AI PRO. Switch models beside Send first.');
-      return;
-    }
-    if (!['image/png', 'image/jpeg', 'image/webp'].includes(imageMime)) {
-      fileInput.value = '';
-      showToast('PRO image uploads support PNG, JPG, and WebP files.');
-      return;
-    }
-    if (file.size > 4 * 1024 * 1024) {
-      fileInput.value = '';
-      showToast('Please attach an image smaller than 4 MB.');
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = loadEvent => {
-      const dataUrl = String(loadEvent.target.result || '');
-      const comma = dataUrl.indexOf(',');
-      if (comma < 0) {
-        showToast('Could not prepare that image. Try another file.');
-        return;
-      }
-      fileContent = '';
-      fileName = file.name;
-      fileSize = file.size;
-      fileIsImage = true;
-      fileImageMime = imageMime;
-      fileImageBase64 = dataUrl.slice(comma + 1);
-      renderComposerAttachment();
-      inputEl.placeholder = 'Ask PRO about “' + fileName + '”…';
-      showToast('Image attached · TOPHATZ AI PRO');
-    };
-    reader.onerror = () => showToast('Could not read that image.');
-    reader.readAsDataURL(file);
+    fileInput.value = '';
+    showToast('Image attachments are not supported in this build yet.');
     return;
   }
 
@@ -1371,9 +893,7 @@ function createAttachmentChip(attachment, removable = false, onRemove = null, me
   meta.className = 'attachment-meta';
   const size = Number(attachment.size);
   const sizeLabel = Number.isFinite(size) ? (size < 1024 ? size + ' B' : (size / 1024).toFixed(1) + ' KB') : '';
-  const attachmentLabel = attachment.type === 'image'
-    ? (attachment.imageAvailable ? 'Image attached · sent to PRO' : 'Image · not stored in chat history')
-    : 'File attached';
+  const attachmentLabel = attachment.type === 'image' ? 'Image attachment not available' : 'File attached';
   meta.textContent = (sizeLabel ? sizeLabel + ' · ' : '') + attachmentLabel;
   info.append(name, meta);
   chip.append(icon, info);
@@ -1395,54 +915,29 @@ function renderComposerAttachment() {
   fileNameEl.appendChild(createAttachmentChip({ name: fileName, size: fileSize }, true, clearPendingFile));
 }
 
-// Model selection is saved locally so the chosen model is remembered on this browser.
-function getActiveModelId() {
-  return MODEL_OPTIONS[settings.model] ? settings.model : 'lite';
-}
-function getActiveModelName() {
-  return MODEL_OPTIONS[getActiveModelId()].model;
-}
+// TOPHATZ AI PRO is currently the only available model in this build.
+const LITE_UNAVAILABLE_MESSAGE = 'Sorry, TOPHATZ AI LITE is not available right now. Please use TOPHATZ AI PRO instead.';
+function getActiveModelId() { return 'pro'; }
+function getActiveModelName() { return MODEL_OPTIONS.pro.model; }
 function updateModelSelector() {
-  const modelId = getActiveModelId();
-  if (modelSelect.value !== modelId) modelSelect.value = modelId;
-  modelSelect.title = 'Currently using ' + MODEL_OPTIONS[modelId].label + ' · click to switch models';
-}
-// Re-check a saved PRO selection whenever the page is opened.
-if (settings.model === 'pro') {
-  const savedProProblem = proAccessProblem();
-  if (savedProProblem) {
-    settings.model = 'lite';
-    saveSettings();
-    // Show the explanation after the UI has been initialized.
-    window.addEventListener('DOMContentLoaded', () => showProLimitPopup(savedProProblem), { once: true });
-  }
-}
-function showProIntroOnce() {
-  let alreadyShown = false;
-  try { alreadyShown = localStorage.getItem(PRO_INTRO_NOTICE_KEY) === 'shown'; } catch (_) {}
-  if (alreadyShown) return;
-  try { localStorage.setItem(PRO_INTRO_NOTICE_KEY, 'shown'); } catch (_) {}
-  proIntroOverlay.classList.remove('hidden');
+  const wasLiteSelected = settings.model !== 'pro';
+  settings.model = 'pro';
+  modelSelect.value = 'pro';
+  modelSelect.title = 'TOPHATZ AI PRO is available. TOPHATZ AI LITE is temporarily unavailable.';
+  saveSettings();
+  if (wasLiteSelected) showToast(LITE_UNAVAILABLE_MESSAGE, 3600);
 }
 modelSelect.addEventListener('change', () => {
-  const selectedModel = modelSelect.value === 'pro' ? 'pro' : 'lite';
-  if (fileIsImage && selectedModel !== 'pro') {
+  if (modelSelect.value !== 'pro') {
+    settings.model = 'pro';
     modelSelect.value = 'pro';
-    showToast('Remove the image before switching to TOPHATZ AI LITE.');
+    saveSettings();
+    showToast(LITE_UNAVAILABLE_MESSAGE, 3600);
     return;
   }
-  if (selectedModel === 'pro') {
-    const problem = proAccessProblem();
-    if (problem) {
-      switchToLiteAfterProLimit(problem);
-      return;
-    }
-  }
-  settings.model = selectedModel;
+  settings.model = 'pro';
   saveSettings();
-  updateModelSelector();
-  if (selectedModel === 'pro') showProIntroOnce();
-  showToast('Switched to ' + MODEL_OPTIONS[selectedModel].label);
+  showToast('Switched to TOPHATZ AI PRO');
 });
 
 // Composer controls.
@@ -1490,32 +985,12 @@ async function sendMessage() {
   }
   const visiblePrompt = inputEl.value.trim();
   if (!visiblePrompt && !fileName) return;
-  let proRequestStartedAt = 0;
-  let proCodingRequest = false;
-  let proCooldownStartedByThisRequest = false;
 
   const attachment = fileName ? {
     name: fileName, size: fileSize, type: fileIsImage ? 'image' : 'file',
     imageAvailable: fileIsImage && Boolean(fileImageBase64)
   } : null;
   const userText = visiblePrompt || (fileIsImage ? 'Please analyze this image.' : 'Please analyze this file.');
-  if (fileIsImage && settings.model !== 'pro') {
-    showToast('Switch to TOPHATZ AI PRO to send images.');
-    return;
-  }
-  if (settings.model === 'pro') {
-    const problem = proAccessProblem();
-    if (problem) {
-      switchToLiteAfterProLimit(problem);
-      if (fileIsImage) showToast('The attached image needs PRO. It was not sent; try again after PRO unlocks.');
-      return;
-    }
-    const proUse = recordProUse();
-    proCooldownStartedByThisRequest = proUse.startedCooldown;
-    proRequestStartedAt = Date.now();
-    proCodingRequest = isCodingTaskPrompt(userText);
-  }
-
   let apiPrompt = userText;
   if (attachment && fileIsImage) {
     apiPrompt = 'The user attached an image named "' + attachment.name + '". Examine the image carefully and use it as visual context.\n\nUser request: ' + userText;
@@ -1538,10 +1013,13 @@ async function sendMessage() {
   history.push(userMessage);
   recordConversationMessage('user', apiPrompt, userText, attachment);
   const aiBubble = appendMsg('', 'ai');
+  const responsePrompt = visiblePrompt || userText;
+  const responseModelId = getActiveModelId();
+  let streamInterrupted = false;
   const workDisplay = createWorkDisplay(aiBubble, {
-    prompt: visiblePrompt || userText,
+    prompt: responsePrompt,
     attachment,
-    modelName: MODEL_OPTIONS[getActiveModelId()].label
+    modelName: MODEL_OPTIONS[responseModelId].label
   });
   workDisplay.setStage('Preparing your request', 'Getting your message and attachments ready for the selected model.');
 
@@ -1554,50 +1032,70 @@ async function sendMessage() {
       if (!webResults.length) showToast('No search results found; answering with the model only.');
     }
 
+    const previousMessages = history.slice(0, -1);
+    const editingExistingScript = isExistingScriptEditRequest(responsePrompt, previousMessages, attachment);
+    const modelHistory = history.slice(-40);
+    if (editingExistingScript) {
+      const existingScriptMessage = findLatestScriptContextMessage(previousMessages);
+      if (existingScriptMessage && !modelHistory.some(message => message.role === existingScriptMessage.role && message.content === existingScriptMessage.content)) {
+        modelHistory.splice(Math.max(0, modelHistory.length - 1), 0, {
+          role: existingScriptMessage.role,
+          content: 'EXISTING SCRIPT TO EDIT — preserve this project and apply only the requested changes:\n\n' + existingScriptMessage.content
+        });
+      }
+    }
     let plan = '';
     if (settings.deepThinking) {
       workDisplay.setStage('Creating a task plan', 'Organizing the request into a few useful steps before writing the answer.');
       plan = await runPlanningPass(webResults, (stage, detail) => workDisplay.setStage(stage, detail));
       workDisplay.setStage('Plan ready', 'The model is using the task plan to prepare its response.');
     }
-    workDisplay.setStage('Generating your answer', 'The model is processing your request. As soon as it sends text, the response will appear here. Large coding and image requests can take a while.');
+    workDisplay.setStage('Generating your answer', 'The model is processing your request. As soon as it sends text, the response will appear here. Large coding requests can take a while.');
     const answer = await callModel(
-      [{ role: 'system', content: buildSystemPrompt(webResults, plan) }, ...history.slice(-40)],
+      [{ role: 'system', content: buildSystemPrompt(webResults, plan, { editingExistingScript }) }, ...modelHistory],
       {
-        ...(settings.deepThinking ? { maxTokens: 6144, temperature: 0.3, deep: true } : {}),
+        maxTokens: isCodeRequestPrompt(responsePrompt) ? 16384 : 8192,
+        temperature: settings.deepThinking ? 0.3 : 0.3,
+        ...(settings.deepThinking ? { deep: true } : {}),
         onProgress: (stage, detail) => workDisplay.setStage(stage, detail),
         onChunk: (delta, fullText) => workDisplay.showStream(delta, fullText),
-        onPause: seconds => workDisplay.setPauseCountdown(seconds)
+        onInterrupted: () => { streamInterrupted = true; }
       }
     );
     stopTypingVibration();
     const replyText = shouldMakeSingleFileHtml(visiblePrompt || userText) ? combineHtmlCssJsIntoOneFile(answer) : answer;
-    const reply = normalizeCopyrightYears(replyText);
+    const completedText = streamInterrupted
+      ? replyText
+      : addCodeCompletionNote(replyText, responsePrompt);
+    const reply = normalizeCopyrightYears(completedText);
     history.push({ role: 'assistant', content: reply });
     recordConversationMessage('assistant', reply, reply, null, webResults);
     renderAI(aiBubble, reply);
     if (plan) appendPlanCard(aiBubble, plan);
     if (webResults.length) appendWebSources(aiBubble, webResults);
+    if (streamInterrupted) appendGenerationNote(aiBubble, 'The response stopped before completion. The partial output is shown above.');
   } catch (error) {
     stopTypingVibration();
-    if (error && error.code === 'USER_ABORT') {
+    const partial = workDisplay.getText();
+    if (partial) {
+      const partialReply = shouldMakeSingleFileHtml(responsePrompt) ? combineHtmlCssJsIntoOneFile(partial) : partial;
+      history.push({ role: 'assistant', content: partialReply });
+      recordConversationMessage('assistant', partialReply, partialReply, null, webResults);
+      renderAI(aiBubble, partialReply);
+      if (error && error.code === 'USER_ABORT') {
+        appendGenerationNote(aiBubble, 'Generation stopped. Your partial response is saved above.');
+      } else {
+        appendGenerationNote(aiBubble, 'The response was interrupted. Your partial output is saved above.');
+      }
+    } else if (error && error.code === 'USER_ABORT') {
+      aiBubble.replaceChildren();
       const stopped = document.createElement('span');
       stopped.className = 'generation-note';
-      stopped.textContent = workDisplay.hasStream() ? 'Generation stopped. The text above is the partial response.' : 'Generation stopped.';
+      stopped.textContent = 'Generation stopped.';
       aiBubble.appendChild(stopped);
     } else {
-      if (!workDisplay.hasStream()) aiBubble.replaceChildren();
-      const errorText = document.createElement('span');
-      errorText.className = 'error-message';
-      errorText.style.color = '#fda4af';
-      errorText.textContent = '⚠ ' + (error && error.message ? error.message : 'Could not connect to the AI server.');
-      aiBubble.appendChild(errorText);
-      const tip = document.createElement('p');
-      tip.style.color = 'var(--muted)';
-      tip.style.fontSize = '15px';
-      tip.style.marginTop = '7px';
-      tip.textContent = 'The GitHub status flag is separate from the chat connection, so a green status does not always guarantee the model endpoint is reachable.';
-      aiBubble.appendChild(tip);
+      aiBubble.replaceChildren();
+      appendServiceUnavailableMessage(aiBubble);
     }
   } finally {
     clearPendingFile();
@@ -1610,22 +1108,40 @@ async function sendMessage() {
     fileBtn.disabled = false;
     modelSelect.disabled = false;
     clearChatBtn.disabled = false;
-    if (proCooldownStartedByThisRequest) writeProCooldownUntil(Date.now() + PRO_REPEAT_SLOW_COOLDOWN_MS);
-    const slowCodeLastUseCreated = applySlowCodingLimitIfNeeded(proRequestStartedAt, proCodingRequest);
-    if (slowCodeLastUseCreated && settings.model === 'pro') {
-      showProLimitPopup({
-        type: 'last-use',
-        message: 'You have had two coding requests take over 4 minutes. You have 1 PRO use left. After that use, TOPHATZ AI PRO will pause for 2 hours before another use becomes available.'
-      });
-    }
-    if (settings.model === 'pro') {
-      const accessProblem = proAccessProblem();
-      if (accessProblem) switchToLiteAfterProLimit(accessProblem);
-    }
     inputEl.focus();
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 }
+const SERVICE_UNAVAILABLE_MESSAGE = 'TOPHATZ AI is not running at the moment. Please wait few minutes/hours.';
+function appendServiceUnavailableMessage(container) {
+  const message = document.createElement('p');
+  message.className = 'error-message';
+  message.textContent = SERVICE_UNAVAILABLE_MESSAGE;
+  container.appendChild(message);
+}
+function isCodeRequestPrompt(prompt) {
+  return /\b(html|website|webpage|web\s*app|css|javascript|script|code|coding|program|programming|lua|python|roblox|blender|typescript|react)\b/i.test(String(prompt || ''));
+}
+function hasUnclosedCodeFence(text) {
+  const count = (String(text || '').match(/```/g) || []).length;
+  return count % 2 === 1;
+}
+function addCodeCompletionNote(text, prompt) {
+  let result = String(text || '');
+  if (!isCodeRequestPrompt(prompt) || !/```/.test(result)) return result;
+  if (hasUnclosedCodeFence(result)) result += '\n```';
+  const outsideCode = result.replace(/```[\s\S]*?```/g, ' ').trim();
+  const hasCompletionMessage = /\b(done|complete|completed|ready|created|built|updated|finished|implemented)\b/i.test(outsideCode);
+  if (!hasCompletionMessage) result += '\n\nDone — your script is ready. The complete code is above.';
+  return result;
+}
+function appendGenerationNote(container, text) {
+  const note = document.createElement('p');
+  note.className = 'generation-note';
+  note.textContent = text;
+  container.appendChild(note);
+}
+
 function appendMsg(text, cls, attachment = null) {
   emptyState.classList.add('is-hidden');
   const row = document.createElement('div');
@@ -1724,6 +1240,7 @@ function createWorkDisplay(bubble, { prompt, attachment, modelName }) {
   bubble.append(panel, output);
 
   let streamed = false;
+  let streamText = '';
   return {
     setStage(label, explanation) {
       stageText.textContent = label;
@@ -1731,6 +1248,7 @@ function createWorkDisplay(bubble, { prompt, attachment, modelName }) {
     },
     showStream(delta, fullText) {
       streamed = Boolean(fullText);
+      streamText = String(fullText || '');
       if (delta) { outputText.appendData(delta); vibrateForTyping(); }
       if (streamed) {
         stageText.textContent = 'Writing the answer';
@@ -1739,16 +1257,8 @@ function createWorkDisplay(bubble, { prompt, attachment, modelName }) {
         messagesEl.scrollTop = messagesEl.scrollHeight;
       }
     },
-    setPauseCountdown(seconds) {
-      if (seconds > 0) {
-        stageText.textContent = `Paused for ${seconds} seconds`;
-        detail.textContent = 'The response stream paused. TOPHATZ AI will automatically continue when the timer reaches 0.';
-      } else {
-        stageText.textContent = 'Continuing response';
-        detail.textContent = 'Reconnecting to continue from the last text received. Your partial response is being kept.';
-      }
-    },
-    hasStream() { return streamed; }
+    hasStream() { return streamed; },
+    getText() { return streamText; }
   };
 }
 
@@ -1813,13 +1323,39 @@ function makeWebQuery(prompt, fallbackName = '') {
   const query = String(prompt || '').replace(/```[\s\S]*?```/g, ' ').replace(/\s+/g, ' ').trim();
   return (query || fallbackName || 'web development').slice(0, 180);
 }
-function buildSystemPrompt(webResults = [], plan = '') {
+function isExistingScriptEditRequest(prompt, previousMessages, attachment) {
+  const text = String(prompt || '');
+  const editIntent = /\b(edit|modify|update|change|fix|add|remove|replace|adjust|improve|upgrade|keep|instead|also)\b|\bmake\s+(?:it|that|this|the\s+(?:script|code|website))\b|\bcan\s+you\s+(?:make|change|add|remove|fix)\b/i.test(text);
+  if (!editIntent) return false;
+  if (attachment && attachment.type === 'file') return true;
+  return (Array.isArray(previousMessages) ? previousMessages : []).some(message =>
+    message && message.role === 'assistant' && typeof message.content === 'string' &&
+    (/```/.test(message.content) || /<!doctype\s+html|<html\b|function\s+\w+\s*\(/i.test(message.content))
+  );
+}
+
+function findLatestScriptContextMessage(messages) {
+  const list = Array.isArray(messages) ? messages : [];
+  for (let i = list.length - 1; i >= 0; i--) {
+    const message = list[i];
+    if (!message || !['assistant', 'user'].includes(message.role) || typeof message.content !== 'string') continue;
+    const content = message.content;
+    const hasCode = /```/.test(content) || /<!doctype\s+html|<html\b|<script\b|function\s+\w+\s*\(/i.test(content);
+    if (hasCode && content.length > 80) return { role: message.role, content };
+  }
+  return null;
+}
+
+function buildSystemPrompt(webResults = [], plan = '', options = {}) {
   const parts = [
     'You are TOPHATZ AI, a helpful assistant with a strong focus on accurate coding and clear explanations.',
     'The current year is 2026. When generating new websites, scripts, footers, or copyright notices, use 2026 rather than outdated placeholder years. Preserve older dates only when they are historically relevant or explicitly requested.',
-    'For code requests, provide complete, runnable code where appropriate. Check requirements, obvious edge cases, mobile support when relevant, and mention any setup steps. Never claim that you executed or tested code unless a test was actually performed.',
+    'For code requests, provide complete, runnable code where appropriate. Check requirements, obvious edge cases, mobile support when relevant, and mention any setup steps. Never claim that you executed or tested code unless a test was actually performed. When a script or website is complete, include a brief plain-language note after the code saying what was completed; include a brief plain-language completion note after the code.',
     'Whenever the user asks you to create, build, generate, or edit an HTML website, webpage, web app, or browser game, deliver ONE self-contained .html file: put all custom CSS inside a <style> tag in the HTML and all custom JavaScript inside <script> tags in the same HTML file. Do not split the project into separate HTML, CSS, or JS files. Prefer one complete ```html code block that can be downloaded and opened directly. External libraries may use CDN links only when genuinely needed; do not create separate local asset files.'
   ];
+  if (options.editingExistingScript) {
+    parts.push('The user is asking to change an existing script/project from this conversation or an attached code file. Treat the most recent relevant assistant code or attached file as the source-of-truth project. Edit that existing project in place: preserve all unrelated code, existing features, names, settings, UI, and behavior; make only the requested changes; do not rebuild a simplified replacement or omit existing sections. Return the complete updated script/file so it can replace the previous version, not just a patch, unless the user explicitly asks for only a diff. Briefly summarize the changes outside the code.');
+  }
   if (settings.deepThinking) {
     parts.push('Deep thinking mode is ON. Work through the problem carefully before writing: consider alternatives and edge cases, then check your own draft for bugs and factual errors before you finish. For code, make sure it is complete and would run as written. Do not reveal private chain-of-thought; give a clear answer and a short verification checklist when useful.');
     if (plan) parts.push('Your planning stage produced this plan for the current request. Follow it, and revise it if you find a problem:\n' + plan);
@@ -1871,16 +1407,17 @@ async function searchWikipedia(query) {
 const WEB_SOURCE_LABELS = { github: 'GitHub', wikipedia: 'Wikipedia', hackernews: 'Hacker News', stackoverflow: 'Stack Overflow', youtube: 'YouTube' };
 
 async function callModel(messages, {
-  maxTokens = 0,
+  maxTokens = 8192,
   temperature = 0.3,
   deep = false,
   onProgress = null,
   onChunk = null,
-  onPause = null
+  onInterrupted = null,
+  modelOverride = null
 } = {}) {
-  const activeModel = getActiveModelName();
+  const activeModel = modelOverride || getActiveModelName();
   const requestBody = { model: activeModel, messages, stream: true };
-  if (maxTokens) requestBody.options = { num_predict: maxTokens, temperature };
+  requestBody.options = { num_predict: maxTokens, temperature };
   // Only request Ollama's explicit think mode for model families that expose it here.
   if (deep && /qwen3|deepseek-r1|gpt-oss/i.test(activeModel)) requestBody.think = true;
 
@@ -1955,152 +1492,82 @@ async function callModel(messages, {
       return content;
     }
 
-    // Ollama stream:true returns newline-delimited JSON chunks. If the stream
-    // becomes silent for 30 seconds after text has arrived, keep the partial
-    // answer, show a 30-second pause countdown, then ask the model to continue.
+    // Stream the answer. If it goes quiet for too long, keep and display the partial output.
     const decoder = new TextDecoder();
     let answer = '';
-    let resumeMessages = messages;
-    let autoResumeCount = 0;
+    let interrupted = false;
+    const reader = response.body.getReader();
+    let pending = '';
+
+    function consumeLine(line) {
+      line = String(line || '').trim();
+      if (!line || line === '[DONE]') return;
+      if (line.startsWith('data:')) line = line.slice(5).trim();
+      if (!line || line === '[DONE]') return;
+      let chunk;
+      try { chunk = JSON.parse(line); } catch (_) { return; }
+      if (chunk && typeof chunk.error === 'string' && chunk.error) throw new Error('Ollama: ' + chunk.error);
+      const delta = chunk && chunk.message && typeof chunk.message.content === 'string'
+        ? chunk.message.content
+        : chunk && typeof chunk.response === 'string' ? chunk.response : '';
+      if (delta) {
+        answer += delta;
+        if (typeof onChunk === 'function') onChunk(delta, answer);
+      }
+      const doneReason = String(chunk && chunk.done_reason || '').toLowerCase();
+      if (chunk && chunk.done === true && ['length', 'max_tokens', 'token_limit'].includes(doneReason)) interrupted = true;
+    }
 
     while (true) {
-      const body = { ...requestBody, messages: resumeMessages };
-      let streamResponse;
-      if (resumeMessages === messages) {
-        streamResponse = response;
-      } else {
-        if (typeof onProgress === 'function') onProgress('Continuing response', 'Reconnecting to continue from the last text received.');
-        streamResponse = await fetch(OLLAMA_URL, {
-          method: 'POST',
-          mode: 'cors',
-          credentials: 'omit',
-          cache: 'no-store',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/x-ndjson, application/json'
-          },
-          body: JSON.stringify(body),
-          signal: controller.signal
-        });
-        if (!streamResponse.ok) {
-          const rawError = await streamResponse.text();
-          throw new Error('AI server returned HTTP ' + streamResponse.status + (rawError ? ': ' + rawError.slice(0, 250) : ''));
-        }
-      }
-
-      if (!streamResponse.body || typeof streamResponse.body.getReader !== 'function') {
-        const raw = await streamResponse.text();
-        let data;
-        try { data = raw ? JSON.parse(raw) : null; } catch (_) { throw new Error('The AI server returned invalid JSON while continuing.'); }
-        const content = data && data.message && typeof data.message.content === 'string'
-          ? data.message.content : data && typeof data.response === 'string' ? data.response : '';
-        if (content) {
-          answer += content;
-          if (typeof onChunk === 'function') onChunk(content, answer);
-        }
-        break;
-      }
-
-      const reader = streamResponse.body.getReader();
-      let pending = '';
-      let shouldResume = false;
-      let streamDone = false;
-
-      function consumeLine(line) {
-        line = String(line || '').trim();
-        if (!line || line === '[DONE]') return;
-        if (line.startsWith('data:')) line = line.slice(5).trim();
-        if (!line || line === '[DONE]') return;
-        let chunk;
-        try { chunk = JSON.parse(line); }
-        catch (_) { return; }
-        if (chunk && typeof chunk.error === 'string' && chunk.error) throw new Error('Ollama: ' + chunk.error);
-        const delta = chunk && chunk.message && typeof chunk.message.content === 'string'
-          ? chunk.message.content
-          : chunk && typeof chunk.response === 'string' ? chunk.response : '';
-        if (delta) {
-          answer += delta;
-          if (typeof onChunk === 'function') onChunk(delta, answer);
-        }
-      }
-
-      while (true) {
-        let idleTimer;
-        let readResult;
+      let readResult;
+      if (!answer.trim()) {
+        let firstTokenTimer;
         try {
-          if (!answer.trim()) {
-            // Let the first token arrive without queuing multiple pending reader.read() calls.
-            readResult = await reader.read();
-          } else {
-            readResult = await new Promise((resolve, reject) => {
-              idleTimer = window.setTimeout(() => resolve({ idleTimeout: true }), STREAM_IDLE_TIMEOUT_MS);
-              reader.read().then(resolve, reject);
-            });
-          }
+          readResult = await new Promise((resolve, reject) => {
+            firstTokenTimer = window.setTimeout(() => resolve({ firstTokenTimeout: true }), STREAM_FIRST_TOKEN_TIMEOUT_MS);
+            reader.read().then(resolve, reject);
+          });
         } catch (readError) {
           if (controller.signal.aborted) throw readError;
-          if (answer.trim()) readResult = { idleTimeout: true, readError };
-          else throw readError;
+          interrupted = true;
+          break;
         } finally {
-          if (idleTimer) window.clearTimeout(idleTimer);
+          if (firstTokenTimer) window.clearTimeout(firstTokenTimer);
         }
-
-        if (readResult && readResult.idleTimeout) {
-          if (!answer.trim()) {
-            if (typeof onProgress === 'function') onProgress('Still waiting for the first text', 'The model has not sent response text yet. Waiting for its first chunk.');
-            continue;
-          }
-          shouldResume = true;
+        if (readResult && readResult.firstTokenTimeout) {
+          interrupted = true;
           try { await reader.cancel(); } catch (_) {}
           break;
         }
-        if (readResult.done) {
-          streamDone = true;
+      } else {
+        let idleTimer;
+        try {
+          readResult = await new Promise((resolve, reject) => {
+            idleTimer = window.setTimeout(() => resolve({ idleTimeout: true }), STREAM_IDLE_TIMEOUT_MS);
+            reader.read().then(resolve, reject);
+          });
+        } catch (readError) {
+          if (controller.signal.aborted) throw readError;
+          interrupted = true;
+          break;
+        } finally {
+          if (idleTimer) window.clearTimeout(idleTimer);
+        }
+        if (readResult && readResult.idleTimeout) {
+          interrupted = true;
+          try { await reader.cancel(); } catch (_) {}
           break;
         }
-        pending += decoder.decode(readResult.value, { stream: true });
-        const lines = pending.split(/\r?\n/);
-        pending = lines.pop() || '';
-        for (const line of lines) consumeLine(line);
       }
-      pending += decoder.decode();
-      if (pending.trim()) consumeLine(pending);
-
-      if (!shouldResume || streamDone) break;
-      autoResumeCount += 1;
-      if (autoResumeCount > STREAM_MAX_AUTO_RESUMES) {
-        throw new Error('The response kept pausing. The partial text is still available above; please ask TOPHATZ AI to continue from where it stopped.');
-      }
-
-      for (let remaining = STREAM_RESUME_WAIT_MS; remaining > 0; remaining--) {
-        if (controller.signal.aborted) {
-          const stopped = new Error('Generation stopped by you.');
-          stopped.code = 'USER_ABORT';
-          throw stopped;
-        }
-        if (typeof onPause === 'function') onPause(remaining);
-        await new Promise((resolve, reject) => {
-          const timer = window.setTimeout(() => {
-            controller.signal.removeEventListener('abort', handleAbort);
-            resolve();
-          }, 1000);
-          function handleAbort() {
-            window.clearTimeout(timer);
-            controller.signal.removeEventListener('abort', handleAbort);
-            const stopped = new Error('Generation stopped by you.');
-            stopped.code = 'USER_ABORT';
-            reject(stopped);
-          }
-          controller.signal.addEventListener('abort', handleAbort, { once: true });
-        });
-      }
-      if (typeof onPause === 'function') onPause(0);
-      resumeMessages = [
-        ...messages,
-        { role: 'assistant', content: answer },
-        { role: 'user', content: 'Continue the response from exactly where you stopped. Do not repeat or restart the previous content. If you were writing code, continue the same code and make sure the overall result is complete and valid.' }
-      ];
+      if (readResult.done) break;
+      pending += decoder.decode(readResult.value, { stream: true });
+      const lines = pending.split(/\r?\n/);
+      pending = lines.pop() || '';
+      for (const line of lines) consumeLine(line);
     }
+    pending += decoder.decode();
+    if (pending.trim()) consumeLine(pending);
+    if (interrupted && typeof onInterrupted === 'function') onInterrupted();
 
     if (controller.signal.aborted) {
       const stopped = new Error('Generation stopped by you.');
@@ -2513,11 +1980,11 @@ async function copyText(value) {
   textarea.remove();
   if (!success) throw new Error('Copy is unavailable in this browser');
 }
-function showToast(message) {
+function showToast(message, duration = 1800) {
   toastEl.textContent = message;
   toastEl.classList.add('show');
   if (toastTimer) window.clearTimeout(toastTimer);
-  toastTimer = window.setTimeout(() => toastEl.classList.remove('show'), 1800);
+  toastTimer = window.setTimeout(() => toastEl.classList.remove('show'), duration);
 }
 
 // Preferences and recent conversation storage (local to this browser/device).
@@ -2525,8 +1992,8 @@ function readSettings() {
   try {
     const saved = JSON.parse(localStorage.getItem(SETTINGS_STORAGE_KEY) || '{}');
     const merged = { ...DEFAULT_SETTINGS, ...(saved && typeof saved === 'object' ? saved : {}) };
-    if (!['midnight', 'light', 'ocean', 'forest', 'halloween'].includes(merged.theme)) merged.theme = DEFAULT_SETTINGS.theme;
-    if (!['lite', 'pro'].includes(merged.model)) merged.model = DEFAULT_SETTINGS.model;
+    if (!['midnight', 'light', 'ocean'].includes(merged.theme)) merged.theme = DEFAULT_SETTINGS.theme;
+    merged.model = merged.model === 'pro' ? 'pro' : 'lite';
     if (![5, 10, 12, 15].includes(Number(merged.maxConversations))) merged.maxConversations = DEFAULT_SETTINGS.maxConversations;
     merged.maxConversations = Number(merged.maxConversations);
     merged.saveChats = merged.saveChats !== false;
@@ -2628,10 +2095,10 @@ function removeStoredConversation(id) {
   } catch (_) { /* local storage is optional */ }
 }
 function applyTheme(theme) {
-  const allowed = ['midnight', 'light', 'ocean', 'forest', 'halloween'];
+  const allowed = ['midnight', 'light', 'ocean'];
   const selected = allowed.includes(theme) ? theme : 'midnight';
   document.documentElement.setAttribute('data-theme', selected);
-  const colors = { midnight: '#080a10', light: '#f4f6fb', ocean: '#06131d', forest: '#0a140f', halloween: '#160a1b' };
+  const colors = { midnight: '#080a10', light: '#f4f6fb', ocean: '#06131d' };
   document.querySelector('meta[name="theme-color"]').setAttribute('content', colors[selected]);
 }
 function updateSettingsControls() {
@@ -2830,25 +2297,6 @@ function initializeSavedConversations() {
   if (settings.saveChats && conversations.length) loadConversation(conversations.slice().sort((a, b) => b.updatedAt - a.updatedAt)[0].id, { quiet: true });
   renderConversationList();
 }
-function showHalloweenNoticeOnce() {
-  const today = new Date();
-  const spookySeason = today.getMonth() === 9 || (today.getMonth() === 10 && today.getDate() <= 2);
-  if (!spookySeason || settings.theme === 'halloween') return;
-  try {
-    if (localStorage.getItem(HALLOWEEN_NOTICE_KEY) === 'shown') return;
-    localStorage.setItem(HALLOWEEN_NOTICE_KEY, 'shown');
-  } catch (_) { /* best effort: browsers with storage disabled may not remember this */ }
-  window.setTimeout(() => halloweenOverlay.classList.remove('hidden'), 550);
-}
-document.getElementById('halloween-try').addEventListener('click', () => {
-  settings.theme = 'halloween';
-  themeSelect.value = 'halloween';
-  applyTheme('halloween');
-  saveSettings();
-  halloweenOverlay.classList.add('hidden');
-  showToast('Halloween theme applied 🎃');
-});
-document.getElementById('halloween-later').addEventListener('click', () => halloweenOverlay.classList.add('hidden'));
 // ===== v4: Blockcraft extras (pixel art, splash text, ambient pixel sky) =====
 const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const PIXEL_ART = {
@@ -2871,85 +2319,10 @@ const PIXEL_ART = {
   },
   head: {
     rows: [
-      'HHHHHHHH',
-      'HHHHHHHH',
-      'HSSSSSSH',
-      'SSSSSSSS',
-      'SWESSEWS',
-      'SSSNNSSS',
-      'SSMSSMSS',
-      'SSMMMMSS'
+      'HHHHHHHH', 'HHHHHHHH', 'HSSSSSSH', 'SSSSSSSS',
+      'SWESSEWS', 'SSSNNSSS', 'SSMSSMSS', 'SSMMMMSS'
     ],
     palette: { H: '#4a2f1b', S: '#d9a273', W: '#fff', E: '#3b5bdb', N: '#a8754d', M: '#6b3b26' }
-  },
-  pumpkin: {
-    rows: [
-      '.....GG......',
-      '......G......',
-      '..OODOOODOO..',
-      '.OOODOOODOOO.',
-      'OOYYDOOODYYOO',
-      'OOYYDOOODYYOO',
-      'OOODOOYOODOOO',
-      'OOYYYYYYYYYOO',
-      'OOOYOYOYOYOOO',
-      '.OOODOOODOOO.',
-      '..OODOOODOO..'
-    ],
-    palette: { G: '#4caf32', O: '#ff8a1f', D: '#c85d0c', Y: '#ffd23f' },
-    glow: 'Y'
-  },
-  ghost: {
-    rows: [
-      '...WWWW...',
-      '..WWWWWW..',
-      '.WWWWWWWW.',
-      '.WKKWWKKW.',
-      '.WKKWWKKW.',
-      'WWWWWWWWWW',
-      'WWWWKKWWWW',
-      'WWWWKKWWWW',
-      'WWWWWWWWWW',
-      'WWWWWWWWWW',
-      'WW.WWW.WWW',
-      'W...W...WW'
-    ],
-    palette: { W: '#f3ecff', K: '#2a1434' }
-  },
-  spider: {
-    rows: [
-      '..K.....K..',
-      'K..K...K..K',
-      '.K.KKKKK.K.',
-      '..KKRKRKK..',
-      '.K.KKKKK.K.',
-      'K..K...K..K'
-    ],
-    palette: { K: '#0b0610', R: '#ff3b3b' }
-  },
-  batUp: {
-    rows: [
-      'K............K',
-      'KK....KK....KK',
-      'KKK..KKKK..KKK',
-      '.KKKKRKKRKKKK.',
-      '..KKKKKKKKKK..',
-      '......KK......',
-      '..............'
-    ],
-    palette: { K: '#0b0610', R: '#ff5a2a' }
-  },
-  batDown: {
-    rows: [
-      '..............',
-      '......KK......',
-      '....KKKKKK....',
-      '..KKKRKKRKKK..',
-      '.KKKK.KK.KKKK.',
-      'KKK........KKK',
-      'K............K'
-    ],
-    palette: { K: '#0b0610', R: '#ff5a2a' }
   }
 };
 function pixelRects(art, { build = false, cls = '' } = {}) {
@@ -2960,7 +2333,7 @@ function pixelRects(art, { build = false, cls = '' } = {}) {
   rows.forEach((row, y) => [...row].forEach((ch, x) => { if (art.palette[ch]) order.push([x, y, ch]); }));
   if (build) order.sort((a, b) => b[1] - a[1] || a[0] - b[0]);
   for (const [x, y, ch] of order) {
-    const glow = art.glow === ch ? ' class="hw-pumpkin-glow"' : '';
+    const glow = '';
     const delay = build ? ';animation-delay:' + (index * 7) + 'ms' : '';
     out += '<rect x="' + x + '" y="' + y + '" width="1.02" height="1.02"' + glow + ' style="fill:' + art.palette[ch] + delay + '"/>';
     index++;
@@ -2971,38 +2344,6 @@ function pixelSVG(art, className = '', options = {}) {
   const w = art.rows[0].length, h = art.rows.length;
   return '<svg class="px ' + className + '" viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true">' + pixelRects(art, options) + '</svg>';
 }
-function batSVG() {
-  const w = 14, h = 7;
-  return '<svg class="px" viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true"><g class="f1">' + pixelRects(PIXEL_ART.batUp) + '</g><g class="f2">' + pixelRects(PIXEL_ART.batDown) + '</g></svg>';
-}
-function moonSVG() {
-  let rects = '';
-  const r = 7.5, c = 7.5;
-  const craters = new Set(['5,4', '6,4', '5,5', '10,8', '11,8', '10,9', '4,10', '8,12']);
-  for (let y = 0; y < 16; y++) for (let x = 0; x < 16; x++) {
-    const d = Math.hypot(x + .5 - c - .5, y + .5 - c - .5);
-    if (d > r) continue;
-    const fill = craters.has(x + ',' + y) ? '#e3b77a' : (d > r - 1.3 ? '#ffd9a0' : '#fff0cf');
-    rects += '<rect x="' + x + '" y="' + y + '" width="1.02" height="1.02" style="fill:' + fill + '"/>';
-  }
-  return '<svg class="px hw-moon" viewBox="0 0 16 16" aria-hidden="true">' + rects + '</svg>';
-}
-function webSVG(side) {
-  const n = 30, on = new Set();
-  [0, 18, 36, 54, 72, 90].forEach(deg => {
-    const a = deg * Math.PI / 180;
-    for (let t = 0; t < n * 1.42; t += .5) on.add(Math.round(Math.cos(a) * t) + ',' + Math.round(Math.sin(a) * t));
-  });
-  [8, 15, 22, 29].forEach(rad => {
-    for (let deg = 0; deg <= 90; deg += 1.5) {
-      const a = deg * Math.PI / 180, sag = 1 + .08 * Math.sin(((deg % 18) / 18) * Math.PI);
-      on.add(Math.round(Math.cos(a) * rad / sag) + ',' + Math.round(Math.sin(a) * rad / sag));
-    }
-  });
-  let rects = '';
-  on.forEach(key => { const [x, y] = key.split(',').map(Number); if (x < n && y < n) rects += '<rect x="' + x + '" y="' + y + '" width="1" height="1"/>'; });
-  return '<svg class="px hw-web ' + side + '" viewBox="0 0 ' + n + ' ' + n + '" aria-hidden="true" style="fill:#ffc896">' + rects + '</svg>';
-}
 const HAT_ICON = pixelSVG(PIXEL_ART.hat);
 const HEAD_ICON = pixelSVG(PIXEL_ART.head);
 
@@ -3011,169 +2352,11 @@ function buildBlockcraftDecor() {
   if (brand && !brand.querySelector('.brand-hat')) brand.insertAdjacentHTML('afterbegin', pixelSVG(PIXEL_ART.hat, 'brand-hat'));
   const empty = document.getElementById('empty-state');
   if (empty && !empty.querySelector('.hero-hat')) empty.insertAdjacentHTML('afterbegin', pixelSVG(PIXEL_ART.hat, 'hero-hat', { build: !REDUCED_MOTION }));
-  const pumpkinIcon = document.querySelector('#halloween-overlay .modal-icon');
-  if (pumpkinIcon) pumpkinIcon.innerHTML = pixelSVG(PIXEL_ART.pumpkin);
-  const scene = document.querySelector('.halloween-scene');
-  if (scene) {
-    scene.innerHTML =
-      '<div class="hw-fog"></div>' + moonSVG() + webSVG('left') + webSVG('right') +
-      '<div class="hw-spider"><div class="thread"></div>' + pixelSVG(PIXEL_ART.spider) + '</div>' +
-      '<div class="hw-bat" style="top:14%;--dur:17s;--delay:-3s">' + batSVG() + '</div>' +
-      '<div class="hw-bat" style="top:24%;--dur:23s;--delay:-12s;width:40px;height:20px">' + batSVG() + '</div>' +
-      '<div class="hw-bat" style="top:9%;--dur:29s;--delay:-20s;width:34px;height:17px">' + batSVG() + '</div>' +
-      '<div class="hw-ghost">' + pixelSVG(PIXEL_ART.ghost) + '</div>' +
-      '<div class="hw-flash"></div>';
-  }
 }
 
-// Minecraft-style splash text next to the welcome title. Click it for a new one.
-const SPLASHES = {
-  normal: ['Now 100% blocky!', 'Also try Halloween!', 'Made by Brian!', 'Runs on qwen!', 'Pixel perfect!', 'Ask me anything!', 'Top hats only!', 'Now with achievements!'],
-  halloween: ['Spooky edition!', 'Boo!', 'Trick or treat!', 'Pumpkin powered!', 'Do not feed the ghosts!', 'Now with 100% more bats!', 'Happy Halloween!', 'Candy accepted!']
-};
-let lastSplash = '';
-function setSplash() {
-  const splash = document.getElementById('splash');
-  if (!splash) return;
-  const list = SPLASHES[document.documentElement.getAttribute('data-theme') === 'halloween' ? 'halloween' : 'normal'];
-  let pick = lastSplash;
-  while (pick === lastSplash && list.length > 1) pick = list[Math.floor(Math.random() * list.length)];
-  lastSplash = pick;
-  splash.textContent = pick;
-}
-function setupSplash() {
-  const title = document.querySelector('.welcome-title');
-  if (!title || document.getElementById('splash')) return;
-  const wrap = document.createElement('div');
-  wrap.className = 'title-wrap';
-  title.replaceWith(wrap);
-  wrap.appendChild(title);
-  const splash = document.createElement('button');
-  splash.type = 'button';
-  splash.id = 'splash';
-  splash.className = 'splash';
-  splash.title = 'Click for a new splash';
-  splash.addEventListener('click', setSplash);
-  wrap.appendChild(splash);
-  setSplash();
-}
-
-// Ambient pixel sky on a low-res canvas: each canvas pixel is a 4px block on screen.
-function startPixelSky() {
-  const canvas = document.createElement('canvas');
-  canvas.id = 'pixel-sky';
-  canvas.setAttribute('aria-hidden', 'true');
-  document.body.prepend(canvas);
-  const ctx = canvas.getContext('2d');
-  const SCALE = 4;
-  let W = 0, H = 0, stars = [], parts = [], ground = [], props = [], shooting = null, last = 0;
-  let seed = 7;
-  const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  const theme = () => document.documentElement.getAttribute('data-theme') || 'midnight';
-  function resize() {
-    W = Math.ceil(window.innerWidth / SCALE); H = Math.ceil(window.innerHeight / SCALE);
-    canvas.width = W; canvas.height = H;
-    seed = 7;
-    stars = Array.from({ length: Math.round(W * H / 260) }, () => ({ x: Math.floor(rand() * W), y: Math.floor(rand() * H * .7), p: rand() * 6.28, s: .6 + rand() * 1.6 }));
-    ground = []; let h = 9;
-    for (let x = 0; x < W; x += 3) { h += Math.round((rand() - .5) * 3); h = Math.max(6, Math.min(15, h)); ground.push(h); }
-    const at = f => Math.floor(W * f);
-    const gy = x => H - ground[Math.min(ground.length - 1, Math.floor(x / 3))];
-    props = [
-      { type: 'stone', x: at(.04) }, { type: 'pumpkin', x: at(.1) }, { type: 'stone', x: at(.17) },
-      { type: 'stone', x: at(.8) }, { type: 'pumpkin', x: at(.87) }, { type: 'pumpkin', x: at(.94) }
-    ].map(p => ({ ...p, y: gy(p.x) }));
-    parts = [];
-  }
-  function drawArt(art, x0, y0, flicker) {
-    art.rows.forEach((row, y) => [...row].forEach((ch, x) => {
-      const color = art.palette[ch];
-      if (!color) return;
-      ctx.globalAlpha = art.glow === ch ? flicker : 1;
-      ctx.fillStyle = color; ctx.fillRect(x0 + x, y0 + y, 1, 1);
-    }));
-    ctx.globalAlpha = 1;
-  }
-  function drawStone(x0, y0) {
-    ctx.fillStyle = '#4b4560'; ctx.fillRect(x0 + 1, y0 - 9, 6, 9); ctx.fillRect(x0 + 2, y0 - 10, 4, 1);
-    ctx.fillStyle = '#5f587a'; ctx.fillRect(x0 + 1, y0 - 9, 1, 9);
-    ctx.fillStyle = '#2b263a'; ctx.fillRect(x0 + 4, y0 - 8, 1, 5); ctx.fillRect(x0 + 3, y0 - 7, 3, 1);
-  }
-  function spawn(t) {
-    const th = theme();
-    if (th === 'halloween' && parts.length < 70 && rand() < .5) {
-      const p = props.filter(item => item.type === 'pumpkin')[Math.floor(rand() * 3)];
-      const fromPumpkin = rand() < .5 && p;
-      parts.push({ kind: 'ember', x: fromPumpkin ? p.x + 6 : rand() * W, y: fromPumpkin ? p.y - 10 : H - 4, vx: (rand() - .5) * .3, vy: -(.25 + rand() * .45), life: 1, decay: .004 + rand() * .006 });
-    } else if (th === 'forest' && parts.length < 26 && rand() < .08) {
-      parts.push({ kind: 'firefly', x: rand() * W, y: H * (.3 + rand() * .65), vx: (rand() - .5) * .25, vy: (rand() - .5) * .2, life: 1, decay: .002 + rand() * .002, p: rand() * 6.28 });
-    } else if (th === 'ocean' && parts.length < 30 && rand() < .12) {
-      parts.push({ kind: 'bubble', x: rand() * W, y: H + 2, vx: 0, vy: -(.15 + rand() * .3), life: 1, decay: .002, p: rand() * 6.28 });
-    } else if (th === 'midnight' && !shooting && rand() < .004) {
-      shooting = { x: rand() * W * .7, y: rand() * H * .3, len: 0 };
-    }
-  }
-  function frame(now) {
-    requestAnimationFrame(frame);
-    if (document.hidden || now - last < 50) return;
-    last = now;
-    const th = theme();
-    const t = now / 1000;
-    ctx.clearRect(0, 0, W, H);
-    if (th === 'light') return;
-    const starColor = { midnight: '#c4b5fd', ocean: '#7dd3fc', forest: '#bef264', halloween: '#ffcf9a' }[th] || '#fff';
-    ctx.fillStyle = starColor;
-    for (const s of stars) {
-      const a = .15 + .55 * (Math.sin(t * s.s + s.p) * .5 + .5);
-      ctx.globalAlpha = Math.round(a * 4) / 4;
-      ctx.fillRect(s.x, s.y, 1, 1);
-    }
-    ctx.globalAlpha = 1;
-    if (shooting && th === 'midnight') {
-      shooting.len += 2;
-      for (let i = 0; i < Math.min(shooting.len, 10); i++) {
-        ctx.globalAlpha = 1 - i / 10; ctx.fillStyle = '#ffffff';
-        ctx.fillRect(Math.floor(shooting.x + shooting.len - i), Math.floor(shooting.y + (shooting.len - i) * .45), 1, 1);
-      }
-      ctx.globalAlpha = 1;
-      if (shooting.len > 70) shooting = null;
-    }
-    if (th === 'halloween') {
-      ground.forEach((h, i) => {
-        ctx.fillStyle = '#1b0a22'; ctx.fillRect(i * 3, H - h, 3, h);
-        ctx.fillStyle = '#3a1747'; ctx.fillRect(i * 3, H - h, 3, 1);
-      });
-      const flicker = .7 + .3 * Math.round(Math.random() * 2) / 2;
-      for (const p of props) {
-        if (p.type === 'stone') drawStone(p.x, p.y);
-        else drawArt(PIXEL_ART.pumpkin, p.x, p.y - 11, flicker);
-      }
-    }
-    if (!REDUCED_MOTION) spawn(t);
-    parts = parts.filter(p => p.life > 0 && p.y > -4 && p.x > -4 && p.x < W + 4);
-    for (const p of parts) {
-      p.life -= p.decay;
-      if (p.kind === 'ember') { p.x += p.vx + Math.sin(t * 2 + p.y * .1) * .15; p.y += p.vy; ctx.fillStyle = p.life > .6 ? '#ffd23f' : '#ff7a1a'; ctx.globalAlpha = Math.max(0, Math.min(1, p.life * 1.4)); }
-      else if (p.kind === 'firefly') { p.x += p.vx + Math.sin(t + p.p) * .1; p.y += p.vy + Math.cos(t * .8 + p.p) * .08; ctx.fillStyle = '#d9ff6b'; ctx.globalAlpha = Math.sin(t * 2.5 + p.p) > .2 ? Math.min(1, p.life * 2) : .1; }
-      else { p.x += Math.sin(t * 1.5 + p.p) * .12; p.y += p.vy; ctx.fillStyle = '#9fe7ff'; ctx.globalAlpha = .55; }
-      ctx.fillRect(Math.round(p.x), Math.round(p.y), 1, 1);
-    }
-    ctx.globalAlpha = 1;
-  }
-  window.addEventListener('resize', resize);
-  resize();
-  requestAnimationFrame(frame);
-}
-
-buildBlockcraftDecor();
-setupSplash();
-startPixelSky();
-const _applyThemeOriginal = applyTheme;
-applyTheme = function (theme) { _applyThemeOriginal(theme); setSplash(); };
 
 initializeSavedConversations();
 syncModeToggles();
-showHalloweenNoticeOnce();
 </script>
 
 
